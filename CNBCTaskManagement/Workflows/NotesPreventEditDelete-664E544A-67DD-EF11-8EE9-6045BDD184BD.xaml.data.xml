@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{664e544a-67dd-ef11-8ee9-6045bdd184bd}" Name="Notes Prevent Edit Delete" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/NotesPreventEditDelete-664E544A-67DD-EF11-8EE9-6045BDD184BD.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>0</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnUpdateAttributeList>subject,overriddencreatedon,owningbusinessunit,ownerid,modifiedon,modifiedonbehalfby,modifiedby,isdocument,isautonomouslycreated,filesize,filename,notetext,createdon,createdonbehalfby,createdby</TriggerOnUpdateAttributeList>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>1</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>Annotation</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Notes Prevent Edit Delete" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{e1e2e1bc-c360-470b-8f6e-e122f6307e14}">
+      <label languagecode="1033" description="This Task is not Open. Reopen the task to edit Notes" />
+    </steplabels>
+  </labels>
+</Workflow>

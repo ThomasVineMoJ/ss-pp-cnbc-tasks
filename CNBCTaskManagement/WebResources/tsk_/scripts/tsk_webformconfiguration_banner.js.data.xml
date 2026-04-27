@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{20d52200-320b-f111-8407-7ced8d3a2501}</WebResourceId>
+  <Name>tsk_/scripts/tsk_webformconfiguration_banner.js</Name>
+  <DisplayName>tsk_/scripts/tsk_webformconfiguration_banner.js</DisplayName>
+  <Description>Banner to display on Web form config form to remind users when adding new JSON.</Description>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.52</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_scriptstsk_webformconfiguration_bannerjs20D52200-320B-F111-8407-7CED8D3A2501</FileName>
+</WebResource>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{da6e4173-1cb9-48c9-8a35-608cd8e451a2}</savedqueryid>
+    <layoutxml>
+      <grid name="tsk_routingruleses" jump="tsk_rulename" select="1" icon="1" preview="0">
+        <row name="tsk_routingrules" id="tsk_routingrulesid">
+          <cell name="tsk_rulename" width="300" />
+          <cell name="tsk_sourcequeue" width="119" />
+          <cell name="tsk_destinationqueue" width="145" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tsk_routingrules">
+          <attribute name="tsk_routingrulesid" />
+          <attribute name="tsk_rulename" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tsk_sourcequeue" />
+          <attribute name="tsk_destinationqueue" />
+          <order attribute="tsk_sourcequeue" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Routing Rules Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

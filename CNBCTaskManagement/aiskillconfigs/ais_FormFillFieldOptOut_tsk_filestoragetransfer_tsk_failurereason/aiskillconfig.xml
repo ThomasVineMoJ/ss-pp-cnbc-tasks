@@ -1,0 +1,15 @@
+<aiskillconfig uniquename="ais_FormFillFieldOptOut_tsk_filestoragetransfer_tsk_failurereason">
+  <aiskill>FormFillFieldOptOut</aiskill>
+  <attribute>
+    <entityid.logicalname>tsk_filestoragetransfer</entityid.logicalname>
+    <logicalname>tsk_failurereason</logicalname>
+  </attribute>
+  <description>tsk_filestoragetransfer - Failure Reason Form fill opt out</description>
+  <entity>
+    <logicalname>tsk_filestoragetransfer</logicalname>
+  </entity>
+  <iscustomizable>1</iscustomizable>
+  <scope>1</scope>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</aiskillconfig>

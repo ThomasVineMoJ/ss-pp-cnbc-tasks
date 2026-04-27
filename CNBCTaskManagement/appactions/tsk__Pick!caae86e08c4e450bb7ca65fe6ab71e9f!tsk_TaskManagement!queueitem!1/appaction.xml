@@ -1,0 +1,46 @@
+<appaction uniquename="tsk__Pick!caae86e08c4e450bb7ca65fe6ab71e9f!tsk_TaskManagement!queueitem!1">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonaccessibilitytext default="Pick">
+    <label description="Pick" languagecode="1033" />
+  </buttonaccessibilitytext>
+  <buttonlabeltext default="Pick">
+    <label description="Pick" languagecode="1033" />
+  </buttonlabeltext>
+  <buttontooltipdescription default="Pick the items to start working on it. The items will be assigned to you.">
+    <label description="Pick the items to start working on it. The items will be assigned to you." languagecode="1033" />
+  </buttontooltipdescription>
+  <buttontooltiptitle default="Pick">
+    <label description="Pick" languagecode="1033" />
+  </buttontooltiptitle>
+  <context>1</context>
+  <contextentity>
+    <logicalname>queueitem</logicalname>
+  </contextentity>
+  <contextvalue>queueitem</contextvalue>
+  <fonticon>$clientsvg:OpenEnrollment</fonticon>
+  <hidden>0</hidden>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>1</location>
+  <name>Pick!caae86e08c4e450bb7ca65fe6ab71e9f</name>
+  <onclickeventjavascriptfunctionname>tsk.queueitem_view.onPick</onclickeventjavascriptfunctionname>
+  <onclickeventjavascriptparameters>[{"type":12},{"type":24},{"type":7}]</onclickeventjavascriptparameters>
+  <onclickeventjavascriptwebresourceid>
+    <webresourceid>d3343f5a-a323-f011-8c4d-6045bd0e6831</webresourceid>
+  </onclickeventjavascriptwebresourceid>
+  <onclickeventtype>2</onclickeventtype>
+  <origin>0</origin>
+  <sequence>1000200010.0000000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilityformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </visibilityformulacomponentlibraryid>
+  <visibilityformulacomponentname>f12e6fa753514ce2bcef920e2ee1e60b</visibilityformulacomponentname>
+  <visibilityformulafunctionname>Visible</visibilityformulafunctionname>
+  <visibilitytype>1</visibilitytype>
+</appaction>

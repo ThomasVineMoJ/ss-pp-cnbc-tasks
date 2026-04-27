@@ -1,0 +1,125 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "GMT Standard Time",
+            "startTime": "2025-05-02T01:00:00Z",
+            "schedule": {
+              "hours": [
+                "2"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "0bca263c-700b-496e-8039-ab7bc8d5b90b"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows_|_Online_Users": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4bec4a3a-bb8d-469f-805a-b90b9d5f215c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "tsk_userstatuses",
+              "fetchXml": "<fetch>\n  <entity name=\"tsk_userstatus\">\n    <attribute name=\"tsk_userstatusid\" />\n    <attribute name=\"tsk_user\" />\n    <filter>\n      <condition attribute=\"tsk_isonline\" operator=\"eq\" value=\"1\" />\n    </filter>\n  </entity>\n</fetch>\n"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_|_Online_Users": {
+          "foreach": "@outputs('List_rows_|_Online_Users')?['body/value']",
+          "actions": {
+            "Update_a_row_|_User_Status": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "7ca4c8f0-dc43-4287-88fb-a527e27393b0"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tsk_userstatuses",
+                  "recordId": "@items('Apply_to_each_|_Online_Users')?['tsk_userstatusid']",
+                  "item/tsk_isonline": false,
+                  "item/tsk_lastoffline": "@utcNow()"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Run_a_Child_Flow_|_Auto_Allocation_Unassign_(Child)": {
+              "runAfter": {
+                "Update_a_row_|_User_Status": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "99ddca1f-5ad2-498b-8264-67ab66ba8787"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "3ce168f9-4e27-f011-8c4d-00224842241f"
+                },
+                "body": {
+                  "text": "@items('Apply_to_each_|_Online_Users')?['_tsk_user_value']"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_|_Online_Users": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0ca32ab8-1e7b-4966-9b8b-7ad82a5d0d5f"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

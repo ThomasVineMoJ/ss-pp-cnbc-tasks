@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{cc98cb1f-6552-4fd8-9e2f-39a1cad2f710}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" preview="1" icon="1">
+        <row name="result" id="activityid">
+          <cell name="subject" width="250" />
+          <cell name="from" disableSorting="1" width="150" />
+          <cell name="to" disableSorting="1" width="150" />
+          <cell name="regardingobjectid" width="100" />
+          <cell name="prioritycode" width="140" />
+          <cell name="statuscode" width="100" />
+          <cell name="modifiedon" width="140" />
+          <cell name="tsk_task" width="187" />
+          <cell name="directioncode" width="100" />
+          <cell name="receivingmailboxid" width="148" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="email">
+          <attribute name="subject" />
+          <attribute name="regardingobjectid" />
+          <attribute name="from" />
+          <attribute name="to" />
+          <attribute name="prioritycode" />
+          <attribute name="statuscode" />
+          <attribute name="modifiedon" />
+          <attribute name="activityid" />
+          <attribute name="tsk_task" />
+          <attribute name="directioncode" />
+          <attribute name="receivingmailboxid" />
+          <order attribute="modifiedon" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Emails" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,13 @@
+<environmentvariabledefinition schemaname="tsk_EmailLoopDetectionDestinationQueue">
+  <description default="When an email loop is detected, which queue should the tasks be routed to. This should be the Queue ID of the queue.">
+    <label description="When an email loop is detected, which queue should the tasks be routed to. This should be the Queue ID of the queue." languagecode="1033" />
+  </description>
+  <displayname default="Email Loop Detection Destination Queue">
+    <label description="Email Loop Detection Destination Queue" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.45</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

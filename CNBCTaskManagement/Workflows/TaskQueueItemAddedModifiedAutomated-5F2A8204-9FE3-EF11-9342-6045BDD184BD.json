@@ -1,0 +1,449 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_|_Queue_Items": {
+          "metadata": {
+            "operationMetadataId": "2e64c2bd-c0bd-4551-8b9a-0402e60d8259"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "queueitem",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "queueid,workerid",
+              "subscriptionRequest/filterexpression": "objecttypecode eq 4212",
+              "subscriptionRequest/runas": 3
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Scope_|_Try_Update_Task_Record": {
+          "actions": {
+            "Get_a_row_by_ID_|_Queue": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "00f88258-4f9f-46c4-924c-01004b3332b0"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queues",
+                  "recordId": "@triggerOutputs()?['body/_queueid_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_a_row_by_ID_|_Task": {
+              "runAfter": {
+                "Get_a_row_by_ID_|_Queue": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "32e327ce-10af-495e-b5cd-7dd6b9d96c44"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tasks",
+                  "recordId": "@triggerOutputs()?['body/_objectid_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Compose_|_Task_Due_Date": {
+              "runAfter": {
+                "Condition_|_Is_Task_Completed": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "61d92892-acc8-4432-acd4-f5e88f0942c8"
+              },
+              "type": "Compose",
+              "inputs": "@if(equals(null, outputs('Get_a_row_by_ID_|_Queue')?['body/tsk_sladays']),null,addDays(outputs('Get_a_row_by_ID_|_Task')?['body/createdon'], outputs('Get_a_row_by_ID_|_Queue')?['body/tsk_sladays']))",
+              "description": "if there is no sla days on the Queue Record then return null, else add SLA days to the task created on date"
+            },
+            "Compose_|_Force_Due_Date_Change": {
+              "runAfter": {
+                "Compose_|_Task_Due_Date": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "470758e3-de31-4e6a-8a0e-756e58bb94e4"
+              },
+              "type": "Compose",
+              "inputs": "@if(equals(outputs('Compose_|_Task_Due_Date'),outputs('Get_a_row_by_ID_|_Task')?['body/scheduledend']),addSeconds(outputs('Compose_|_Task_Due_Date'),1),outputs('Compose_|_Task_Due_Date'))",
+              "description": "if the calculated due date is the same as the task end date then add one second to the due date"
+            },
+            "Update_a_row_|_Update_Task": {
+              "runAfter": {
+                "Compose_|_Owner": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "93d84831-b2c4-4c96-a685-7445c2b9a094"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tasks",
+                  "recordId": "@triggerOutputs()?['body/_objectid_value']",
+                  "item/scheduledend": "@outputs('Compose_|_Force_Due_Date_Change')",
+                  "item/ownerid_task@odata.bind": "@outputs('Compose_|_Owner')",
+                  "item/tsk_CurrentQueue_Task@odata.bind": "queues(@{outputs('Get_a_row_by_ID_|_Queue')?['body/queueid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Compose_|_Owner": {
+              "runAfter": {
+                "Compose_|_Force_Due_Date_Change": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9ee4d412-bf52-4f2b-8c07-33af73f768f2"
+              },
+              "type": "Compose",
+              "inputs": "@if(empty(triggerOutputs()?['body/_workerid_value']),concat('systemusers(',outputs('Get_a_row_by_ID_|_Queue')?['body/_ownerid_value'],')'),concat('systemusers(',triggerOutputs()?['body/_workerid_value'],')'))",
+              "description": "if the queue item worked by is blank, return the task owner, else return the queue worked by"
+            },
+            "Condition_|_Is_Task_Completed": {
+              "actions": {
+                "Terminate": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e2f859af-0d6c-40ba-850f-5e298bfcf17d"
+                  },
+                  "type": "Terminate",
+                  "inputs": {
+                    "runStatus": "Succeeded"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_a_row_by_ID_|_Task": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_row_by_ID_|_Task')?['body/statecode']",
+                  1
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9c746d8e-ce17-4d5e-9705-9ae04dd719ee"
+              },
+              "type": "If"
+            },
+            "Condition_|_Modified_and_Worked_By_Is_Null": {
+              "actions": {
+                "Condition_|_Task_Found": {
+                  "actions": {
+                    "Add_a_new_row_|_Notification": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "83b8097d-5864-4b0e-ad82-b094cfbc5edd"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "CreateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "appnotifications",
+                          "item/title": "Task Assigned",
+                          "item/body": "A task has been auto allocated to you.",
+                          "item/data": "{\n  \"actions\": [\n    {\n      \"data\": {\n        \"url\": \"@{body('Run_a_Child_Flow')?['taskurlparams']}\",\n        \"navigationTarget\": \"inline\"\n      },\n      \"title\": \"View Task\"\n    }\n  ]\n}",
+                          "item/ttlinseconds": 28800,
+                          "item/icontype": 100000000,
+                          "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_tsk_previousworkedby_value']})",
+                          "item/priority": 200000000,
+                          "item/toasttype": 200000000
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Run_a_Child_Flow": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@empty(outputs('Run_a_Child_Flow')?['Body']?['taskurlparams'])",
+                      "@false"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "05817135-ff52-43d7-8fff-19b76cc401a3"
+                  },
+                  "type": "If"
+                },
+                "Condition_|_Is_User_Offline": {
+                  "actions": {
+                    "Terminate_|_User_is_Offline": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "79c6810f-bf0c-498a-a8e1-0140ec46796c"
+                      },
+                      "type": "Terminate",
+                      "inputs": {
+                        "runStatus": "Succeeded"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "List_rows_|_User_Status": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@length(outputs('List_rows_|_User_Status')?['body/value'])",
+                      0
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "0fcbd6d0-6609-44ea-90e2-e3020eaa6e35"
+                  },
+                  "type": "If"
+                },
+                "Run_a_Child_Flow": {
+                  "runAfter": {
+                    "Condition_|_Is_User_Offline": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "64a436f9-c942-4879-bb44-ae3c8a9307e2"
+                  },
+                  "type": "Workflow",
+                  "inputs": {
+                    "host": {
+                      "workflowReferenceName": "19833a68-3b25-f011-8c4d-6045bd0e6831"
+                    },
+                    "body": {
+                      "text": "@triggerOutputs()?['body/_tsk_previousworkedby_value']"
+                    }
+                  }
+                },
+                "Condition_|_Is_User_Unknown": {
+                  "actions": {
+                    "Terminate_|_User_is_Unknown": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "79c6810f-bf0c-498a-a8e1-0140ec46796c"
+                      },
+                      "type": "Terminate",
+                      "inputs": {
+                        "runStatus": "Succeeded"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "or": [
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/_tsk_previousworkedby_value']",
+                          "@null"
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/_tsk_previousworkedby_value']",
+                          "@''"
+                        ]
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "0fcbd6d0-6609-44ea-90e2-e3020eaa6e35"
+                  },
+                  "type": "If"
+                },
+                "List_rows_|_User_Status": {
+                  "runAfter": {
+                    "Condition_|_Is_User_Unknown": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "09491648-55c4-4f42-b842-3517912250d9"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tsk_userstatuses",
+                      "$select": "tsk_userstatusid",
+                      "$filter": "tsk_isonline eq true and _tsk_user_value eq '@{triggerOutputs()?['body/_tsk_previousworkedby_value']}'",
+                      "$top": 1
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Update_a_row_|_Update_Queue_Item": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@triggerOutputs()?['body/SdkMessage']",
+                      "Update"
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "@triggerOutputs()?['body/_workerid_value']",
+                      "@null"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0df5b688-c032-4382-81f6-120a84c1b52c"
+              },
+              "type": "If"
+            },
+            "Update_a_row_|_Update_Queue_Item": {
+              "runAfter": {
+                "Update_a_row_|_Update_Task": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f29a55dd-5caa-40d0-a557-91801dfedfde"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queueitems",
+                  "recordId": "@triggerOutputs()?['body/queueitemid']",
+                  "item/tsk_duedate": "@outputs('Compose_|_Force_Due_Date_Change')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "384560d2-7274-4bc8-ad44-536b7e991482"
+          },
+          "type": "Scope"
+        },
+        "Scope_|_Catch_All_Errors": {
+          "actions": {
+            "Compose_|_Placeholder_Log_Error": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "265ef88f-12f6-46b5-adee-88a2c7b8abf1"
+              },
+              "type": "Compose",
+              "inputs": "placeholder"
+            },
+            "Terminate_|_Unhandled_Error": {
+              "runAfter": {
+                "Compose_|_Placeholder_Log_Error": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cf10a40f-c62a-432f-9917-0a34faf3cd79"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "800",
+                  "message": "Unhandled error has occured please check error log"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try_Update_Task_Record": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f7d5753b-11a9-4a98-82ef-16bf364549af"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

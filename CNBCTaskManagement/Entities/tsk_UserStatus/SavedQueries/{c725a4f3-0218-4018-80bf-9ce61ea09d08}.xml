@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{c725a4f3-0218-4018-80bf-9ce61ea09d08}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tsk_name" select="1" icon="1" preview="1">
+        <row name="result" id="tsk_userstatusid">
+          <cell name="tsk_user" width="100" />
+          <cell name="tsk_isonline" width="100" />
+          <cell name="tsk_lastonline" width="107" />
+          <cell name="tsk_lastoffline" width="109" />
+          <cell name="modifiedon" width="114" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tsk_userstatus">
+          <attribute name="tsk_userstatusid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tsk_user" />
+          <attribute name="tsk_isonline" />
+          <attribute name="tsk_lastonline" />
+          <attribute name="tsk_lastoffline" />
+          <attribute name="modifiedon" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active User Statuses" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

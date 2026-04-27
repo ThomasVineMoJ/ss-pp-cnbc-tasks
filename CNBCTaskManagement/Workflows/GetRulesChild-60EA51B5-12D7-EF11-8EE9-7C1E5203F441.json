@@ -1,0 +1,194 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "e9e4e19e-e616-498c-b40e-c4dcd059acca"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "SourceQueueId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Scope_|_Catch_Any_Error": {
+          "actions": {
+            "Compose_|_Placeholder_for_error_logging": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "773f44ae-d1f2-403d-af38-8d7be37c233e"
+              },
+              "type": "Compose",
+              "inputs": "placeholder"
+            },
+            "Respond_to_a_Power_App_or_flow_|_When_error_occurs": {
+              "runAfter": {
+                "Compose_|_Placeholder_for_error_logging": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5d6a7ba0-3eed-441d-b085-281773cfbb91"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "rulesarraystring": "[]"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rulesarraystring": {
+                      "title": "RulesArrayString",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try_Get_Rules": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "280800c7-c580-45a3-9250-98d263f30899"
+          },
+          "type": "Scope"
+        },
+        "Scope_|_Try_Get_Rules": {
+          "actions": {
+            "List_rows_|_Get_Rules": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d6fbc3bd-7443-4265-9b76-4d0d3498957c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tsk_routingruleses",
+                  "$select": "tsk_rulename, tsk_musthavekeyword, tsk_checkattachments, tsk_patternmatch",
+                  "$filter": "statecode eq 0 and (tsk_ruletype eq 957120001 and _tsk_sourcequeue_value eq @{triggerBody()?['text']}) or tsk_ruletype eq 957120002",
+                  "$orderby": "tsk_ruletype desc, tsk_searchsequence asc",
+                  "$expand": "tsk_DestinationQueue($select=queueid, name), tsk_keyword_RoutingRule_tsk_routingrules($select=tsk_keyword)"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Respond_to_a_Power_App_or_flow": {
+              "runAfter": {
+                "Select_|_Map_Rules_to_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "48fd7821-4ee7-4f14-9b06-d53d78aead97"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "rulesarraystring": "@{body('Select_|_Map_Rules_to_JSON')}"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rulesarraystring": {
+                      "title": "RulesArrayString",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "Select_|_Map_Rules_to_JSON": {
+              "runAfter": {
+                "List_rows_|_Get_Rules": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a0eb06e9-acdd-4fa7-a007-6b9857641e89"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@outputs('List_rows_|_Get_Rules')?['body/value']",
+                "select": {
+                  "ruleName": "@item()?['tsk_rulename']",
+                  "queueId": "@item()?['tsk_destinationqueue/queueid']",
+                  "mustHave": "@item()?['tsk_musthavekeyword']",
+                  "attachments": "@item()?['tsk_checkattachments']",
+                  "regexPattern": "@item()?['tsk_patternmatch']",
+                  "keywords": "@if(greater(length(join(xpath(xml(json(concat('{\"body\":{\"value\":', item()?['tsk_keyword_RoutingRule_tsk_routingrules'],'}}'))), '//body/value/tsk_keyword/text()'), '\",\"')),0),\n\n json(concat('[\"',join(xpath(xml(json(concat('{\"body\":{\"value\":', item()?['tsk_keyword_RoutingRule_tsk_routingrules'],'}}'))), '//body/value/tsk_keyword/text()'), '\",\"'), '\"]'))\n, json('[]'))"
+                }
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "808237c1-0a69-4090-b088-a1a330de4ea4"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

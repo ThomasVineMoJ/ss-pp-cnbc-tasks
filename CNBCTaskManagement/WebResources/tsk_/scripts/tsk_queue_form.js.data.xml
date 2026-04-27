@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{c7a4d6b0-c4fe-ef11-bae2-6045bd11200e}</WebResourceId>
+  <Name>tsk_/scripts/tsk_queue_form.js</Name>
+  <DisplayName>tsk_/scripts/tsk_queue_form.js</DisplayName>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_scriptstsk_queue_formjsC7A4D6B0-C4FE-EF11-BAE2-6045BD11200E</FileName>
+</WebResource>

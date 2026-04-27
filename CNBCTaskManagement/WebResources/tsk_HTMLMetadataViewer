@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Submission Viewer</title>
+    <link rel="stylesheet"
+        href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            color: rgb(36,36,36)
+        }
+        table.ms-List {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            text-align: left;
+            padding: 12px 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 1px solid rgb(224,224,224);
+        }
+        .ms-ListItem {
+            display: table-row;
+            border-bottom: 1px solid rgb(240,240,240)
+        }
+        .ms-ListItem-cell {
+            display: table-cell;
+            padding: 12px 8px;
+            font-size: 14px;
+        }
+        .ms-ListItem:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="ms-List" id="answers">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Response</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        (function () {
+        
+            var fieldName = "tsk_webformmetadata";
+        
+            function showError() {
+                document.body.style.height = "auto";
+                document.body.style.overflow = "hidden";
+                document.body.innerHTML = `
+                    <div style="color:#666; font-family:Segoe UI; margin:40px; text-align:center;">
+                        <div style="font-size:48px; margin-bottom:10px;">&#9888;</div>
+                        <div style="font-size:16px;">Something went wrong while loading this submission.</div>
+                    </div>
+                `;
+            }
+        
+            var attr = window.parent?.Xrm?.Page?.getAttribute(fieldName);
+            if (!attr) return showError();
+        
+            var jsonString = attr.getValue();
+            if (!jsonString) return showError();
+        
+            let data;
+            try {
+                data = JSON.parse(jsonString);
+            } catch {
+                return showError();
+            }
+        
+            if (!Array.isArray(data)) return showError();
+        
+            var excludedIds = [
+                "submission_id",
+                "submission_at",
+                "confirmation-email_email_1",
+                "reference_number"
+            ];
+        
+            data = data.filter(item => !excludedIds.includes(item.component_id));
+
+            data.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+        
+            var tbody = document.querySelector("#answers tbody");
+            tbody.innerHTML = "";
+        
+            data.forEach(item => {
+        
+                var tr = document.createElement("tr");
+                tr.className = "ms-ListItem";
+        
+                var questionText =
+                    (item.component_label && String(item.component_label).trim()) ||
+                    (item.component_legend && String(item.component_legend).trim()) ||
+                    item.component_id;
+        
+                var answerVal = item.response == null ? "" : String(item.response);
+        
+                tr.innerHTML = `
+                    <td class="ms-ListItem-cell">${questionText}</td>
+                    <td class="ms-ListItem-cell">${answerVal}</td>
+                `;
+        
+                tbody.appendChild(tr);
+            });
+        
+        })();
+        </script>        
+</body>
+</html>

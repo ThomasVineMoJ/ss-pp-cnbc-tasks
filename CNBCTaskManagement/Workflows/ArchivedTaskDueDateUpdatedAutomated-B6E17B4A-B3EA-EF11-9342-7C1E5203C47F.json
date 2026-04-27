@@ -1,0 +1,180 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "b700593f-5e93-4a3e-a88e-8e238ae978eb"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "task",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "scheduledend",
+              "subscriptionRequest/runas": 3
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [
+            {
+              "expression": "@greaterOrEquals(   utcNow(),   addSeconds(triggerOutputs()?['body/createdon'], 5) )"
+            }
+          ]
+        }
+      },
+      "actions": {
+        "Scope_|_Try_Update_Queue_Item_Due_Date": {
+          "actions": {
+            "List_rows_|_Get_Queue_Item": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f88b5e1e-c663-4324-961b-dc02bbc897ef"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queueitems",
+                  "$select": "queueitemid",
+                  "$filter": "statecode eq 0 and _objectid_value eq @{triggerOutputs()?['body/activityid']}",
+                  "$top": 1
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Compose_|_Queue_Item_ID": {
+              "runAfter": {
+                "List_rows_|_Get_Queue_Item": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "235ce271-9398-4dc8-ac77-58b6558d3987"
+              },
+              "type": "Compose",
+              "inputs": "@first(outputs('List_rows_|_Get_Queue_Item')?['body/value'])?['queueitemid']"
+            },
+            "Update_a_row_|_Update_Queue_Item_Due_Date": {
+              "runAfter": {
+                "Compose_|_Queue_Item_ID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e5830eb6-2f04-4b10-be32-eed896727c55"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queueitems",
+                  "recordId": "@outputs('Compose_|_Queue_Item_ID')",
+                  "item/tsk_duedate": "@triggerOutputs()?['body/scheduledend']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a8466c18-79e7-4373-9cff-507f7c3cfa00"
+          },
+          "type": "Scope"
+        },
+        "Scope_|_Catch_All_Errors": {
+          "actions": {
+            "Compose_|_Placeholder_Log_Error": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "423f0938-4a90-4c08-a77e-0ed2a0120d56"
+              },
+              "type": "Compose",
+              "inputs": "log"
+            },
+            "Terminate": {
+              "runAfter": {
+                "Compose_|_Placeholder_Log_Error": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4c8f7393-5da4-46a8-a3fa-66449efce8d1"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "800",
+                  "message": "An unhandled error has occurred please check the logs"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try_Update_Queue_Item_Due_Date": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e676a4eb-62ba-48c0-b227-73fc8624dcab"
+          },
+          "type": "Scope"
+        },
+        "Compose": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "68835394-cb28-4d46-a878-278f67dd4b63"
+          },
+          "type": "Compose",
+          "inputs": "@triggerOutputs()"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

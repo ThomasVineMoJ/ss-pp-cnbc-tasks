@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{a6e6b659-dff9-ef11-bae2-6045bd11200e}</WebResourceId>
+  <Name>tsk_/scripts/tsk_routingrules_mainform.js</Name>
+  <DisplayName>tsk_/scripts/tsk_routingrules_mainform.js</DisplayName>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_scriptstsk_routingrules_mainformjsA6E6B659-DFF9-EF11-BAE2-6045BD11200E</FileName>
+</WebResource>

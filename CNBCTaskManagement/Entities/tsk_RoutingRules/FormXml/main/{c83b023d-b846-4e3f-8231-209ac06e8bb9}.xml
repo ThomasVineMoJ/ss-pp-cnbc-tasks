@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{c83b023d-b846-4e3f-8231-209ac06e8bb9}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{157c8bfc-8019-4073-98d0-3a135e62d8a2}" IsUserDefined="1" name="General_tab_main">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section name="null_section_4" id="3ee87bbb-8edf-4f1b-893a-651437b535bb" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{20672b87-4f50-4705-930d-19cba2be2d8f}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell rowspan="1" id="{efba6679-79e3-4870-9eed-dd7c002c902c}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="HMTL Required Help" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_new_1" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>tsk_HTMLRequiredHelp</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{1f57083f-c6d8-ef11-8ee9-7c1e5203f441}</WebResourceId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{f6d6b81d-9828-4954-8c91-3680113d4bec}" name="ruledef">
+                  <labels>
+                    <label description="Rule Definition" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3d7969cf-47d9-4a8e-9301-5f99eacf8cbb}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Rule Name" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_rulename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="tsk_rulename" uniqueid="{791052d2-5b6c-d918-70a8-176e8c33c0b2}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d3d8fd12-2935-4588-94d3-21b6c9da9001}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Rule Type" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_ruletype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="tsk_ruletype" disabled="false" uniqueid="{08725610-236d-73dd-1a99-adc956de8032}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f3bd74e8-81c9-4ad9-a3f0-ac3b2bd1e40a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Source Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_sourcequeue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_sourcequeue" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{5545F233-BB8B-EF11-AC21-6045BDF3350A}</DefaultViewId>
+                            <AvailableViewIds>{240B4ABC-99B6-499C-87E2-5C70829FF273},{00000000-0000-0000-00AA-000010001300},{F374F814-00A2-44ED-8B88-13F34E202E79},{81270043-A34E-4091-8733-608EE808D565},{6692D3A5-268D-4392-9752-2ACF707062BB},{3A8191C3-D94E-4FD4-AF8B-5BF29568A563},{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE},{3434F892-B38A-4A21-98E4-35C473073F52},{3A8191C3-D94E-4FD4-AF7B-5BF29568A563},{5545F233-BB8B-EF11-AC21-6045BDF3350A}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{520160f4-463d-4b18-bcd2-9700067f1c7f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Destination Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_destinationqueue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_destinationqueue" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE}</DefaultViewId>
+                            <AvailableViewIds>{240B4ABC-99B6-499C-87E2-5C70829FF273},{00000000-0000-0000-00AA-000010001300},{F374F814-00A2-44ED-8B88-13F34E202E79},{81270043-A34E-4091-8733-608EE808D565},{6692D3A5-268D-4392-9752-2ACF707062BB},{3A8191C3-D94E-4FD4-AF8B-5BF29568A563},{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE},{3434F892-B38A-4A21-98E4-35C473073F52},{3A8191C3-D94E-4FD4-AF7B-5BF29568A563}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2a1c0822-7c6a-482c-9751-f47b8a880c58}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Reason For Contact" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_reasonforcontact" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_reasonforcontact" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7e73a6a8-50ed-40c7-b056-aca7d7772557}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Search Sequence" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_searchsequence" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="tsk_searchsequence" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{417cdb08-1a53-4ebe-883e-a546bb595cd6}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Must Have Keyword" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_musthavekeyword" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_musthavekeyword" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d5b7cb6d-f200-4a83-ab88-4f77c8d85022}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Pattern Match" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_patternmatch" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_patternmatch" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d422d4cb-521f-4853-9a66-0a647e21278e}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Check Attachments" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_checkattachments" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_checkattachments" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1633a8e1-4878-4108-bfdf-1954bb0179b4}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Web Form Conditions" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_webformconditions" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="tsk_webformconditions" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="66%">
+              <sections>
+                <section name="Conditions_section" id="abd3d610-030f-42f0-952f-9d26b932599c" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Edit Conditions" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{90a2c431-2be7-12a9-5a61-cb281a0656ea}" showlabel="false" locklevel="0">
+                        <labels>
+                          <label description="Rule Name" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_rulename" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="tsk_rulename" disabled="false" uniqueid="{8509d8e5-5c02-297d-d7c1-d014d5a6694d}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="Keywords_section" id="e53ce381-38b0-41b2-9dbc-d39eb764d9c6" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true">
+                  <labels>
+                    <label description="Keywords" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{06df4021-8fe2-414d-9d16-e0a88ac49780}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{49447ab6-962b-47a5-8529-f86ec5b08b3d}" rowspan="4" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="Keywords Subgrid" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Keywords_Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <RelationshipName>tsk_keyword_RoutingRule_tsk_routingrules</RelationshipName>
+                            <TargetEntityType>tsk_keyword</TargetEntityType>
+                            <ViewId>{e7ead9c1-f4b7-4545-8a03-f0147e5ee836}</ViewId>
+                            <ViewIds>{e7ead9c1-f4b7-4545-8a03-f0147e5ee836}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{c6463207-17f0-4a5a-9989-b9ccdec4c898}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{5b625013-d17f-4bc1-ae52-97bfa7f6df7b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bad51301-f2ce-42b1-b7fb-ec9c26f05bf4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d7d544f7-60e1-4d4d-9f45-7118a604cb80}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2cb2d350-783c-4d4f-bc42-730aa13ed293}" visible="false" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+            <cell id="{5b19e121-a2f0-4e2b-8098-fb8ec3181adb}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status" languagecode="1033" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="true" uniqueid="{4d5c57c7-c408-ccd4-1797-c236e712a395}" />
+            </cell>
+            <cell id="{cf4ea929-445b-4374-842f-d604264a88a3}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Created On" languagecode="1033" />
+              </labels>
+              <control id="header_createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+            </cell>
+            <cell id="{cdabc8ac-57c5-42ea-87fd-bb2d8d9e0a32}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Modified On" languagecode="1033" />
+              </labels>
+              <control id="header_modifiedon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="modifiedon" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{52e7799d-aad0-474c-859e-2f453c673ca2}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{afa695ff-9fa8-49eb-b081-f7c1ca85332c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{67b8e01c-d91c-4eca-b394-f7564ca4c580}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{128506c8-0add-444c-8026-c8cc1847aac8}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="tsk_/scripts/tsk_routingrules_mainform.js" libraryUniqueId="{077bae8a-16be-4060-b46d-6e516542dafa}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="tsk.routing_rule_form.onLoad" libraryName="tsk_/scripts/tsk_routingrules_mainform.js" handlerUniqueId="{33cc313f-7425-4d53-95fc-7a248722106b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="tsk_ruletype">
+          <Handlers>
+            <Handler functionName="tsk.routing_rule_form.onLoad" libraryName="tsk_/scripts/tsk_routingrules_mainform.js" handlerUniqueId="{b456a2c7-e74d-42c9-8082-9d9f87f55da4}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <controlDescriptions>
+        <controlDescription forControl="{8509d8e5-5c02-297d-d7c1-d014d5a6694d}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
+            <parameters>
+              <datafieldname>tsk_rulename</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
+            <parameters>
+              <datafieldname>tsk_rulename</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>tsk_rulename</record>
+              <schema static="true" type="SingleLine.Text">{}</schema>
+              <entityName static="true" type="SingleLine.Text">Routing Rules</entityName>
+              <appName static="true" type="SingleLine.Text">tsk_jsonquerybuilder_5228a</appName>
+              <appId static="true" type="SingleLine.Text">47f8cd89-4818-45d6-b6a5-e384673714f5</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

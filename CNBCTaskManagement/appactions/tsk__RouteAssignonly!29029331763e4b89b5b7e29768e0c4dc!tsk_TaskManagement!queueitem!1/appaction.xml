@@ -1,0 +1,43 @@
+<appaction uniquename="tsk__RouteAssignonly!29029331763e4b89b5b7e29768e0c4dc!tsk_TaskManagement!queueitem!1">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonlabeltext default="Route">
+    <label description="Route" languagecode="1033" />
+  </buttonlabeltext>
+  <buttontooltipdescription default="Assigns item to selected User/Team and keeps it in the queue">
+    <label description="Assigns item to selected User/Team and keeps it in the queue" languagecode="1033" />
+  </buttontooltipdescription>
+  <buttontooltiptitle default="Route">
+    <label description="Route" languagecode="1033" />
+  </buttontooltiptitle>
+  <context>1</context>
+  <contextentity>
+    <logicalname>queueitem</logicalname>
+  </contextentity>
+  <contextvalue>queueitem</contextvalue>
+  <fonticon>$clientsvg:RoutingRule</fonticon>
+  <hidden>0</hidden>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>1</location>
+  <name>RouteAssignonly!29029331763e4b89b5b7e29768e0c4dc</name>
+  <onclickeventjavascriptfunctionname>tsk.queueitem_view.onRouteNoRemove</onclickeventjavascriptfunctionname>
+  <onclickeventjavascriptparameters>[{"type":12},{"type":23}]</onclickeventjavascriptparameters>
+  <onclickeventjavascriptwebresourceid>
+    <webresourceid>d3343f5a-a323-f011-8c4d-6045bd0e6831</webresourceid>
+  </onclickeventjavascriptwebresourceid>
+  <onclickeventtype>2</onclickeventtype>
+  <origin>0</origin>
+  <sequence>1000200007.5000000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilityformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </visibilityformulacomponentlibraryid>
+  <visibilityformulacomponentname>ef30e2e83e6d4fd48fd813200b21e7f3</visibilityformulacomponentname>
+  <visibilityformulafunctionname>Visible</visibilityformulafunctionname>
+  <visibilitytype>1</visibilitytype>
+</appaction>

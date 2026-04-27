@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{3b6385cb-ddce-4867-9532-cccac98bbaf0}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{027b3861-dc3b-43bf-82c1-28d6db9243e0}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{aced1698-6055-42ef-99d1-56c8a12063f4}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{399331c5-8c9f-4807-9454-aac07b1253bc}">
+                        <labels>
+                          <label description="Mailbox" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_mailbox" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="tsk_mailbox" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a4b212f9-a3f2-4119-ab22-9630ff835601}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Rule Name" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_rulename" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_rulename" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f1d7d167-b84c-498f-a8fe-db3060abe082}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Email to Recipients" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailtorecipients" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_emailtorecipients" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ac63cca5-becb-43f8-9118-c47b3fb03489}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Email From" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailfrom" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_emailfrom" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4771b8f-5edb-44be-869b-d54963a235d6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Email Subject" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailsubject" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_emailsubject" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{660f2167-81f4-455f-bec5-6c98ec1b5a75}" locklevel="0" colspan="1" rowspan="10">
+                        <labels>
+                          <label description="Email Body" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailbody" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="tsk_emailbody" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{6e90bfd7-f1d0-4c3a-ae04-c34f146208a4}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Attachment Names" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_attachmentnames" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_attachmentnames" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4999e07f-e568-4ad6-b663-2bed16b7b02a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Email Has Attachments" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailhasattachments" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_emailhasattachments" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{67799ff5-dfc3-4ef6-9cd5-dbf0affd322e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Assigned Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_assignedqueue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_assignedqueue" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2b28ee12-44e9-4df7-bfc1-bd4f6521ca39}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Task" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_task" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_task" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8630bd52-0164-47ce-a937-2e513ce6b8dc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Link to flow run" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_linktoflowrun" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="tsk_linktoflowrun" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7429771b-3763-4ed6-a70c-7fb8f81f6574}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Matched Rules" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_matchedrules" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="tsk_matchedrules" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{70bc3ca6-30aa-4752-8dec-d008bfe248b2}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{ca2aca13-067a-45ae-bef8-355e58136d0f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bb41cc53-7f20-4423-a90a-01fee5be6b73}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ccb524ab-2155-4d49-84d4-4ba10bb5dc3c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{effbafc4-a180-4526-aa6e-3a568dc81fc6}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+            <cell id="{91bd2613-5b0a-4c04-9099-fc6c06504510}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Created On" languagecode="1033" />
+              </labels>
+              <control id="header_createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{e401689f-7849-4b12-8e2d-3b37f23c4392}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{732bcb54-cb65-402e-87de-e23bb4084d17}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{46304506-6d72-413f-bed9-c104faf9c64f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0a274320-7866-42e5-ad41-1e9023f4cd20}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

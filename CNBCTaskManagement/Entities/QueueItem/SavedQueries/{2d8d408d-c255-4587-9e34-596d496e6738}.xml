@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{2d8d408d-c255-4587-9e34-596d496e6738}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="queueitems" jump="title" select="1" icon="1" preview="1">
+        <row name="queueitem" id="objectid" multiobjectidfield="objecttypecode">
+          <cell name="title" width="300" />
+          <cell name="a_6bee2d2dce504bb1805ad08865a3c6c9.tsk_casenumber" width="167" />
+          <cell name="a_6bee2d2dce504bb1805ad08865a3c6c9.tsk_documenttype" width="180" />
+          <cell name="queueid" width="150" />
+          <cell name="a_6bee2d2dce504bb1805ad08865a3c6c9.tsk_sourcetype" width="161" />
+          <cell name="workerid" width="104" />
+          <cell name="a_6bee2d2dce504bb1805ad08865a3c6c9.statuscode" width="170" />
+          <cell name="queueitemid" ishidden="1" width="100" />
+          <cell name="tsk_duedate" width="100" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical">
+        <entity name="queueitem">
+          <attribute name="title" />
+          <attribute name="objectid" />
+          <attribute name="queueid" />
+          <attribute name="queueitemid" />
+          <filter type="and">
+            <condition attribute="objecttypecode" operator="eq" value="4212" />
+          </filter>
+          <link-entity alias="a_6bee2d2dce504bb1805ad08865a3c6c9" name="task" to="objectid" from="activityid" link-type="outer" visible="false">
+            <attribute name="tsk_sourcetype" />
+            <attribute name="statuscode" />
+            <attribute name="tsk_casenumber" />
+            <attribute name="tsk_documenttype" />
+          </link-entity>
+          <attribute name="tsk_duedate" />
+          <order attribute="tsk_duedate" descending="false" />
+          <attribute name="workerid" />
+          <attribute name="createdon" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Items" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

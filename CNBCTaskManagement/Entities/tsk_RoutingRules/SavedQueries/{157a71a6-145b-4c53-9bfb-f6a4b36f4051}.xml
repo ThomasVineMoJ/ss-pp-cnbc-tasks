@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{157a71a6-145b-4c53-9bfb-f6a4b36f4051}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tsk_rulename" select="1" icon="1" preview="1">
+        <row name="result" id="tsk_routingrulesid">
+          <cell name="tsk_rulename" width="300" />
+          <cell name="tsk_ruletype" width="100" />
+          <cell name="tsk_sourcequeue" width="119" />
+          <cell name="tsk_destinationqueue" width="145" />
+          <cell name="tsk_reasonforcontact" width="152" />
+          <cell name="tsk_searchsequence" width="136" />
+          <cell name="tsk_musthavekeyword" width="158" />
+          <cell name="tsk_patternmatch" width="119" />
+          <cell name="tsk_checkattachments" width="151" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tsk_routingrules">
+          <attribute name="tsk_routingrulesid" />
+          <attribute name="tsk_rulename" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tsk_sourcequeue" />
+          <attribute name="tsk_destinationqueue" />
+          <attribute name="tsk_musthavekeyword" />
+          <attribute name="tsk_patternmatch" />
+          <attribute name="tsk_ruletype" />
+          <attribute name="tsk_searchsequence" />
+          <order attribute="tsk_sourcequeue" descending="false" />
+          <order attribute="tsk_searchsequence" descending="false" />
+          <attribute name="tsk_checkattachments" />
+          <attribute name="tsk_reasonforcontact" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Routing Rules" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

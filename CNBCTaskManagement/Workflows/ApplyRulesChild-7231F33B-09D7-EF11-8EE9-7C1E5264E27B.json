@@ -1,0 +1,304 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedtsk5ftask20apply20rules5ffbae160ce7719b6c_5217e"
+        },
+        "api": {
+          "name": "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c",
+          "logicalName": "tsk_5Ftask-20apply-20rules"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "bbaf5735-9b87-4b79-ab25-c4d801041d68"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "EmailBody",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "EmailSubject",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "EmailAttachmentsNames",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_4": {
+                  "title": "EmailFromAddress",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "boolean": {
+                  "title": "HasAttachments",
+                  "type": "boolean",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please select yes or no",
+                  "x-ms-content-hint": "BOOLEAN"
+                },
+                "text_3": {
+                  "title": "RulesAsString",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Scope_|_Catch_Any_Error": {
+          "actions": {
+            "Compose_|_Placeholder_for_error_logging": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "66b2d055-21a8-46b2-b20a-7e183d98e787"
+              },
+              "type": "Compose",
+              "inputs": "log error somewhere"
+            },
+            "Respond_to_a_Power_App_or_flow_|_When_Error_Occurs": {
+              "runAfter": {
+                "Parse_JSON_|_Error_Output": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8ea3d704-d5be-4280-b93b-dfe53e3c909c"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "rulename": "@body('Parse_JSON_|_Error_Output')?['RuleName']",
+                  "queueid": "@body('Parse_JSON_|_Error_Output')?['QueueID']",
+                  "keywordfound": "@{null}"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rulename": {
+                      "title": "RuleName",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "queueid": {
+                      "title": "QueueID",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "keywordfound": {
+                      "title": "KeywordFound",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "Parse_JSON_|_Error_Output": {
+              "runAfter": {
+                "Compose_|_Placeholder_for_error_logging": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "70b5a384-1f29-40ff-91f9-67880d03715c"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@json('{\"RuleName\":\"No rule found due to error\"}')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RuleName": {
+                      "type": "string"
+                    },
+                    "QueueID": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "82b8ea5f-5377-4199-a245-461b63218d1d"
+          },
+          "type": "Scope"
+        },
+        "Scope_|_Try": {
+          "actions": {
+            "Compose_|_textToSearch": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ae28456b-c74b-47b6-8e96-5c7d10ef6c0d"
+              },
+              "type": "Compose",
+              "inputs": "@{triggerBody()?['text']} @{triggerBody()?['text_1']} @{triggerBody()?['text_2']} @{triggerBody()?['text_4']}"
+            },
+            "Compose_|_Email_Attachments": {
+              "runAfter": {
+                "Compose_|_textToSearch": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "07331c49-6a55-4791-ad9f-4413dbcfbe03"
+              },
+              "type": "Compose",
+              "inputs": "@coalesce(triggerBody()?['boolean'], false)",
+              "description": "returns false if no imput provided"
+            },
+            "Compose_|_Rules_as_Json": {
+              "runAfter": {
+                "Compose_|_Email_Attachments": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f1c32cf7-c078-4eae-8978-49f8a7c575c6"
+              },
+              "type": "Compose",
+              "inputs": "@json(triggerBody()?['text_3'])"
+            },
+            "Apply_Rules": {
+              "runAfter": {
+                "Compose_|_Rules_as_Json": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4f345170-113f-4649-86fd-c6c3b1a8fbe0"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c",
+                  "operationId": "ApplyRules",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c"
+                },
+                "parameters": {
+                  "body/email/textToSearch": "@outputs('Compose_|_textToSearch')",
+                  "body/email/hasAttachments": "@outputs('Compose_|_Email_Attachments')",
+                  "body/rules": "@outputs('Compose_|_Rules_as_Json')"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Compose_|_View_Results": {
+              "runAfter": {
+                "Apply_Rules": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "83fd4cb3-b74e-453e-8e69-4aa2056cda40"
+              },
+              "type": "Compose",
+              "inputs": "@{outputs('Apply_Rules')?['body/Rulename']}\n@{outputs('Apply_Rules')?['body/QueueID']}\n@{outputs('Apply_Rules')?['body/KeywordFound']}"
+            },
+            "Respond_to_a_Power_App_or_flow": {
+              "runAfter": {
+                "Compose_|_View_Results": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "47a626ab-a735-4b1a-b25a-27718d26f2d8"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "rulename": "@outputs('Apply_Rules')?['body/Rulename']",
+                  "queueid": "@outputs('Apply_Rules')?['body/QueueID']",
+                  "keywordfound": "@outputs('Apply_Rules')?['body/KeywordFound']"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rulename": {
+                      "title": "RuleName",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "queueid": {
+                      "title": "QueueID",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "keywordfound": {
+                      "title": "KeywordFound",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "3b51180c-4036-4687-968a-e11bb951f80f"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

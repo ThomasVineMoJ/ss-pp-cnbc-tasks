@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="tsk_AutoAllocationRelatedTasks">
+  <defaultvalue>no</defaultvalue>
+  <description default="Tasks with the same Case Number be auto allocated">
+    <label description="Tasks with the same Case Number be auto allocated" languagecode="1033" />
+  </description>
+  <displayname default="Auto Allocation Related Tasks">
+    <label description="Auto Allocation Related Tasks" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.15</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000002</type>
+</environmentvariabledefinition>

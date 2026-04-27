@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{30e1b563-4e37-f011-8c4c-6045bd140969}</WebResourceId>
+  <Name>tsk_/scripts/task_mainform_emaildownload.js</Name>
+  <DisplayName>tsk_/scripts/task_mainform_emaildownload.js</DisplayName>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.27</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_scriptstask_mainform_emaildownloadjs30E1B563-4E37-F011-8C4C-6045BD140969</FileName>
+</WebResource>

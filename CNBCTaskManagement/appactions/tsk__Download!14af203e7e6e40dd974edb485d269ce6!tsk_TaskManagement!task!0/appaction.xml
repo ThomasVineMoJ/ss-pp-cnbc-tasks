@@ -1,0 +1,32 @@
+<appaction uniquename="tsk__Download!14af203e7e6e40dd974edb485d269ce6!tsk_TaskManagement!task!0">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonlabeltext default="Download">
+    <label description="Download" languagecode="1033" />
+  </buttonlabeltext>
+  <context>1</context>
+  <contextentity>
+    <logicalname>task</logicalname>
+  </contextentity>
+  <contextvalue>task</contextvalue>
+  <fonticon>$clientsvg:Download</fonticon>
+  <hidden>0</hidden>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>0</location>
+  <name>Download!14af203e7e6e40dd974edb485d269ce6</name>
+  <onclickeventjavascriptfunctionname>tsk.task_mainform_emaildownload.onDownload</onclickeventjavascriptfunctionname>
+  <onclickeventjavascriptparameters>[]</onclickeventjavascriptparameters>
+  <onclickeventjavascriptwebresourceid>
+    <webresourceid>30e1b563-4e37-f011-8c4c-6045bd140969</webresourceid>
+  </onclickeventjavascriptwebresourceid>
+  <onclickeventtype>2</onclickeventtype>
+  <origin>0</origin>
+  <sequence>100100044.5000000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilitytype>0</visibilitytype>
+</appaction>

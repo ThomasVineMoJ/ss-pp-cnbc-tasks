@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{b2ff9333-1003-4a51-b2f0-6562a5dbd507}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" preview="1" icon="1">
+        <row name="result" id="objectid" multiobjectidfield="objecttypecode">
+          <cell name="title" width="300" />
+          <cell name="queueitemid" ishidden="1" width="100" />
+          <cell name="queueid" width="150" />
+          <cell name="a_813c23f3f8bf4a5295bd885cb8bf66ba.tsk_sourcetype" width="161" />
+          <cell name="a_813c23f3f8bf4a5295bd885cb8bf66ba.statuscode" width="170" />
+          <cell name="workerid" width="104" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="queueitem">
+          <attribute name="queueitemid" />
+          <attribute name="title" />
+          <attribute name="objectid" />
+          <attribute name="queueid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="title" operator="like" value="{0}" />
+          </filter>
+          <link-entity alias="a_813c23f3f8bf4a5295bd885cb8bf66ba" name="task" to="objectid" from="activityid" link-type="outer" visible="false">
+            <attribute name="tsk_sourcetype" />
+            <attribute name="statuscode" />
+          </link-entity>
+          <attribute name="workerid" />
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Queue Items" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

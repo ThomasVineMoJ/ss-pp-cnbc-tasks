@@ -1,0 +1,239 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "71257c57-1484-4ca2-9c79-18ce75735fca"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "EmailID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Scope_|_Try_Get_Attachment_Names": {
+          "actions": {
+            "Compose_|_EmailID_for_Testing": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "4395d3db-e2ee-4e20-868a-bc0e33b8fe98"
+              },
+              "type": "Compose",
+              "inputs": "86d877da-69ce-ef11-8ee9-6045bdd28579 \nor \n5b35c356-13b7-ef11-b8e8-000d3a0b2bbf",
+              "description": "Copy before running"
+            },
+            "List_rows_|_Get_Attachments": {
+              "runAfter": {
+                "Compose_|_EmailID_for_Testing": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "63800d56-c908-431a-a0a2-b8ba1b81e45d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "activitymimeattachments",
+                  "$select": "filename",
+                  "$filter": "_objectid_value eq @{triggerBody()['text']}"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Select_|_Filenames_as_Array": {
+              "runAfter": {
+                "List_rows_|_Get_Attachments": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d9971bf9-28e9-4d7d-b391-1fcfca7e04c4"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@outputs('List_rows_|_Get_Attachments')?['body/value']",
+                "select": "@item()?['filename']"
+              }
+            },
+            "Join_|_Filenames_with_Space": {
+              "runAfter": {
+                "Select_|_Filenames_as_Array": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "20db7880-71fb-463a-adf9-1273ee679225"
+              },
+              "type": "Join",
+              "inputs": {
+                "from": "@body('Select_|_Filenames_as_Array')",
+                "joinWith": " "
+              }
+            },
+            "Respond_to_a_Power_App_or_flow": {
+              "runAfter": {
+                "Compose_|_Limit_Attachment_Names_Length": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9f43b2d6-828d-4784-87d7-04efdd1c0e17"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "attachmentnames": "@{outputs('Compose_|_Limit_Attachment_Names_Length')}"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "attachmentnames": {
+                      "title": "AttachmentNames",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "Compose_|_Limit_Attachment_Names_Length": {
+              "runAfter": {
+                "Join_|_Filenames_with_Space": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "627fcce8-a639-4788-acb5-13024630ba08"
+              },
+              "type": "Compose",
+              "inputs": "@coalesce(\n    if(\n        lessOrEquals(\n            length(body('Join_|_Filenames_with_Space')),\n            1000\n        ),\n        body('Join_|_Filenames_with_Space'),\n        substring(\n            body('Join_|_Filenames_with_Space'),\n            0,\n            1000\n        )\n    ),\n    ''\n)",
+              "description": "Make sure there are not more than 1000 characters in the attachment names string"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "041fd917-c200-47c8-835e-71ab771d8f0e"
+          },
+          "type": "Scope"
+        },
+        "Scope_|_Catch_Any_Error": {
+          "actions": {
+            "Compose_|_Placeholder_Log_Error": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "8778acfc-85f3-4650-869a-e4040b51bbb7"
+              },
+              "type": "Compose",
+              "inputs": "placeholder"
+            },
+            "Respond_to_a_Power_App_or_flow__|_When_Error": {
+              "runAfter": {
+                "Compose_|_Error_Output": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1339a469-ca44-4940-8fc4-76316622dd82"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "attachmentnames": "@{outputs('Compose_|_Error_Output')}"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "attachmentnames": {
+                      "title": "AttachmentNames",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "Compose_|_Error_Output": {
+              "runAfter": {
+                "Compose_|_Placeholder_Log_Error": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1f249a0d-f06d-4833-a4a4-ae1707f990a7"
+              },
+              "type": "Compose",
+              "inputs": "@null"
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try_Get_Attachment_Names": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "100cfb5a-a8ae-49ab-9dd0-4ca9e1a11998"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

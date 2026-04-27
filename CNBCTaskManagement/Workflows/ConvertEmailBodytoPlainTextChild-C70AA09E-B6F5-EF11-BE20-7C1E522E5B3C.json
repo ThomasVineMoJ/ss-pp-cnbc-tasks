@@ -1,0 +1,432 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_conversionservice": {
+        "api": {
+          "name": "shared_conversionservice"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedconversionservice_e0ddc"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "EmailBody",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The email body to process",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "number": {
+                  "title": "Characters",
+                  "type": "number",
+                  "x-ms-dynamically-added": true,
+                  "description": "The number of characters to return",
+                  "x-ms-content-hint": "NUMBER"
+                }
+              },
+              "required": [
+                "text",
+                "number"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "a1ee029f-f3fc-42da-88e7-c7721be834b7"
+          }
+        }
+      },
+      "actions": {
+        "Scope_|_Try_Process_Email_Body": {
+          "type": "Scope",
+          "actions": {
+            "Scope_|_Remove_newline_character_and_limit_length_of_returned_string": {
+              "type": "Scope",
+              "actions": {
+                "Select_|_Remove_unwanted": {
+                  "type": "Select",
+                  "description": "select to remove unwanted from the string",
+                  "inputs": {
+                    "from": "@range(0, if(greaterOrEquals(length(outputs('Compose_|_String_to_Modify')), triggerBody()['number']), triggerBody()['number'], length(outputs('Compose_|_String_to_Modify'))))",
+                    "select": "@if(contains(outputs('Compose_|_Unwanted_Chars_array'), substring(outputs('Compose_|_String_to_Modify'), item(), 1)), ' ', substring(outputs('Compose_|_String_to_Modify'), item(), 1))"
+                  },
+                  "runAfter": {
+                    "Compose_|_Unwanted_Chars_array": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ea1b0d14-9829-4d0d-a7f3-6bb140065b53"
+                  }
+                },
+                "Compose_|_String_to_Modify": {
+                  "type": "Compose",
+                  "inputs": "@coalesce(variables('ModifiedText'),'')",
+                  "metadata": {
+                    "operationMetadataId": "4dc883be-59eb-46a6-9c32-3a4a4384800e"
+                  }
+                },
+                "Set_variable_|_Update_ModifiedText_after_remove_newline": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "ModifiedText",
+                    "value": "@{join(body('Select_|_Remove_unwanted'), '')}"
+                  },
+                  "runAfter": {
+                    "Select_|_Remove_unwanted": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "2093e62f-5f5e-479b-9cb7-ef1f851011b4"
+                  }
+                },
+                "Compose_|_Unwanted_Chars_array": {
+                  "type": "Compose",
+                  "inputs": [
+                    "\n"
+                  ],
+                  "runAfter": {
+                    "Compose_|_String_to_Modify": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "8cebfafc-8537-4d5a-9f01-981f83165e1d"
+                  }
+                }
+              },
+              "runAfter": {
+                "Scope_|_Remove_Inline_Image_Metadata": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c67f233b-f211-4893-bd70-b977072762da"
+              }
+            },
+            "Scope_|_Convert_HTML_to_plain_text": {
+              "type": "Scope",
+              "actions": {
+                "Html_to_text": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "Content": "<p>@{variables('ModifiedText')}</p>"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_conversionservice",
+                      "operationId": "HtmlToText",
+                      "connectionName": "shared_conversionservice"
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "d7c9845a-6c7e-4468-a13b-415644377cd8"
+                  }
+                },
+                "Set_variable_|_Update_ModifiedText_after_HTML_conversion": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "ModifiedText",
+                    "value": "@body('Html_to_text')"
+                  },
+                  "runAfter": {
+                    "Html_to_text": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cf031d91-4d1d-4ff9-b825-7873b64d9d34"
+                  }
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "480f072c-2a3b-432b-9031-3fe73312b8a3"
+              }
+            },
+            "Scope_|_Remove_Inline_Image_Metadata": {
+              "type": "Scope",
+              "actions": {
+                "Do_until_|_All_tags_have_been_processed": {
+                  "type": "Until",
+                  "expression": "@equals(variables('HasFinished'), true)",
+                  "limit": {
+                    "count": 60,
+                    "timeout": "PT1H"
+                  },
+                  "actions": {
+                    "Set_variable_|_StartPosition_to_index_of_first_tag": {
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "StartPosition",
+                        "value": "@if(\r\n  lessOrEquals(\r\n    if(equals(indexOf(variables('ModifiedText'),'[cid:'), -1), 999999, indexOf(variables('ModifiedText'),'[cid:')),\r\n    if(equals(indexOf(variables('ModifiedText'),'[data:image'), -1), 999999, indexOf(variables('ModifiedText'),'[data:image'))\r\n  ),\r\n  indexOf(variables('ModifiedText'),'[cid:'),\r\n  indexOf(variables('ModifiedText'),'[data:image')\r\n)"
+                      },
+                      "metadata": {
+                        "operationMetadataId": "595a5103-9513-4ef0-a8c4-7d49c23941c9"
+                      }
+                    },
+                    "Condition_|_Are_there_any_tags": {
+                      "type": "If",
+                      "description": "If start position is greater than or equal to 0 that means we have found a tag to remove",
+                      "expression": {
+                        "greaterOrEquals": [
+                          "@variables('StartPosition')",
+                          0
+                        ]
+                      },
+                      "actions": {
+                        "Compose_|_Remove_tag": {
+                          "type": "Compose",
+                          "description": "From '[cid' to ']'",
+                          "inputs": "@replace(variables('ModifiedText'), substring(variables('ModifiedText'), variables('StartPosition'), add(indexOf(substring(variables('ModifiedText'),variables('StartPosition')), ']'), 1)), '')",
+                          "metadata": {
+                            "operationMetadataId": "dd266782-6c1f-4c03-aab3-496778027db0"
+                          }
+                        },
+                        "Set_variable_|_Update_ModifiedText_after_tag_removal": {
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "ModifiedText",
+                            "value": "@{outputs('Compose_|_Remove_tag')}"
+                          },
+                          "runAfter": {
+                            "Compose_|_Remove_tag": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "816c5e77-3787-4cbe-a928-bdceb0c67f79"
+                          }
+                        }
+                      },
+                      "else": {
+                        "actions": {
+                          "Set_variable_|_HasFinished_to_TRUE": {
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "HasFinished",
+                              "value": "@true"
+                            },
+                            "metadata": {
+                              "operationMetadataId": "e9370bdf-99d7-42ca-a81a-f7f0eeeae7f8"
+                            }
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Set_variable_|_StartPosition_to_index_of_first_tag": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "9f7135b0-0260-480b-b344-d40870f6a976"
+                      }
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "56dd4c50-ade2-46bb-a502-1a8df0d46022"
+                  }
+                }
+              },
+              "runAfter": {
+                "Scope_|_Convert_HTML_to_plain_text": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "33fb69be-1600-407b-9166-96bef517fc0e"
+              }
+            },
+            "Respond_to_a_Power_App_or_flow": {
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "processedtext": {
+                      "title": "ProcessedText",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": {}
+                },
+                "statusCode": 200,
+                "body": {
+                  "processedtext": "@variables('ModifiedText')"
+                }
+              },
+              "runAfter": {
+                "Scope_|_Remove_newline_character_and_limit_length_of_returned_string": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4b198bf4-91b2-4f23-9d8d-9411523d6097"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_|_HasFinished_as_FALSE": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ba1480dd-8fbc-4b53-86c5-15fdf0476037"
+          }
+        },
+        "Scope_|_Catch_All_Errors": {
+          "type": "Scope",
+          "actions": {
+            "Terminate_|_Failed": {
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "800",
+                  "message": "An unhandled error has occured"
+                }
+              },
+              "runAfter": {
+                "Respond_to_a_Power_App_or_flow_|_Return_original_text": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f1fbd256-bf36-4c8b-8ff2-8a5117d4bb54"
+              }
+            },
+            "Compose_|_Placeholder_for_error_logging": {
+              "type": "Compose",
+              "inputs": "placeholder",
+              "metadata": {
+                "operationMetadataId": "f59386d7-11a4-41ce-b82b-057ed816894a"
+              }
+            },
+            "Respond_to_a_Power_App_or_flow_|_Return_original_text": {
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "processedtext": {
+                      "title": "ProcessedText",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": {}
+                },
+                "statusCode": 200,
+                "body": {
+                  "processedtext": "@triggerBody()['text']"
+                }
+              },
+              "runAfter": {
+                "Compose_|_Placeholder_for_error_logging": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5524eda3-46de-4b30-922e-8ecb300f0d57"
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try_Process_Email_Body": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b46056da-1a04-4cbd-bbb3-241786aa2a86"
+          }
+        },
+        "Initialize_variable_|_ModifiedText_as_EmailBody": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ModifiedText",
+                "type": "string",
+                "value": "@triggerBody()['text']"
+              }
+            ]
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "2ab8cf88-d683-4c9f-af68-026fb31752e3"
+          }
+        },
+        "Initialize_variable_|_StartPosition_as_-1": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "StartPosition",
+                "type": "integer",
+                "value": -1
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_|_ModifiedText_as_EmailBody": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c972544a-b10b-4c49-ae99-e2701a8cd277"
+          }
+        },
+        "Initialize_variable_|_HasFinished_as_FALSE": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "HasFinished",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_variable_|_StartPosition_as_-1": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3b982b0f-a99b-4217-9c3a-550f94ddf57b"
+          }
+        }
+      },
+      "description": "This flow will accept an email body in HMTL format, and a number of characters. It will Convert HMTL to plain text, remove inline image tags and remove new line characters. It will return a string of the length of characters requested"
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

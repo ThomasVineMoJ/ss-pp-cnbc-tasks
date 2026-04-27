@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{65008785-c4fa-f011-8406-7ced8d3a2501}</WebResourceId>
+  <Name>tsk_/scripts/task_mainform_emails.js</Name>
+  <DisplayName>tsk_/scripts/task_mainform_emails.js</DisplayName>
+  <Description>Display warning message on Task Form if related emails are missing.</Description>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.52</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_scriptstask_mainform_emailsjs65008785-C4FA-F011-8406-7CED8D3A2501</FileName>
+</WebResource>

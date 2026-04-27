@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="tsk_emailtotalattachmentsizelimit">
+  <defaultvalue>5242880</defaultvalue>
+  <description default="the maximum cumulative size (in bytes) allowed for all attachments combined on a single outgoing email">
+    <label description="the maximum cumulative size (in bytes) allowed for all attachments combined on a single outgoing email" languagecode="1033" />
+  </description>
+  <displayname default="Email Total Attachment Size Limit (Bytes)">
+    <label description="Email Total Attachment Size Limit (Bytes)" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.28</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

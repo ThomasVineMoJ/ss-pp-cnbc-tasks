@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{e3c1c506-a683-4c63-9e74-0fe11ccb247f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tsk_mailbox" select="1" icon="1" preview="1">
+        <row name="result" id="tsk_routinglogid">
+          <cell name="tsk_mailbox" width="300" />
+          <cell name="tsk_rulename" width="104" />
+          <cell name="tsk_keywordfound" width="132" />
+          <cell name="tsk_assignedqueue" width="133" />
+          <cell name="tsk_emailtorecipients" width="151" />
+          <cell name="tsk_emailfrom" width="108" />
+          <cell name="tsk_emailsubject" width="119" />
+          <cell name="tsk_emailbody" width="108" />
+          <cell name="tsk_attachmentnames" width="148" />
+          <cell name="tsk_emailhasattachments" width="173" />
+          <cell name="tsk_task" width="100" />
+          <cell name="tsk_linktoflowrun" width="132" />
+          <cell name="tsk_matchedrules" width="125" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tsk_routinglog">
+          <attribute name="tsk_routinglogid" />
+          <attribute name="tsk_mailbox" />
+          <order attribute="tsk_mailbox" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tsk_emailfrom" />
+          <attribute name="tsk_emailtorecipients" />
+          <attribute name="tsk_emailsubject" />
+          <attribute name="tsk_emailbody" />
+          <attribute name="tsk_attachmentnames" />
+          <attribute name="tsk_emailhasattachments" />
+          <attribute name="tsk_assignedqueue" />
+          <attribute name="tsk_task" />
+          <attribute name="createdon" />
+          <attribute name="tsk_linktoflowrun" />
+          <attribute name="tsk_rulename" />
+          <attribute name="tsk_keywordfound" />
+          <attribute name="tsk_matchedrules" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Routing Logs" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

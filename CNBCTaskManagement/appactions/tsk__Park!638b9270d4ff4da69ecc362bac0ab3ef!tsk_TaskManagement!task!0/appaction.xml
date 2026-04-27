@@ -1,0 +1,39 @@
+<appaction uniquename="tsk__Park!638b9270d4ff4da69ecc362bac0ab3ef!tsk_TaskManagement!task!0">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonlabeltext default="Park Task">
+    <label description="Park Task" languagecode="1033" />
+  </buttonlabeltext>
+  <context>1</context>
+  <contextentity>
+    <logicalname>task</logicalname>
+  </contextentity>
+  <contextvalue>task</contextvalue>
+  <hidden>0</hidden>
+  <iconwebresourceid>
+    <webresourceid>5d5e07ff-8fdc-ef11-8ee9-7c1e52029f62</webresourceid>
+  </iconwebresourceid>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>0</location>
+  <name>Park!638b9270d4ff4da69ecc362bac0ab3ef</name>
+  <onclickeventformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </onclickeventformulacomponentlibraryid>
+  <onclickeventformulacomponentname>6eb2fce6b38348ffaf058343b534cc3b</onclickeventformulacomponentname>
+  <onclickeventformulafunctionname>OnSelect</onclickeventformulafunctionname>
+  <onclickeventtype>1</onclickeventtype>
+  <origin>0</origin>
+  <sequence>100100033.7500000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilityformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </visibilityformulacomponentlibraryid>
+  <visibilityformulacomponentname>6eb2fce6b38348ffaf058343b534cc3b</visibilityformulacomponentname>
+  <visibilityformulafunctionname>Visible</visibilityformulafunctionname>
+  <visibilitytype>1</visibilitytype>
+</appaction>

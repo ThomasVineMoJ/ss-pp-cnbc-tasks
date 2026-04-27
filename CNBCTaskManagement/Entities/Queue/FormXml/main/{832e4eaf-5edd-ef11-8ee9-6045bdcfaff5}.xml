@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}</formid>
+    <IntroducedVersion>2.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <hiddencontrols>
+        <data id="emailrouteraccessapproval" datafieldname="emailrouteraccessapproval" classid="{5546E6CD-394C-4bee-94A8-4425E17EF6C6}" />
+        <data id="outgoingemaildeliverymethod" datafieldname="outgoingemaildeliverymethod" classid="{5546E6CD-394C-4bee-94A8-4425E17EF6C6}" />
+        <data id="incomingemaildeliverymethod" datafieldname="incomingemaildeliverymethod" classid="{5546E6CD-394C-4bee-94A8-4425E17EF6C6}" />
+      </hiddencontrols>
+      <tabs>
+        <tab name="general" verticallayout="true" id="{26ee6844-370e-41e0-97f4-66afd3d838b9}" IsUserDefined="0" labelid="{da59e396-1f87-46fe-818b-219cdae636ec}">
+          <labels>
+            <label description="Summary" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section name="general_section_required_help" id="283675c6-989c-4e6f-ae86-f0ea36c7dccc" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{22b9f06d-1947-4a69-9a0a-9f0285c368ab}">
+                  <labels>
+                    <label description="Required Help" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{6ac2221f-072b-4ef1-ba25-67c42586db43}" labelid="{e6ab0f63-9511-487e-91ef-5c4b3fcebe0e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell rowspan="1" id="{ba68e227-9775-42b0-b34c-5b92da29066e}" showlabel="false" colspan="1" labelid="{cc0bb993-e458-4da2-bbd4-559ea44fff5b}">
+                        <labels>
+                          <label description="HMTL Required Help" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_new_1" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>tsk_HTMLRequiredHelp</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{1f57083f-c6d8-ef11-8ee9-7c1e5203f441}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="queue information" showlabel="true" showbar="false" id="{6a5f6485-f4fb-4809-a27c-1bec47ea232f}" IsUserDefined="0" labelid="{30ee7b5e-6b12-4f75-a1f5-4ad86d544012}" columns="11">
+                  <labels>
+                    <label description="SUMMARY - Read Only" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell colspan="2" id="{c41a3cfb-87c1-4a3f-ae79-9e4969338ef4}" labelid="{5cf59622-e263-45cb-9a72-cd4ccf2bf418}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="name" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" id="{a5cccf27-97b5-49c6-b1bc-9fdf037804f7}" labelid="{d6b28201-c90f-4679-b1d9-b051adb92082}">
+                        <labels>
+                          <label description="Type" languagecode="1033" />
+                        </labels>
+                        <control id="queueviewtype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="queueviewtype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" id="{0ae52dec-4a09-4af3-a2da-e0046e088913}" labelid="{92ba8f81-3fac-4b0c-83fd-6f1094a8a254}" rowspan="1">
+                        <labels>
+                          <label description="Incoming Email" languagecode="1033" />
+                        </labels>
+                        <control id="emailaddress" classid="{ADA2203E-B4CD-49be-9DDF-234642B43B52}" datafieldname="emailaddress" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3b0f4765-3264-4694-b12c-277a2d043493}" locklevel="0" colspan="2" rowspan="1" labelid="{8b780f52-4246-4783-a246-ae3a596f7aa2}">
+                        <labels>
+                          <label description="No Match Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_nomatchqueue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_nomatchqueue" disabled="true">
+                          <parameters>
+                            <DefaultViewId>{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE}</DefaultViewId>
+                            <AvailableViewIds>{240B4ABC-99B6-499C-87E2-5C70829FF273},{00000000-0000-0000-00AA-000010001300},{F374F814-00A2-44ED-8B88-13F34E202E79},{81270043-A34E-4091-8733-608EE808D565},{6692D3A5-268D-4392-9752-2ACF707062BB},{3A8191C3-D94E-4FD4-AF8B-5BF29568A563},{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE},{3434F892-B38A-4A21-98E4-35C473073F52},{3A8191C3-D94E-4FD4-AF7B-5BF29568A563}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{44fb4e90-34be-4b22-bdad-838e4ea99322}" locklevel="0" colspan="2" rowspan="1">
+                        <labels>
+                          <label description="Parent Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_parentqueueid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_parentqueueid" disabled="true">
+                          <parameters>
+                            <DefaultViewId>{5545F233-BB8B-EF11-AC21-6045BDF3350A}</DefaultViewId>
+                            <AvailableViewIds>{240B4ABC-99B6-499C-87E2-5C70829FF273},{00000000-0000-0000-00AA-000010001300},{F374F814-00A2-44ED-8B88-13F34E202E79},{597E5016-EBC4-4D4B-A7DC-EBD41FF66CFB},{81270043-A34E-4091-8733-608EE808D565},{5545F233-BB8B-EF11-AC21-6045BDF3350A},{6692D3A5-268D-4392-9752-2ACF707062BB},{3A8191C3-D94E-4FD4-AF8B-5BF29568A563},{475BA760-C16C-E911-8196-000D3AF7379E},{94A21EC6-5BED-483A-BF49-8DB31C15CE0C},{3C891757-8003-4852-BFCA-E5673963ADA6},{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE},{3434F892-B38A-4A21-98E4-35C473073F52},{3A8191C3-D94E-4FD4-AF7B-5BF29568A563}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" id="{dc16fa25-d252-4ed3-b0bc-38054a643069}" labelid="{e7afdc8e-db14-4bc7-92d7-9e9dda15f84a}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="general_section_7" id="84ecd895-e1cb-4c27-b383-e6de087d4fbb" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Settings" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{62184a86-e1dc-4054-ac77-da86b6207f53}" locklevel="0" colspan="1" rowspan="1" labelid="{55409d11-04e1-4c5c-bbeb-4d410f81181c}">
+                        <labels>
+                          <label description="SLA Days" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_sladays" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="tsk_sladays" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c95f7ae2-a994-4211-a426-28e08e7ed58c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Auto Allocation Enabled" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_autoallocationenabled" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_autoallocationenabled" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2fb6d964-b1c0-4f3a-917c-9037ada80725}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Reply from No-Reply" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_replyfromnoreply" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_replyfromnoreply" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d5c6a6bf-0f3a-4aed-ac7d-4a8997d47c0a}" locklevel="0" colspan="1" rowspan="1" labelid="{9a457e1e-ce04-40b2-b8d5-08286a9e85d8}">
+                        <labels>
+                          <label description="Exclude From Routing" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_excludefromrouting" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_excludefromrouting" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="incoming email" showlabel="true" showbar="false" locklevel="0" id="{90b8dd85-867b-4aca-8d30-7c00117e693a}" IsUserDefined="0" labelwidth="200" labelid="{fbf1d564-3536-446a-b5cc-e0f858836494}" visible="false">
+                  <labels>
+                    <label description="EMAIL SETTINGS" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{11a3fa20-f232-4eaf-86bf-4f7cd80efe77}" locklevel="0" colspan="1" rowspan="1" labelid="{427e3e14-afc7-4227-987e-b11a2fe3cb0d}" visible="false">
+                        <labels>
+                          <label description="Output to Log" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_outputtolog" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_outputtolog" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{46b89973-7949-4e41-83b9-baeba8ccde64}" locklevel="0" labelid="{9587cd6d-b17e-423d-981c-9a24a97c526c}">
+                        <labels>
+                          <label description="Convert Incoming Email To Activities" languagecode="1033" />
+                        </labels>
+                        <control id="incomingemailfilteringmethod" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="incomingemailfilteringmethod" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{469526dc-dae4-325d-5629-c5cd32644c52}" showlabel="true" locklevel="0" labelid="{d6d435db-7f76-428e-a9b5-b0900aaa0804}">
+                        <labels>
+                          <label description="Email Signature" languagecode="1033" />
+                        </labels>
+                        <control id="emailsignature" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emailsignature" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a24c5251-56c3-4b8f-824a-fc013d4b4534}" showlabel="true" locklevel="0" labelid="{4785fc45-4f0c-4ba7-88a6-1f02a18f2eb9}">
+                        <labels>
+                          <label description="Mailbox" languagecode="1033" />
+                        </labels>
+                        <control id="defaultmailbox" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="defaultmailbox" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="QueueMembersNoRecord" showlabel="true" showbar="false" id="{5D36D820-65C5-4F55-B084-33388D7202A9}" IsUserDefined="0" locklevel="0" labelwidth="250" visible="false" labelid="{728588bf-fe87-47d2-aa1b-19bfd5a50f34}">
+                  <labels>
+                    <label description="Members" languagecode="1033" />
+                  </labels>
+                  <rows />
+                </section>
+              </sections>
+            </column>
+            <column width="66%">
+              <sections>
+                <section name="general_section_8" id="62a6170d-2b63-4ca2-840e-26a29af88674" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_4" id="8d42e021-e46a-4b18-895a-dcf12789747c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="singleComponent">
+          <labels>
+            <label description="Queue Items" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_4_section_1" id="16f7fee3-0b19-4971-9228-1e5661acef6e" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{1e3c67f5-6835-442d-aa11-f961ccd56418}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1741728417996" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <RelationshipName>queue_entries</RelationshipName>
+                            <TargetEntityType>queueitem</TargetEntityType>
+                            <ViewId>{2D8D408D-C255-4587-9E34-596D496E6738}</ViewId>
+                            <ViewIds>{81484ACC-C30C-4869-B40C-2D1154FC1E5F},{2D8D408D-C255-4587-9E34-596D496E6738}</ViewIds>
+                            <VisualizationId>{475E6F02-32AE-4081-8CB8-E3E24A9FBC0F}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="f6d1248b-a230-4b82-8a86-15706287a9b6" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Routing Rules" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" id="532dedd9-365f-4ec5-a8fe-4ddcce877720" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{67273c1c-813d-4d61-bcde-7df448c50b8b}" rowspan="4" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1740059388312" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>20</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>tsk_routingrules_DestinationQueue_queue</RelationshipName>
+                            <TargetEntityType>tsk_routingrules</TargetEntityType>
+                            <ViewId>{157A71A6-145B-4C53-9BFB-F6A4B36F4051}</ViewId>
+                            <ViewIds>{157A71A6-145B-4C53-9BFB-F6A4B36F4051}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="6bce51fa-0ab8-4458-9837-ff4b9f6d5fab" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Routing Logs" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="7e25cada-0a0a-42c6-9523-bdf109f0ca97" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{0d8c6e2c-d13b-491f-a39a-da7f40c5b1f0}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1740059346262" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>tsk_routinglog_AssignedQueue_queue</RelationshipName>
+                            <TargetEntityType>tsk_routinglog</TargetEntityType>
+                            <ViewId>{E3C1C506-A683-4C63-9E74-0FE11CCB247F}</ViewId>
+                            <ViewIds>{E3C1C506-A683-4C63-9E74-0FE11CCB247F}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <events>
+        <event name="onload" application="true" active="true">
+          <InternalHandlers>
+            <Handler functionName="Mscrm.Form_onload" libraryName="$webresource:AppCommon/Queue/Queue_main_system_library.js" handlerUniqueId="98c24a4e-c03e-458d-80a3-e0c92fd050c6" enabled="true">
+              <dependencies>
+                <dependency id="queueviewtype" />
+                <dependency id="queuemembersgrid" />
+              </dependencies>
+            </Handler>
+          </InternalHandlers>
+          <Handlers>
+            <Handler functionName="CrmService.EmailSignatureLibrary.Load" libraryName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" handlerUniqueId="{5CC2E603-76B8-474E-B385-8A62AEF5B773}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="tsk.queue_form.onLoad" libraryName="tsk_/scripts/tsk_queue_form.js" handlerUniqueId="{8c5bc2f3-ed40-44cb-884c-a1f02cfde6c9}" enabled="false" parameters="" passExecutionContext="false" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <InternalHandlers>
+            <Handler functionName="Mscrm.Form_onsave" libraryName="$webresource:AppCommon/Queue/Queue_main_system_library.js" handlerUniqueId="98c24a4e-c03e-458d-80a3-e0c92fd050c6" enabled="true">
+              <dependencies>
+                <dependency id="queueviewtype" />
+                <dependency id="queuemembersgrid" />
+              </dependencies>
+            </Handler>
+          </InternalHandlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="queueviewtype">
+          <InternalHandlers>
+            <Handler functionName="Mscrm.queueviewtype_onchange" libraryName="$webresource:AppCommon/Queue/Queue_main_system_library.js" handlerUniqueId="bd1c2a5f-7cc3-44a9-a11d-5c5a1552099c" enabled="true">
+              <dependencies>
+                <dependency id="queueviewtype" />
+                <dependency id="queuemembersgrid" />
+              </dependencies>
+            </Handler>
+          </InternalHandlers>
+        </event>
+      </events>
+      <clientresources>
+        <internalresources>
+          <clientincludes>
+            <internaljscriptfile src="$webresource:AppCommon/Queue/Queue_main_system_library.js" />
+            <internaljscriptfile src="$webresource:EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" />
+          </clientincludes>
+        </internalresources>
+      </clientresources>
+      <DisplayConditions FallbackForm="true" Order="5">
+        <Everyone />
+      </DisplayConditions>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+              <Title LCID="1025" Text="عام" />
+              <Title LCID="1026" Text="Общо" />
+              <Title LCID="1027" Text="Comuna" />
+              <Title LCID="1029" Text="Běžná" />
+              <Title LCID="1030" Text="Fælles" />
+              <Title LCID="1031" Text="Allgemein" />
+              <Title LCID="1032" Text="Κοινός" />
+              <Title LCID="3082" Text="Común" />
+              <Title LCID="1061" Text="Levinud" />
+              <Title LCID="1069" Text="Ohikoa" />
+              <Title LCID="1035" Text="Yhteiset" />
+              <Title LCID="1036" Text="Commun" />
+              <Title LCID="1110" Text="Común" />
+              <Title LCID="1037" Text="פריטים נפוצים" />
+              <Title LCID="1081" Text="सामान्य" />
+              <Title LCID="1050" Text="Zajednički" />
+              <Title LCID="1038" Text="Közös" />
+              <Title LCID="1057" Text="Umum" />
+              <Title LCID="1040" Text="Elementi comuni" />
+              <Title LCID="1041" Text="共通" />
+              <Title LCID="1087" Text="Жалпы" />
+              <Title LCID="1042" Text="일반" />
+              <Title LCID="1063" Text="Įprasta" />
+              <Title LCID="1062" Text="Kopējā informācija" />
+              <Title LCID="1086" Text="Biasa" />
+              <Title LCID="1044" Text="Felles" />
+              <Title LCID="1043" Text="Algemeen" />
+              <Title LCID="1045" Text="Wspólne" />
+              <Title LCID="1046" Text="Comum" />
+              <Title LCID="2070" Text="Comum" />
+              <Title LCID="1048" Text="Comun" />
+              <Title LCID="1049" Text="Общие" />
+              <Title LCID="1051" Text="Spoločné" />
+              <Title LCID="1060" Text="Splošno" />
+              <Title LCID="3098" Text="Уобичајено" />
+              <Title LCID="2074" Text="Uobičajeno" />
+              <Title LCID="1053" Text="Gemensamt" />
+              <Title LCID="1054" Text="ทั่วไป" />
+              <Title LCID="1055" Text="Ortak" />
+              <Title LCID="1058" Text="Спільні" />
+              <Title LCID="1066" Text="Thông thường" />
+              <Title LCID="2052" Text="通用" />
+              <Title LCID="3076" Text="一般" />
+              <Title LCID="1028" Text="一般" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+              <Title LCID="1025" Text="‏‏المبيعات" />
+              <Title LCID="1026" Text="Продажби" />
+              <Title LCID="1027" Text="Vendes" />
+              <Title LCID="1029" Text="Prodej" />
+              <Title LCID="1030" Text="Salg" />
+              <Title LCID="1031" Text="Vertrieb" />
+              <Title LCID="1032" Text="Πωλήσεις" />
+              <Title LCID="3082" Text="Ventas" />
+              <Title LCID="1061" Text="Müük" />
+              <Title LCID="1069" Text="Salmentak" />
+              <Title LCID="1035" Text="Myynti" />
+              <Title LCID="1036" Text="Ventes" />
+              <Title LCID="1110" Text="Vendas" />
+              <Title LCID="1037" Text="מכירות" />
+              <Title LCID="1081" Text="विक्रय" />
+              <Title LCID="1050" Text="Prodaja" />
+              <Title LCID="1038" Text="Értékesítés" />
+              <Title LCID="1057" Text="Penjualan" />
+              <Title LCID="1040" Text="Vendite" />
+              <Title LCID="1041" Text="営業" />
+              <Title LCID="1087" Text="Сатылым" />
+              <Title LCID="1042" Text="영업" />
+              <Title LCID="1063" Text="Pardavimas" />
+              <Title LCID="1062" Text="Pārdošana" />
+              <Title LCID="1086" Text="Jualan" />
+              <Title LCID="1044" Text="Salg" />
+              <Title LCID="1043" Text="Verkoop" />
+              <Title LCID="1045" Text="Sprzedaż" />
+              <Title LCID="1046" Text="Vendas" />
+              <Title LCID="2070" Text="Vendas" />
+              <Title LCID="1048" Text="Vânzări" />
+              <Title LCID="1049" Text="Продажи" />
+              <Title LCID="1051" Text="Predaj" />
+              <Title LCID="1060" Text="Prodaja" />
+              <Title LCID="3098" Text="Продаја" />
+              <Title LCID="2074" Text="Prodaja" />
+              <Title LCID="1053" Text="Försäljning" />
+              <Title LCID="1054" Text="การขาย" />
+              <Title LCID="1055" Text="Satış" />
+              <Title LCID="1058" Text="Збут" />
+              <Title LCID="1066" Text="Bán hàng" />
+              <Title LCID="2052" Text="销售" />
+              <Title LCID="3076" Text="銷售" />
+              <Title LCID="1028" Text="銷售" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+              <Title LCID="1025" Text="الخدمة" />
+              <Title LCID="1026" Text="Услуга" />
+              <Title LCID="1027" Text="Servei" />
+              <Title LCID="1029" Text="Služba" />
+              <Title LCID="1030" Text="Service" />
+              <Title LCID="1031" Text="Service" />
+              <Title LCID="1032" Text="Υπηρεσία" />
+              <Title LCID="3082" Text="Servicio" />
+              <Title LCID="1061" Text="Teenindus" />
+              <Title LCID="1069" Text="Zerbitzua" />
+              <Title LCID="1035" Text="Palvelu" />
+              <Title LCID="1036" Text="Service" />
+              <Title LCID="1110" Text="Servizo" />
+              <Title LCID="1037" Text="שירות" />
+              <Title LCID="1081" Text="सेवा" />
+              <Title LCID="1050" Text="Usluga" />
+              <Title LCID="1038" Text="Szolgáltatás" />
+              <Title LCID="1057" Text="Layanan" />
+              <Title LCID="1040" Text="Servizio" />
+              <Title LCID="1041" Text="サービス" />
+              <Title LCID="1087" Text="Қызмет" />
+              <Title LCID="1042" Text="서비스" />
+              <Title LCID="1063" Text="Aptarnavimas" />
+              <Title LCID="1062" Text="Serviss" />
+              <Title LCID="1086" Text="Perkhidmatan" />
+              <Title LCID="1044" Text="Service" />
+              <Title LCID="1043" Text="Service" />
+              <Title LCID="1045" Text="Usługa" />
+              <Title LCID="1046" Text="Serviço" />
+              <Title LCID="2070" Text="Serviço" />
+              <Title LCID="1048" Text="Servicii" />
+              <Title LCID="1049" Text="Сервис" />
+              <Title LCID="1051" Text="Služba" />
+              <Title LCID="1060" Text="Storitev" />
+              <Title LCID="3098" Text="Услуга" />
+              <Title LCID="2074" Text="Usluga" />
+              <Title LCID="1053" Text="Service" />
+              <Title LCID="1054" Text="การบริการ" />
+              <Title LCID="1055" Text="Servis" />
+              <Title LCID="1058" Text="Обслуговування" />
+              <Title LCID="1066" Text="Dịch vụ" />
+              <Title LCID="2052" Text="服务" />
+              <Title LCID="3076" Text="服務" />
+              <Title LCID="1028" Text="服務" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+              <Title LCID="1025" Text="التسويق" />
+              <Title LCID="1026" Text="Маркетинг" />
+              <Title LCID="1027" Text="Màrqueting" />
+              <Title LCID="1029" Text="Marketing" />
+              <Title LCID="1030" Text="Marketing" />
+              <Title LCID="1031" Text="Marketing" />
+              <Title LCID="1032" Text="Μάρκετινγκ" />
+              <Title LCID="3082" Text="Marketing" />
+              <Title LCID="1061" Text="Turundus" />
+              <Title LCID="1069" Text="Marketina" />
+              <Title LCID="1035" Text="Markkinointi" />
+              <Title LCID="1036" Text="Marketing" />
+              <Title LCID="1110" Text="Márketing" />
+              <Title LCID="1037" Text="שיווק" />
+              <Title LCID="1081" Text="मार्केटिंग" />
+              <Title LCID="1050" Text="Marketing" />
+              <Title LCID="1038" Text="Marketing" />
+              <Title LCID="1057" Text="Pemasaran" />
+              <Title LCID="1040" Text="Marketing" />
+              <Title LCID="1041" Text="マーケティング" />
+              <Title LCID="1087" Text="Маркетинг" />
+              <Title LCID="1042" Text="마케팅" />
+              <Title LCID="1063" Text="Rinkodara" />
+              <Title LCID="1062" Text="Mārketings" />
+              <Title LCID="1086" Text="Pemasaran" />
+              <Title LCID="1044" Text="Markedsføring" />
+              <Title LCID="1043" Text="Marketing" />
+              <Title LCID="1045" Text="Marketing" />
+              <Title LCID="1046" Text="Marketing" />
+              <Title LCID="2070" Text="Marketing" />
+              <Title LCID="1048" Text="Marketing" />
+              <Title LCID="1049" Text="Маркетинг" />
+              <Title LCID="1051" Text="Marketing" />
+              <Title LCID="1060" Text="Trženje" />
+              <Title LCID="3098" Text="Маркетинг" />
+              <Title LCID="2074" Text="Marketing" />
+              <Title LCID="1053" Text="Marknadsföring" />
+              <Title LCID="1054" Text="การตลาด" />
+              <Title LCID="1055" Text="Pazarlama" />
+              <Title LCID="1058" Text="Маркетинг" />
+              <Title LCID="1066" Text="Tiếp thị" />
+              <Title LCID="2052" Text="市场营销" />
+              <Title LCID="3076" Text="行銷" />
+              <Title LCID="1028" Text="行銷" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+              <Title LCID="1025" Text="جلسات عمل العمليات" />
+              <Title LCID="1026" Text="Сесии на процес" />
+              <Title LCID="1027" Text="Sessions del procés" />
+              <Title LCID="1029" Text="Relace procesu" />
+              <Title LCID="1030" Text="Processessioner" />
+              <Title LCID="1031" Text="Prozesssitzungen" />
+              <Title LCID="1032" Text="Περίοδοι λειτουργίας διαδικασίας" />
+              <Title LCID="3082" Text="Sesiones de proceso" />
+              <Title LCID="1061" Text="Protsessiseansid" />
+              <Title LCID="1069" Text="Prozesu-saioak" />
+              <Title LCID="1035" Text="Prosessin istunnot" />
+              <Title LCID="1036" Text="Sessions de traitement" />
+              <Title LCID="1110" Text="Sesións de proceso" />
+              <Title LCID="1037" Text="הפעלות תהליך" />
+              <Title LCID="1081" Text="प्रक्रिया सत्र" />
+              <Title LCID="1050" Text="Sesije procesa" />
+              <Title LCID="1038" Text="Feldolgozási munkamenetek" />
+              <Title LCID="1057" Text="Sesi Proses" />
+              <Title LCID="1040" Text="Sessioni processo" />
+              <Title LCID="1041" Text="プロセス セッション" />
+              <Title LCID="1087" Text="Процесс сеанстары" />
+              <Title LCID="1042" Text="프로세스 세션" />
+              <Title LCID="1063" Text="Proceso seansai" />
+              <Title LCID="1062" Text="Apstrādes sesijas" />
+              <Title LCID="1086" Text="Sesi Proses" />
+              <Title LCID="1044" Text="Prosessøkter" />
+              <Title LCID="1043" Text="Sessies voor proces" />
+              <Title LCID="1045" Text="Sesje procesów" />
+              <Title LCID="1046" Text="Sessões de Processo" />
+              <Title LCID="2070" Text="Sessões de Processamento" />
+              <Title LCID="1048" Text="Sesiuni de proces" />
+              <Title LCID="1049" Text="Сеансы процессов" />
+              <Title LCID="1051" Text="Relácie procesov" />
+              <Title LCID="1060" Text="Seje obdelave" />
+              <Title LCID="3098" Text="Сесије процеса" />
+              <Title LCID="2074" Text="Sesije procesa" />
+              <Title LCID="1053" Text="Processessioner" />
+              <Title LCID="1054" Text="เซสชันของกระบวนการ" />
+              <Title LCID="1055" Text="İşlem Oturumları" />
+              <Title LCID="1058" Text="Сеанси процесів" />
+              <Title LCID="1066" Text="Phiên Quy trình" />
+              <Title LCID="2052" Text="进程会话" />
+              <Title LCID="3076" Text="程序工作階段" />
+              <Title LCID="1028" Text="程序工作階段" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <header id="{466d5d44-deea-4438-b3c3-8da4163ea780}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows />
+      </header>
+      <footer id="{eb4acdc4-2b71-4c69-9544-52eb9e7ecd64}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows />
+      </footer>
+      <formLibraries>
+        <Library name="tsk_/scripts/tsk_queue_form.js" libraryUniqueId="{f1f65187-afde-461f-a34b-f0d355acf6fa}" />
+      </formLibraries>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Queue Read Only Form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All fields locked for users" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

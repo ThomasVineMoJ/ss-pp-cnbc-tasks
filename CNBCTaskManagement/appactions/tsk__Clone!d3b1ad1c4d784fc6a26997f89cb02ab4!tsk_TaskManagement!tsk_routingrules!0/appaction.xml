@@ -1,0 +1,32 @@
+<appaction uniquename="tsk__Clone!d3b1ad1c4d784fc6a26997f89cb02ab4!tsk_TaskManagement!tsk_routingrules!0">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonlabeltext default="Clone">
+    <label description="Clone" languagecode="1033" />
+  </buttonlabeltext>
+  <context>1</context>
+  <contextentity>
+    <logicalname>tsk_routingrules</logicalname>
+  </contextentity>
+  <contextvalue>tsk_routingrules</contextvalue>
+  <fonticon>Clone</fonticon>
+  <hidden>0</hidden>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>0</location>
+  <name>Clone!d3b1ad1c4d784fc6a26997f89cb02ab4</name>
+  <onclickeventformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </onclickeventformulacomponentlibraryid>
+  <onclickeventformulacomponentname>763d010d3d624cda9e497ca3a955609d</onclickeventformulacomponentname>
+  <onclickeventformulafunctionname>OnSelect</onclickeventformulafunctionname>
+  <onclickeventtype>1</onclickeventtype>
+  <origin>0</origin>
+  <sequence>100100037.5000000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilitytype>0</visibilitytype>
+</appaction>

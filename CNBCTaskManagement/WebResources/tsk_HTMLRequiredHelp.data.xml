@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{1f57083f-c6d8-ef11-8ee9-7c1e5203f441}</WebResourceId>
+  <Name>tsk_HTMLRequiredHelp</Name>
+  <DisplayName>tsk_/hmtl/required_field_help_banner.html</DisplayName>
+  <Description>Required field help</Description>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>1</WebResourceType>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_HTMLRequiredHelp1F57083F-C6D8-EF11-8EE9-7C1E5203F441</FileName>
+</WebResource>

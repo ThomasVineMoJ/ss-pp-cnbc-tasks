@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{31c1d587-5374-4c22-bdcf-54fe8cd1aee5}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="queueitems" jump="title" select="1" icon="1" preview="1">
+        <row name="queueitem" id="objectid" multiobjectidfield="objecttypecode">
+          <cell name="title" width="300" />
+          <cell name="queueid" width="150" />
+          <cell name="a_a3042433dfdb42e1891a102f46ba43b3.tsk_sourcetype" width="161" />
+          <cell name="a_a3042433dfdb42e1891a102f46ba43b3.statuscode" width="170" />
+          <cell name="workerid" width="150" />
+          <cell name="queueitemid" ishidden="1" width="100" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical">
+        <entity name="queueitem">
+          <attribute name="title" />
+          <attribute name="objectid" />
+          <attribute name="queueid" />
+          <attribute name="queueitemid" />
+          <attribute name="workerid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="createdon" />
+          <link-entity alias="a_a3042433dfdb42e1891a102f46ba43b3" name="task" to="objectid" from="activityid" link-type="outer" visible="false">
+            <attribute name="tsk_sourcetype" />
+            <attribute name="statuscode" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Queue Item Associated View" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Displays information about related queueitems in the detail form of any associated entity record." languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

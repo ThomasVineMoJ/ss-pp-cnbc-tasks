@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="tsk_AutoAllocationDelayLengthBeforeUnassign">
+  <defaultvalue>2</defaultvalue>
+  <description default="For auto allocation, how many minutes should the user be offline for before any tasks get auto unassigned from them">
+    <label description="For auto allocation, how many minutes should the user be offline for before any tasks get auto unassigned from them" languagecode="1033" />
+  </description>
+  <displayname default="Auto Allocation Delay Length Before Unassign">
+    <label description="Auto Allocation Delay Length Before Unassign" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.14</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000001</type>
+</environmentvariabledefinition>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{66afd33f-86f7-f011-8407-7ced8d6b7361}</WebResourceId>
+  <Name>tsk_HTMLMetadataViewer</Name>
+  <DisplayName>tsk_/html/metadata_viewer.html</DisplayName>
+  <Description>Script to display JSON metadata on Task form.</Description>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>1</WebResourceType>
+  <IntroducedVersion>2.0.0.52</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_HTMLMetadataViewer66AFD33F-86F7-F011-8407-7CED8D6B7361</FileName>
+</WebResource>

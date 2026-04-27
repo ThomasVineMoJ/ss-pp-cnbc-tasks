@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{5096d5ce-1a3c-4856-b996-007e41199427}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="templateid">
+          <cell name="title" width="300" />
+          <cell name="templatetypecode" width="125" cellType="Crm.EmailTemplateGlobal" />
+          <cell name="ispersonal" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="template">
+          <order attribute="title" descending="false" />
+          <attribute name="title" />
+          <attribute name="templatetypecode" />
+          <attribute name="ispersonal" />
+          <attribute name="templateid" />
+          <filter type="and">
+            <condition attribute="templatetypecode" operator="eq" value="8" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Email Templates" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All Email Templates in the user's current language" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

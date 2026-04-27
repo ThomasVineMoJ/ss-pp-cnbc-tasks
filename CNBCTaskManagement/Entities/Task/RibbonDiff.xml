@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.task.Assign.Hide" Location="Mscrm.Form.task.Assign" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.task.Close.Hide" Location="Mscrm.Form.task.Close" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.task.ConvertTo.Hide" Location="Mscrm.Form.task.ConvertTo" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.task.Flows.RefreshCommandBar.Flows.Hide" Location="Mscrm.Form.task.Flows.RefreshCommandBar.Flows" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.task.Flows.RefreshCommandBar.Hide" Location="Mscrm.Form.task.Flows.RefreshCommandBar" />
+    <CustomAction Id="tsk.Mscrm.Form.task.WordTemplate.CustomAction" Location="Mscrm.Form.task.MainTab.Save.Controls._children" Sequence="45">
+      <CommandUIDefinition>
+        <FlyoutAnchor Alt="$Resources:Ribbon.HomepageGrid.Data.WordTemplate.Templates" Command="Mscrm.Form.WordTemplate" Id="tsk.Mscrm.Form.task.WordTemplate" Image16by16="/_imgs/ribbon/WordTemplate_16.png" Image32by32="/_imgs/ribbon/SaveAsWordTemplate_32.png" LabelText="$Resources:Ribbon.HomepageGrid.Data.WordTemplate.Templates" PopulateDynamically="true" PopulateQueryCommand="Mscrm.Form.WordTemplate.Populate.Flyout" PopulateOnlyOnce="true" Sequence="45" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.HomepageGrid.Data.WordTemplate.Templates" ToolTipDescription="$Resources:Ribbon.Tooltip.WordTemplate" ModernImage="WordTemplates" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.task.WordTemplate.Hide" Location="Mscrm.Form.task.WordTemplate" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.task.Assign.Hide" Location="Mscrm.HomepageGrid.task.Assign" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.task.Flows.RefreshCommandBar.Flows.Hide" Location="Mscrm.HomepageGrid.task.Flows.RefreshCommandBar.Flows" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.task.Flows.RefreshCommandBar.Hide" Location="Mscrm.HomepageGrid.task.Flows.RefreshCommandBar" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.task.MBPF.ConvertTo.Hide" Location="Mscrm.HomepageGrid.task.MBPF.ConvertTo" />
+    <CustomAction Id="tsk.task.Forward.Button.CustomAction" Location="Mscrm.Form.task.MainTab.Save.Controls._children" Sequence="44">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:tsk.task.Forward.Button.Alt" Command="tsk.task.Forward.Command" Id="tsk.task.Forward.Button" LabelText="$LocLabels:tsk.task.Forward.Button.LabelText" Sequence="44" TemplateAlias="o1" ToolTipTitle="$LocLabels:tsk.task.Forward.Button.ToolTipTitle" ModernImage="$webresource:tsk_/images/email_forward.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="tsk.task.Reply.Button.CustomAction" Location="Mscrm.Form.task.MainTab.Save.Controls._children" Sequence="38">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:tsk.task.Reply.Button.Alt" Command="tsk.task.Reply.Command" Id="tsk.task.Reply.Button" LabelText="$LocLabels:tsk.task.Reply.Button.LabelText" Sequence="38" TemplateAlias="o1" ToolTipTitle="$LocLabels:tsk.task.Reply.Button.ToolTipTitle" ModernImage="$webresource:tsk_/images/email_reply.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="tsk.task.ReplyAll.Button.CustomAction" Location="Mscrm.Form.task.MainTab.Save.Controls._children" Sequence="42">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:tsk.task.ReplyAll.Button.Alt" Command="tsk.task.ReplyAll.Command" Id="tsk.task.ReplyAll.Button" LabelText="$LocLabels:tsk.task.ReplyAll.Button.LabelText" Sequence="42" TemplateAlias="o1" ToolTipTitle="$LocLabels:tsk.task.ReplyAll.Button.ToolTipTitle" ModernImage="$webresource:tsk_/images/email_reply_all.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="tsk.task.Forward.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="tsk.task.sourcetype.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="tsk.task_mainform.onEmailResponseActionClicked" Library="$webresource:tsk_/scripts/task_mainform.js">
+          <CrmParameter Value="PrimaryControl" />
+          <IntParameter Value="3" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="tsk.task.Reply.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="tsk.task.sourcetypeORrule.displayrule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="tsk.task_mainform.onEmailResponseActionClicked" Library="$webresource:tsk_/scripts/task_mainform.js">
+          <CrmParameter Value="PrimaryControl" />
+          <IntParameter Value="1" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="tsk.task.ReplyAll.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="tsk.task.sourcetype.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="tsk.task_mainform.onEmailResponseActionClicked" Library="$webresource:tsk_/scripts/task_mainform.js">
+          <CrmParameter Value="PrimaryControl" />
+          <IntParameter Value="2" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="tsk.task.sourcetype.DisplayRule">
+        <ValueRule Field="tsk_sourcetype" Value="957120001" Default="false" InvertResult="false" />
+      </DisplayRule>
+      <DisplayRule Id="tsk.task.sourcetypeORrule.displayrule">
+        <OrRule>
+          <Or>
+            <ValueRule Field="tsk_sourcetype" Value="957120001" Default="false" InvertResult="false" />
+          </Or>
+          <Or>
+            <ValueRule Field="tsk_sourcetype" Value="957120000" Default="false" InvertResult="false" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="tsk.task.Forward.Button.Alt">
+      <Titles>
+        <Title description="Forward" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.Forward.Button.LabelText">
+      <Titles>
+        <Title description="Forward" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.Forward.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Forward" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.Reply.Button.Alt">
+      <Titles>
+        <Title description="Reply" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.Reply.Button.LabelText">
+      <Titles>
+        <Title description="Reply" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.Reply.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Reply" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.ReplyAll.Button.Alt">
+      <Titles>
+        <Title description="Reply All" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.ReplyAll.Button.LabelText">
+      <Titles>
+        <Title description="Reply All" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="tsk.task.ReplyAll.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Reply All" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

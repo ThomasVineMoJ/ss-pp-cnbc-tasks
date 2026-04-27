@@ -1,0 +1,4 @@
+<organizationsetting settingdefinitionid.uniquename="EnableCopilotAnswerControl">
+  <iscustomizable>1</iscustomizable>
+  <value>true</value>
+</organizationsetting>

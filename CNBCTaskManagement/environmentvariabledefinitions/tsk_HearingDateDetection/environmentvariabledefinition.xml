@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="tsk_HearingDateDetection">
+  <defaultvalue>no</defaultvalue>
+  <description default="Is automatic hearing date detection is enabled">
+    <label description="Is automatic hearing date detection is enabled" languagecode="1033" />
+  </description>
+  <displayname default="Hearing Date Detection">
+    <label description="Hearing Date Detection" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.55</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000002</type>
+</environmentvariabledefinition>

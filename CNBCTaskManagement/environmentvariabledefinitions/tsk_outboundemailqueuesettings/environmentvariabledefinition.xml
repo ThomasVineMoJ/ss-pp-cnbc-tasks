@@ -1,0 +1,20 @@
+<environmentvariabledefinition schemaname="tsk_outboundemailqueuesettings">
+  <defaultvalue>{
+  "outbound": {
+    "QueueName": "CNBC Incoming 2",
+    "QueueId": "e4c5ff1e-54b1-ef11-b8e9-6045bdfc394d"
+  },
+  "accessibility": {
+    "QueueName": "Accessibility Emails",
+    "QueueId": "f2b8127d-b7e6-ef11-9342-7c1e5203c47f"
+  }
+}</defaultvalue>
+  <displayname default="Outbound Email Queue Settings">
+    <label description="Outbound Email Queue Settings" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000003</type>
+</environmentvariabledefinition>

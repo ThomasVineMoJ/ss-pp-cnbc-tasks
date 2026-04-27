@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{c9e48f18-0af9-ef11-bae2-7c1e522e5b3c}</WebResourceId>
+  <Name>tsk_/images/new_email.svg</Name>
+  <DisplayName>tsk_/images/new_email.svg</DisplayName>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>11</WebResourceType>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_imagesnew_emailsvgC9E48F18-0AF9-EF11-BAE2-7C1E522E5B3C</FileName>
+</WebResource>

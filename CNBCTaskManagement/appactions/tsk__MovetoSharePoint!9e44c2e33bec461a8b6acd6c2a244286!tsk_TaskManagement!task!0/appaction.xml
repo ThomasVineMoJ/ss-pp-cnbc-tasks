@@ -1,0 +1,37 @@
+<appaction uniquename="tsk__MovetoSharePoint!9e44c2e33bec461a8b6acd6c2a244286!tsk_TaskManagement!task!0">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonlabeltext default="Move to SharePoint">
+    <label description="Move to SharePoint" languagecode="1033" />
+  </buttonlabeltext>
+  <context>1</context>
+  <contextentity>
+    <logicalname>task</logicalname>
+  </contextentity>
+  <contextvalue>task</contextvalue>
+  <fonticon>SharePointIcon</fonticon>
+  <hidden>0</hidden>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>0</location>
+  <name>MovetoSharePoint!9e44c2e33bec461a8b6acd6c2a244286</name>
+  <onclickeventformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </onclickeventformulacomponentlibraryid>
+  <onclickeventformulacomponentname>53bb30e3a81344359a838902f5170dc9</onclickeventformulacomponentname>
+  <onclickeventformulafunctionname>OnSelect</onclickeventformulafunctionname>
+  <onclickeventtype>1</onclickeventtype>
+  <origin>0</origin>
+  <sequence>100100044.2500000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilityformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </visibilityformulacomponentlibraryid>
+  <visibilityformulacomponentname>53bb30e3a81344359a838902f5170dc9</visibilityformulacomponentname>
+  <visibilityformulafunctionname>Visible</visibilityformulafunctionname>
+  <visibilitytype>1</visibilitytype>
+</appaction>

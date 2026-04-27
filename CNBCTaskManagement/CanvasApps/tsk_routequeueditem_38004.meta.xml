@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>tsk_routequeueditem_38004</Name>
+  <AppVersion>2026-04-14T16:39:19Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26035.13.0</CreatedByClientVersion>
+  <MinClientVersion>3.26035.13.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.26035.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20260414T133810Z-3.26035.13.0","m365CopilotSettingValue":"0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Route Queued Item</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"f4902518-1903-42fa-869e-f3be333197ce":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png","dataSources":["QueueItems-Route"],"dependencies":["938b17b2-f649-4720-b61e-1c997b69fb25"],"dependents":[],"parameterHints":{"workflowName":{"value":"24dbf94f-51be-4c15-b210-3e6320008378"},"workflowEntityId":{"value":"487ba970-acfb-f011-8407-000d3ad615ba"},"workflowDisplayName":{"value":"QueueItems - Route"},"938b17b2-f649-4720-b61e-1c997b69fb25":{"value":"shared_commondataserviceforapps_1"}},"parameterHintsV2":{"workflowName":{"value":"24dbf94f-51be-4c15-b210-3e6320008378"},"workflowEntityId":{"value":"487ba970-acfb-f011-8407-000d3ad615ba"},"workflowDisplayName":{"value":"QueueItems - Route"},"shared_commondataserviceforapps_1":{"value":"938b17b2-f649-4720-b61e-1c997b69fb25"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"938b17b2-f649-4720-b61e-1c997b69fb25":{"id":"/providers/microsoft.powerapps/apis/shared_commondataserviceforapps","displayName":"Microsoft Dataverse","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1802/1.0.1802.4638/commondataserviceforapps/icon.png","dataSources":[],"dependencies":[],"dependents":["f4902518-1903-42fa-869e-f3be333197ce"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Premium","authenticationType":"Oauth"}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"Queue Items":{"entitySetName":"queueitems","logicalName":"queueitem"},"Queues":{"entitySetName":"queues","logicalName":"queue"},"Users":{"entitySetName":"systemusers","logicalName":"systemuser"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>2</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"487ba970-acfb-f011-8407-000d3ad615ba","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"queueitem","componenttype":1},{"logicalname":"queue","componenttype":1},{"logicalname":"systemuser","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/tsk_routequeueditem_38004_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/tsk_routequeueditem_38004_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/tsk_routequeueditem_38004_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>

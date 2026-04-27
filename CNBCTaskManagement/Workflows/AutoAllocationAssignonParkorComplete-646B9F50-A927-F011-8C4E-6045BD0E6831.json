@@ -1,0 +1,207 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_modified_in_Tasks": {
+          "metadata": {
+            "operationMetadataId": "15705804-1288-40fc-ad86-e034f52314f2"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "task",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statecode,statuscode,ownerid",
+              "subscriptionRequest/filterexpression": "statecode eq 1 or statuscode eq 4"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Run_a_Child_Flow": {
+          "runAfter": {
+            "Condition_|_Is_User_Offline": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1aefdfcc-d9e5-41c4-a9c5-71b0e80e801f"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "19833a68-3b25-f011-8c4d-6045bd0e6831"
+            },
+            "body": {
+              "text": "@triggerOutputs()?['body/_ownerid_value']"
+            }
+          }
+        },
+        "Condition_|_Task_Found": {
+          "actions": {
+            "Add_a_new_row_|_Notification": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "83b8097d-5864-4b0e-ad82-b094cfbc5edd"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "appnotifications",
+                  "item/title": "Task Assigned",
+                  "item/body": "A task has been auto allocated to you.",
+                  "item/data": "{\n  \"actions\": [\n    {\n      \"data\": {\n        \"url\": \"@{body('Run_a_Child_Flow')?['taskurlparams']}\",\n        \"navigationTarget\": \"inline\"\n      },\n      \"title\": \"View Task\"\n    }\n  ]\n}",
+                  "item/ttlinseconds": 28800,
+                  "item/icontype": 100000000,
+                  "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                  "item/priority": 200000000,
+                  "item/toasttype": 200000000
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Run_a_Child_Flow": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@empty(outputs('Run_a_Child_Flow')?['Body']?['taskurlparams'])",
+              "@false"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "05817135-ff52-43d7-8fff-19b76cc401a3"
+          },
+          "type": "If"
+        },
+        "List_rows_|_User_Status": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "09491648-55c4-4f42-b842-3517912250d9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "tsk_userstatuses",
+              "$select": "tsk_userstatusid",
+              "$filter": "tsk_isonline eq true and _tsk_user_value eq '@{triggerOutputs()?['body/_ownerid_value']}'",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition_|_Is_User_Offline": {
+          "actions": {
+            "Respond_to_a_Power_App_or_flow_|_Empty_Response": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1b07da03-13a9-42c8-a030-05029307130b"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {},
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "taskurl": {
+                      "title": "TaskUrl",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "taskurlparams": {
+                      "title": "TaskUrlParams",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "taskid": {
+                      "title": "TaskId",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "operationOptions": "Asynchronous"
+            },
+            "Terminate_|_User_is_Offline": {
+              "runAfter": {
+                "Respond_to_a_Power_App_or_flow_|_Empty_Response": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "79c6810f-bf0c-498a-a8e1-0140ec46796c"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Succeeded"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_|_User_Status": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@length(outputs('List_rows_|_User_Status')?['body/value'])",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0fcbd6d0-6609-44ea-90e2-e3020eaa6e35"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

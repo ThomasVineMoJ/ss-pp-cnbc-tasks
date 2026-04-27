@@ -1,0 +1,10 @@
+{
+  "defaultSupportedProps": {
+    "stickyStyle": {
+              "font-size": "12pt",
+              "font-family": "'Arial','Segoe UI','Helvetica Neue',sans-serif"
+          }
+  },
+  "font_defaultLabel": "Arial",
+  "fontSize_defaultLabel": "12"
+}

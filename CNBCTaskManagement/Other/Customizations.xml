@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26034.167" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.26034.00167">
+  <Entities />
+  <Roles />
+  <Workflows />
+  <FieldSecurityProfiles />
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <WebResources />
+  <CustomControls />
+  <AppModuleSiteMaps />
+  <AppModules />
+  <EntityDataProviders />
+  <CanvasApps />
+  <AIModels>
+    <AIModel>
+      <msdyn_aimodelid>{46ea6bd7-aa58-44d3-ad7b-e41d96a6fd99}</msdyn_aimodelid>
+      <msdyn_name>Find Hearing Date</msdyn_name>
+      <msdyn_templateid>{edfdb190-3791-45d8-9a6c-8f90a37c278a}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{2d9a34cb-ecfa-4915-9090-220382d572e9}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{2d9a34cb-ecfa-4915-9090-220382d572e9}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"GptDynamicPrompt-2","prompt":[{"type":"literal","text":"You are tasked with extracting the most recent hearing date from an email chain. The hearing date may be explicitly stated as a calendar date or referenced using relative phrases such as \"today,\" \"tomorrow,\" or \"in 3 days.\" The goal is to identify the hearing date mentioned in the newest email of the chain if available; otherwise, consider older emails, prioritizing the most recent relevant date. The emails will most likely have dates in British dd/mm/yyyy format, so they should be interpreted in that way in the first instance.\n\n### Instructions:\n1. **Analyze the Email Chain:** Review the emails in chronological order, starting from the newest to the oldest.\n2. **Identify Hearing Dates:** Look for explicit dates or relative date phrases that likely indicate a hearing date, these are most likely in British date format dd/mm/yyyy\n3. **Resolve Relative Dates:** Convert relative date phrases into absolute dates based on the context or the date of the email in which they appear, use this date  "},{"type":"inputVariable","id":"Current_20Date"},{"type":"literal","text":"  if a timestamp is not available in the email.\n4. **Select the Most Recent Hearing Date:** Prefer hearing dates found in newer emails over older ones, if multiple dates are found, use the closest to today that is either today or in the future\n5. **Output the Result:** Return the hearing date as a JSON object with the property \"hearingDate\" formatted in ISO 8601 (YYYY-MM-DD). If no hearing date is found, return null for the property.\n6. Output the reason why a date was chosen or not found as a JSON property called \"reason\".\n\n### Output Format:\n```json\n{\n  \"hearingDate\": \"{ISO 8601 date string or null}\",\n  \"reason\": \"the reason the hearing date was chosen or not found\"\n}\n```\n\n### Guidelines:\n- Extract dates only from the provided email chain.\n- Interpret relative date phrases accurately based on the email's timestamp or use this date  "},{"type":"inputVariable","id":"Current_20Date"},{"type":"literal","text":" if the email timestamp is not available\n- If multiple hearing dates are found, choose the one from the newest email.\n- Return null if no hearing date is identified.\n\nProvide the email chain here:  "},{"type":"inputVariable","id":"Email_20Chain"},{"type":"literal","text":" \nProvide the current date:  "},{"type":"inputVariable","id":"Current_20Date"},{"type":"literal","text":" \n"}],"definitions":{"inputs":[{"id":"Email_20Chain","text":"Email Chain","type":"text","quickTestValue":"My hearing is on 23/3/26 at Norwich and I have a question about that.\nChris Way\nDevelopment Team Manager\nLow Code Platform Team | Digital and Technology Services | HMCTS\ngov.uk/hmcts\n"},{"id":"Current_20Date","text":"Current Date","type":"text","quickTestValue":"20/03/2026"}],"formulas":[],"data":[],"output":{"formats":["json"],"jsonSchema":{"type":"object","properties":{"hearingDate":{"type":"string"},"reason":{"type":"string"}}},"jsonExamples":[{"hearingDate":"2026-03-23","reason":"The newest email explicitly states the hearing date as 23/3/26, which is interpreted as 23 March 2026 in British date format."}]}},"modelParameters":{"modelType":"gpt-41-mini","gptParameters":{"temperature":0}},"settings":{"recordRetrievalLimit":30,"shouldPreserveRecordLinks":null,"runtime":null},"code":""}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>3</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>46ea6bd7-aa58-44d3-ad7b-e41d96a6fd99_3/20/2026 4:30:53 PM</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAACpWRsWrDMBCGX8XcrKEtpYO31EmgSw1JyFou9qVWsCUhnSAm5N0r2S4NlQupR3//ffdLusDWULXWtkPek3VSK8gfBbwp43mjNa8US+4hv8BSOtNi/44dQQ4gYMFs5cEzuYhXHcr24+mhaFCqND/gbIQCSsNhE7aQH7F1JGDXm5jaBqP6hKuAwltLioNwiUypb+LZQO8RYl3LMVNoxXTm1LlIIrditv7H+4qOXp6/7dfgLz3/98rmW+zGxckBjlJJ12wIXXyj31PrgWYTnhl3oX/F3lI9No2KKVQeTlTFnXc3bwijd/5pbuFMEfvHCab/ycT4fQF+wD3eqQIAAA==</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{46ea6bd7-aa58-44d3-ad7b-e41d96a6fd99}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{7d52d1bf-7024-f111-8342-7c1e5264ec44}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{7d52d1bf-7024-f111-8342-7c1e5264ec44}</msdyn_aiconfigurationid>
+          <msdyn_majoriterationnumber>1</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>25ff0ed4-b33e-4fdf-aaef-520d335c0d47</msdyn_modeldata>
+          <msdyn_name>46ea6bd7-aa58-44d3-ad7b-e41d96a6fd99_Training_3/20/2026 3:23:39 PM</msdyn_name>
+          <msdyn_modelrundataspecification>
+        {
+          "schemaVersion": 2,
+          "input": {},
+          "output": {}
+        }
+      </msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{46ea6bd7-aa58-44d3-ad7b-e41d96a6fd99}</msdyn_aimodelid>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+  </AIModels>
+  <appaction_appactionrule_classicrulesset>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.CopilotClientApi!1">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.EnableCopilotSummarizeCommandButton!1">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.EnableCopilotSummarizeFeatures!1">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.FormStateNotNew!0">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.HideOnMobile!0">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.InitializeCopilotSidePaneOnBoot!1">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+    <appaction_appactionrule_classicrules appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" appactionruleid.uniquename="msdyn_Mscrm.IsAppCopilotEnabled!0">
+      <iscustomizable>1</iscustomizable>
+    </appaction_appactionrule_classicrules>
+  </appaction_appactionrule_classicrulesset>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="new_sharedconversionservice_e0ddc">
+      <connectionreferencedisplayname>TaskManagement-Content-Conversion</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_conversionservice</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="tsk_CSVParserCNBC">
+      <connectionreferencedisplayname>CSV Parser | CNBC</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_tsk-5fcsv-20parser-5ffbae160ce7719b6c</connectorid>
+      <customconnectorid>
+        <connectorid>6d2165fe-9101-448a-8ad4-694bde8e2585</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="tsk_HTTPwithMicrosoftEntraIDpreauthorisedCNBC">
+      <connectionreferencedisplayname>HTTP with Microsoft Entra ID (preauthorised) | CNBC</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_webcontents</connectorid>
+      <description>Base Resource URL &amp; Application ID URI set to https://{ENV}.crm11.dynamics.com </description>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="tsk_RegExEngineCNBC">
+      <connectionreferencedisplayname>RegEx Engine | CNBC</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_tsk-5fregex-20engine-5ffbae160ce7719b6c</connectorid>
+      <customconnectorid>
+        <connectorid>dc4d9553-0c52-417a-8d0e-51c6a4337994</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="tsk_sharedcommondataserviceforapps_ec655">
+      <connectionreferencedisplayname>TaskManagement-Dataverse</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="tsk_sharedtsk5ftask20apply20rules5ffbae160ce7719b6c_5217e">
+      <connectionreferencedisplayname>TaskManagement-Task-Apply-Rules-Connector</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c</connectorid>
+      <customconnectorid>
+        <connectorid>79d841f4-fceb-41a6-ad71-b383ac0c7992</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="tsk_WebFormJSONMapperCNBC">
+      <connectionreferencedisplayname>Web Form JSON Mapper | CNBC</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_tsk-5fweb-20form-20json-20mapper-5ffbae160ce7719b6c</connectorid>
+      <customconnectorid>
+        <connectorid>ad2b9015-2050-4546-9a82-06a2160d4c32</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

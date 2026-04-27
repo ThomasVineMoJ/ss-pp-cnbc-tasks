@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.tsk_keyword.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.tsk_keyword.AddExistingAssoc" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.tsk_keyword.AddExistingStandard.Hide" Location="Mscrm.SubGrid.tsk_keyword.AddExistingStandard" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.tsk_keyword.DocumentTemplate.Hide" Location="Mscrm.SubGrid.tsk_keyword.DocumentTemplate" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.tsk_keyword.Flows.RefreshCommandBar.Hide" Location="Mscrm.SubGrid.tsk_keyword.Flows.RefreshCommandBar" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.tsk_keyword.RunReport.Hide" Location="Mscrm.SubGrid.tsk_keyword.RunReport" />
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions />
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels />
+</RibbonDiffXml>

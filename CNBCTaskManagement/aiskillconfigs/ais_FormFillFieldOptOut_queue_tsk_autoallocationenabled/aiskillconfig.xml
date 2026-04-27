@@ -1,0 +1,15 @@
+<aiskillconfig uniquename="ais_FormFillFieldOptOut_queue_tsk_autoallocationenabled">
+  <aiskill>FormFillFieldOptOut</aiskill>
+  <attribute>
+    <entityid.logicalname>queue</entityid.logicalname>
+    <logicalname>tsk_autoallocationenabled</logicalname>
+  </attribute>
+  <description>queue - Auto Allocation Enabled Form fill opt out</description>
+  <entity>
+    <logicalname>queue</logicalname>
+  </entity>
+  <iscustomizable>1</iscustomizable>
+  <scope>1</scope>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</aiskillconfig>

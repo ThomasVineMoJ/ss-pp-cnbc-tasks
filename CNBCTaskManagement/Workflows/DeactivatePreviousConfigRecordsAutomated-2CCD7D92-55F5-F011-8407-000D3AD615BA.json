@@ -1,0 +1,162 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_active_row_is_added_or_modified_|_When_Web_Form_Config_Is_Activated": {
+          "metadata": {
+            "operationMetadataId": "19dd14b0-176b-4333-a363-3658a1eafaef"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "tsk_webformconfiguration",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statecode",
+              "subscriptionRequest/filterexpression": "statecode eq 0"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "actions": {
+            "List_Rows_|_Fetch_All_Other_Active_Configuration_Records": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d2254243-5f88-45fc-bddd-75268c1cc4c4"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tsk_webformconfigurations",
+                  "$filter": "statecode eq 0 and tsk_webformconfigurationid ne @{triggerOutputs()?['body/tsk_webformconfigurationid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_|_Deactivate_Configuration_Records": {
+              "foreach": "@outputs('List_Rows_|_Fetch_All_Other_Active_Configuration_Records')?['body/value']",
+              "actions": {
+                "Update_a_row_|_Deactivate_Record": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "8892837a-eca8-43e8-8d49-518574d303a4"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tsk_webformconfigurations",
+                      "recordId": "@items('Apply_to_each_|_Deactivate_Configuration_Records')?['tsk_webformconfigurationid']",
+                      "item/statecode": 1
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_Rows_|_Fetch_All_Other_Active_Configuration_Records": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f60694c7-dbb9-4fdd-8720-9485d23fa303"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "aa6f07ed-a9b5-4655-8dc9-1017c9481447"
+          },
+          "type": "Scope"
+        },
+        "Catch": {
+          "actions": {
+            "Filter_array_|_Filter_For_Errors": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "cd97acda-9f64-45af-abf7-6bd5f76eefd9"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@result('Try')",
+                "where": "@equals(item()?['status'], 'Failed')"
+              }
+            },
+            "Terminate_|_Failed": {
+              "runAfter": {
+                "Filter_array_|_Filter_For_Errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "172cd60b-f52c-4c26-acb6-5b536a29e8a4"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "@{body('Filter_array_|_Filter_For_Errors')?[0]?['error']?['code']}",
+                  "message": "@{body('Filter_array_|_Filter_For_Errors')?[0]?['error']?['message']}"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d8b01b5f-524c-4408-be5a-6d3192644d5a"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

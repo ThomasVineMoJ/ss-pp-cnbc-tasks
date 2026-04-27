@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>tsk_jsonquerybuilder_5228a</Name>
+  <AppVersion>2026-03-06T10:24:48Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26022.13.0</CreatedByClientVersion>
+  <MinClientVersion>3.26022.13.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1527","primaryDeviceHeight":"595","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Web","showStatusBar":"false","publisherVersion":"3.26022.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20260306T100955Z-3.26022.13.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>JSON Query Builder</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"Routing Rules":{"entitySetName":"tsk_routingruleses","logicalName":"tsk_routingrules"},"Web Form Configurations":{"entitySetName":"tsk_webformconfigurations","logicalName":"tsk_webformconfiguration"},"Queues":{"entitySetName":"queues","logicalName":"queue"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"tsk_routingrules","componenttype":1},{"logicalname":"tsk_webformconfiguration","componenttype":1},{"logicalname":"queue","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/tsk_jsonquerybuilder_5228a_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/tsk_jsonquerybuilder_5228a_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/tsk_jsonquerybuilder_5228a_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>

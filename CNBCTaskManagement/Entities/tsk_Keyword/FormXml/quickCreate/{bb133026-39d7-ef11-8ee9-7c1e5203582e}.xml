@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{bb133026-39d7-ef11-8ee9-7c1e5203582e}</formid>
+    <IntroducedVersion>2.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="F931FFE2-B873-473F-8F95-9502F0AA3F5E" name="tab_1" showlabel="false" labelid="{aced5810-25e7-4c4b-80dd-935e3e13201a}">
+          <labels>
+            <label description="New Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{148ff7d3-b8c0-4312-8ba6-3a73bdb2c6f4}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="542FBFBE-0E4C-496C-8012-555DE6581923" labelid="{ba0ad3f4-ac63-4ed1-bc10-3879f91bf38b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4a17b0e-00c0-4fce-ac3d-11b4bfc52d89}" locklevel="0" colspan="1" rowspan="1" labelid="{52d1d254-aaea-4fd1-b9cb-4954042c6fb9}">
+                        <labels>
+                          <label description="Routing Rule" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_routingrule" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_routingrule" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dc3641bb-9478-40fa-a652-4e1a413d3133}" locklevel="0" colspan="1" rowspan="1" labelid="{5b6d70f3-275b-4b79-a0bf-66ea030b1824}">
+                        <labels>
+                          <label description="Keyword" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_keyword" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_keyword" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" visible="false" labelid="{f810a4e1-59a2-4a09-a7df-1be11242336b}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="266FE48D-4D04-4E9A-8C5A-7DEF9A2F059B" labelid="{e6279eeb-0276-4a77-82d1-eae8a1222e63}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="46FD66EA-B686-41D9-AAE0-C565BD78EC1F" name="tab_1_column_3_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" visible="false" labelid="{88bba8c9-15e3-4ade-932e-50b54c4eefbb}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{b5e8780b-873e-48d6-826f-6941056826a3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="2" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Keyword Quick Create" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

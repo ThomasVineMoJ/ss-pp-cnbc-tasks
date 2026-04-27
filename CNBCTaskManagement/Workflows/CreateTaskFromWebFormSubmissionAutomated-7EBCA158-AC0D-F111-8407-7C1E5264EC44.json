@@ -1,0 +1,454 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_tsk-5fregex-20engine-5ffbae160ce7719b6c_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_RegExEngineCNBC"
+        },
+        "api": {
+          "name": "shared_tsk-5fregex-20engine-5ffbae160ce7719b6c",
+          "logicalName": "tsk_5Fregex-20engine"
+        }
+      },
+      "shared_tsk-5fcsv-20parser-5ffbae160ce7719b6c": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_CSVParserCNBC"
+        },
+        "api": {
+          "name": "shared_tsk-5fcsv-20parser-5ffbae160ce7719b6c",
+          "logicalName": "tsk_5Fcsv-20parser"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_tsk-5fweb-20form-20json-20mapper-5ffbae160ce7719b6c": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_WebFormJSONMapperCNBC"
+        },
+        "api": {
+          "name": "shared_tsk-5fweb-20form-20json-20mapper-5ffbae160ce7719b6c",
+          "logicalName": "tsk_5Fweb-20form-20json-20mapper"
+        }
+      },
+      "shared_webcontents": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_HTTPwithMicrosoftEntraIDpreauthorisedCNBC"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added_|_MoJ_Web_Form": {
+          "metadata": {
+            "operationMetadataId": "a2c2d1d6-8c23-4b34-8833-aeef38b06265"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "email",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "directioncode eq false and sender eq 'no-reply-moj-forms@justice.gov.uk'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "actions": {
+            "Extract_regex_matches_|_Submission_Id": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "88894141-9e35-4216-8845-bc680c369b98"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_tsk-5fregex-20engine-5ffbae160ce7719b6c_1",
+                  "operationId": "Regex",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_tsk-5fregex-20engine-5ffbae160ce7719b6c"
+                },
+                "parameters": {
+                  "body/inputString": "@triggerOutputs()?['body/subject']",
+                  "body/pattern": "[0-9a-fA-F\\-]{36}"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "GUID regex: [0-9a-fA-F\\-]{36}"
+            },
+            "Filter_array_|_Filter_Attachments_For_CSV_Data": {
+              "runAfter": {
+                "Invoke_an_HTTP_request_|_Create_Task_Record_Attempt": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "573e4e50-675f-4fff-8abb-eb6db9305d12"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Get_a_row_by_ID_|_Fetch_Full_Email')?['activity_pointer_activity_mime_attachment']",
+                "where": "@and(contains(item()?['filename'], outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]), contains(item()?['filename'], '.csv'))"
+              },
+              "description": "@and(contains(item()?['filename'], outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]), contains(item()?['filename'], '.csv'))"
+            },
+            "Condition_|_CSV_Data_File_Found": {
+              "actions": {
+                "Parse_CSV_to_JSON": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2290327f-ce6e-4fb8-867e-bfb098536cb7"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_tsk-5fcsv-20parser-5ffbae160ce7719b6c",
+                      "operationId": "ParseCSV",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_tsk-5fcsv-20parser-5ffbae160ce7719b6c"
+                    },
+                    "parameters": {
+                      "body/CSV content": "@decodeBase64(body('Filter_array_|_Filter_Attachments_For_CSV_Data')?[0]?['body'])"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "List_rows_|_Get_Active_Web_Form_Configuration": {
+                  "runAfter": {
+                    "Parse_CSV_to_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "53bac2ad-ef6e-4cea-9082-e15068c9b9d2"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tsk_webformconfigurations",
+                      "$select": "tsk_metadatajson",
+                      "$filter": "statecode eq 0",
+                      "$orderby": "tsk_id desc",
+                      "$top": 1
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Enrich_form_response_data": {
+                  "runAfter": {
+                    "List_rows_|_Get_Active_Web_Form_Configuration": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "7c1c0e16-792b-49f3-ab94-435ee9de822c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_tsk-5fweb-20form-20json-20mapper-5ffbae160ce7719b6c",
+                      "operationId": "EnrichResponses",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_tsk-5fweb-20form-20json-20mapper-5ffbae160ce7719b6c"
+                    },
+                    "parameters": {
+                      "body/formDefinitionJSON": "@json(outputs('List_rows_|_Get_Active_Web_Form_Configuration')?['body/value']?[0]?['tsk_metadatajson'])",
+                      "body/responsesJSON": "@body('Parse_CSV_to_JSON')?[0]"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Invoke_an_HTTP_request_|_Update_Task_Record": {
+                  "runAfter": {
+                    "Compose_|_Task_Update_Body": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ddf2dc7d-a8b5-4a19-a074-a9759c463012"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "PATCH",
+                      "request/url": "/api/data/v9.2/tasks(tsk_webformsubmissionid='@{outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]}')",
+                      "request/headers": {
+                        "If-Match": "*"
+                      },
+                      "request/body": "@outputs('Compose_|_Task_Update_Body')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "Update Task with Citizen email, case number and webformmetadata."
+                },
+                "Compose_|_Task_Update_Body": {
+                  "runAfter": {
+                    "Enrich_form_response_data": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cf2cde40-485e-42b5-96e6-884ecccf64a9"
+                  },
+                  "type": "Compose",
+                  "inputs": {
+                    "tsk_citizenemail": "@{body('Parse_CSV_to_JSON')?[0]?['confirmation-email_email_1']}",
+                    "tsk_casenumber": "@{coalesce(body('Parse_CSV_to_JSON')?[0]?['mediation-caseref_text_1'], body('Parse_CSV_to_JSON')?[0]?['problem-caseref-online_text_1'], body('Parse_CSV_to_JSON')?[0]?['sendmessage-caseref-offline_text_1'], body('Parse_CSV_to_JSON')?[0]?['sendmessage-caseref-online_text_1'], body('Parse_CSV_to_JSON')?[0]?['uploaddocs-caseref-offline_text_1'], body('Parse_CSV_to_JSON')?[0]?['uploaddocs-caseref-online_text_1'])}",
+                    "tsk_webformmetadata": "@{body('Enrich_form_response_data')}"
+                  }
+                }
+              },
+              "runAfter": {
+                "Filter_array_|_Filter_Attachments_For_CSV_Data": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "greater": [
+                  "@length(body('Filter_array_|_Filter_Attachments_For_CSV_Data'))",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "96d142a1-136b-416c-8159-deb8dc946af7"
+              },
+              "type": "If"
+            },
+            "Update_a_row_|_Original_Email_With_Task_Lookup": {
+              "runAfter": {
+                "Apply_to_each_|_Upload_Attachments_To_Task": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "97ae9795-9c48-4c4e-8ca3-cb86b09b56c1"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emails",
+                  "recordId": "@triggerOutputs()?['body/activityid']",
+                  "x-ms-odata-metadata-full": false,
+                  "item/tsk_Task_Email@odata.bind": "tasks(tsk_webformsubmissionid='@{outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]}')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_a_row_by_ID_|_Fetch_Full_Email": {
+              "runAfter": {
+                "Extract_regex_matches_|_Submission_Id": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0fee8b08-48f2-4ca3-a2c7-602c95624359"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emails",
+                  "recordId": "@triggerOutputs()?['body/activityid']",
+                  "x-ms-odata-metadata-full": false,
+                  "$expand": "Email_QueueItem, activity_pointer_activity_mime_attachment"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_|_Upload_Attachments_To_Task": {
+              "foreach": "@body('Get_a_row_by_ID_|_Fetch_Full_Email')?['activity_pointer_activity_mime_attachment']",
+              "actions": {
+                "Add_a_new_row_|_Upload_Attachment": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "4a7744dc-17f2-4f81-9eb8-925244a74e35"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "annotations",
+                      "x-ms-odata-metadata-full": false,
+                      "item/subject": "@items('Apply_to_each_|_Upload_Attachments_To_Task')?['filename']",
+                      "item/isdocument": true,
+                      "item/documentbody": "@item()?['body']",
+                      "item/filename": "@item()?['filename']",
+                      "item/objectid_task@odata.bind": "tasks(tsk_webformsubmissionid='@{outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]}')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition_|_CSV_Data_File_Found": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1dab99de-afdf-4a86-a18b-10e47f268a1e"
+              },
+              "type": "Foreach"
+            },
+            "Run_a_Child_Flow_|_Delete_Email_Queue_Item_Loop": {
+              "runAfter": {
+                "Update_a_row_|_Original_Email_With_Task_Lookup": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e07bda95-18e7-4694-8a5c-281314d25548"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "6f287d15-cafd-ef11-bae2-6045bd11200e"
+                },
+                "body": {
+                  "text": "@body('Get_a_row_by_ID_|_Fetch_Full_Email')?['Email_QueueItem']?[0]?['queueitemid']"
+                }
+              }
+            },
+            "Invoke_an_HTTP_request_|_Create_Task_Record_Attempt": {
+              "runAfter": {
+                "Get_a_row_by_ID_|_Fetch_Full_Email": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ddf2dc7d-a8b5-4a19-a074-a9759c463012"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontents",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                },
+                "parameters": {
+                  "request/method": "POST",
+                  "request/url": "/api/data/v9.2/tasks",
+                  "request/body": "{\n  \"subject\": \"MoJ Form: @{outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]}\",\n  \"tsk_sourcetype\": 957120000,\n  \"scheduledend\": \"@{addDays(utcNow(), 99)}\",\n  \"tsk_OriginatingEmail_Task@odata.bind\": \"emails(@{triggerOutputs()?['body/activityid']})\",\n  \"tsk_OriginatingQueue_Task@odata.bind\": \"queues(@{triggerOutputs()?['body/_acceptingentityid_value']})\",\n\"tsk_webformsubmissionid\": \"@{outputs('Extract_regex_matches_|_Submission_Id')?['body/matches']?[0]}\"\n}"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "Attempt to create task for webformsubmissionid, if it already exists the action will fail but the flow will carry on assuming the record now exists."
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "454646ac-076f-42f5-8dbf-4af4a7a7dcf5"
+          },
+          "type": "Scope"
+        },
+        "Catch": {
+          "actions": {
+            "Filter_array_|_Filter_For_Errors": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "487190b0-7e28-4989-a838-8d635e35144b"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@result('Try')",
+                "where": "@equals(item()?['status'], 'Failed')"
+              }
+            },
+            "Terminate_|_Failed": {
+              "runAfter": {
+                "Filter_array_|_Filter_For_Errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bcbc1001-0f68-4e03-9085-13b34695eff0"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "@{body('Filter_array_|_Filter_For_Errors')?[0]?['error']?['code']}",
+                  "message": "@{body('Filter_array_|_Filter_For_Errors')?[0]?['error']?['message']}"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "61190b8a-b064-43e8-a621-c43534ccc6c1"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

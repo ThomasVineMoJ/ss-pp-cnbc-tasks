@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="tsk_EmailLoopDetectionTimeSpan">
+  <defaultvalue>-5</defaultvalue>
+  <description default="The number of minutes that should be considered for detection. This number should be negative.">
+    <label description="The number of minutes that should be considered for detection. This number should be negative." languagecode="1033" />
+  </description>
+  <displayname default="Email Loop Detection Time Span">
+    <label description="Email Loop Detection Time Span" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.45</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000001</type>
+</environmentvariabledefinition>

@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}</formid>
+    <IntroducedVersion>9.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab name="general" verticallayout="true" id="{26ee6844-370e-41e0-97f4-66afd3d838b9}" IsUserDefined="0" ordinalvalue="0">
+          <columns>
+            <column width="34%" id="0">
+              <sections>
+                <section name="queue information" showlabel="true" showbar="false" id="{6a5f6485-f4fb-4809-a27c-1bec47ea232f}" IsUserDefined="0" columns="11" ordinalvalue="1" solutionaction="Modified">
+                  <labels>
+                    <label description="SUMMARY - Sys Admin" languagecode="1033" solutionaction="Modified" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell colspan="2" id="{c41a3cfb-87c1-4a3f-ae79-9e4969338ef4}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" id="{a5cccf27-97b5-49c6-b1bc-9fdf037804f7}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Type" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" id="{0ae52dec-4a09-4af3-a2da-e0046e088913}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Incoming Email" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" id="{dc16fa25-d252-4ed3-b0bc-38054a643069}" rowspan="1" ordinalvalue="10005" solutionaction="Modified">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" showlabel="true" rowspan="3" id="{d69d808e-6aad-4db5-b772-6693cf7ce512}" ordinalvalue="10004" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{3b0f4765-3264-4694-b12c-277a2d043493}" locklevel="0" colspan="2" rowspan="1" ordinalvalue="10003" solutionaction="Added">
+                        <labels>
+                          <label description="No Match Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_nomatchqueue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_nomatchqueue" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE}</DefaultViewId>
+                            <AvailableViewIds>{240B4ABC-99B6-499C-87E2-5C70829FF273},{00000000-0000-0000-00AA-000010001300},{F374F814-00A2-44ED-8B88-13F34E202E79},{81270043-A34E-4091-8733-608EE808D565},{6692D3A5-268D-4392-9752-2ACF707062BB},{3A8191C3-D94E-4FD4-AF8B-5BF29568A563},{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE},{3434F892-B38A-4A21-98E4-35C473073F52},{3A8191C3-D94E-4FD4-AF7B-5BF29568A563}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e5d1c9b1-016e-4208-a89c-41bee85a5a28}" locklevel="0" colspan="2" rowspan="1" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Parent Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_parentqueueid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_parentqueueid" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{5545F233-BB8B-EF11-AC21-6045BDF3350A}</DefaultViewId>
+                            <AvailableViewIds>{240B4ABC-99B6-499C-87E2-5C70829FF273},{00000000-0000-0000-00AA-000010001300},{F374F814-00A2-44ED-8B88-13F34E202E79},{597E5016-EBC4-4D4B-A7DC-EBD41FF66CFB},{81270043-A34E-4091-8733-608EE808D565},{5545F233-BB8B-EF11-AC21-6045BDF3350A},{6692D3A5-268D-4392-9752-2ACF707062BB},{3A8191C3-D94E-4FD4-AF8B-5BF29568A563},{475BA760-C16C-E911-8196-000D3AF7379E},{94A21EC6-5BED-483A-BF49-8DB31C15CE0C},{3C891757-8003-4852-BFCA-E5673963ADA6},{75566A9B-CCE8-4ED8-ACBD-83EE42DD6DEE},{3434F892-B38A-4A21-98E4-35C473073F52},{3A8191C3-D94E-4FD4-AF7B-5BF29568A563}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="incoming email" showlabel="true" showbar="false" locklevel="0" id="{90b8dd85-867b-4aca-8d30-7c00117e693a}" IsUserDefined="0" labelwidth="200" ordinalvalue="3" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{46b89973-7949-4e41-83b9-baeba8ccde64}" locklevel="0" ordinalvalue="10001" solutionaction="Modified">
+                        <labels>
+                          <label description="Convert Incoming Email To Activities" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a24c5251-56c3-4b8f-824a-fc013d4b4534}" showlabel="true" locklevel="0" ordinalvalue="10003" solutionaction="Modified">
+                        <labels>
+                          <label description="Mailbox" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{11a3fa20-f232-4eaf-86bf-4f7cd80efe77}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="Output to Log" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_outputtolog" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_outputtolog" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="RecordCreationAndUpdateRule" showlabel="true" showbar="false" id="{3d635828-2587-4f94-bfe2-e80e36366e71}" IsUserDefined="0" labelwidth="200" ordinalvalue="2" solutionaction="Removed" />
+                <section name="general_section_required_help" id="283675c6-989c-4e6f-ae86-f0ea36c7dccc" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0" solutionaction="Added">
+                  <labels>
+                    <label description="Required Help" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell rowspan="1" id="{ba68e227-9775-42b0-b34c-5b92da29066e}" showlabel="false" colspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="HMTL Required Help" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_new_1" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>tsk_HTMLRequiredHelp</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{1f57083f-c6d8-ef11-8ee9-7c1e5203f441}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="general_section_7" id="b7099265-2017-4c74-9172-a119fc607d69" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="2" solutionaction="Added">
+                  <labels>
+                    <label description="Settings" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{62184a86-e1dc-4054-ac77-da86b6207f53}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="SLA Days" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_sladays" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="tsk_sladays" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{78082160-bdcc-4191-9add-70d00964f72b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001">
+                        <labels>
+                          <label description="Auto Allocation Enabled" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_autoallocationenabled" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_autoallocationenabled" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fae6e129-e589-48d9-b508-e61f53158ec0}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10002">
+                        <labels>
+                          <label description="Reply from No-Reply" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_replyfromnoreply" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_replyfromnoreply" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d5c6a6bf-0f3a-4aed-ac7d-4a8997d47c0a}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10003">
+                        <labels>
+                          <label description="Exclude From Routing" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_excludefromrouting" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="tsk_excludefromrouting" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="QueueMembersNoRecord" showlabel="true" showbar="false" id="{5D36D820-65C5-4F55-B084-33388D7202A9}" IsUserDefined="0" locklevel="0" labelwidth="250" visible="false" ordinalvalue="4" solutionaction="Added">
+                  <labels>
+                    <label description="Members" languagecode="1033" />
+                  </labels>
+                  <rows />
+                </section>
+              </sections>
+            </column>
+            <column width="66%" id="1">
+              <sections>
+                <section name="QueueItems" showlabel="false" showbar="false" id="{cd2b3a40-8fc8-4494-9ad3-6f93388bb3bb}" IsUserDefined="0" labelwidth="102" ordinalvalue="0" solutionaction="Removed" />
+                <section name="QueueMembers" showlabel="false" showbar="false" id="{609BA71A-A34C-4021-A3A8-950ED6E27C56}" IsUserDefined="0" locklevel="0" layout="varwidth" labelwidth="250" visible="false" ordinalvalue="0" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{FAFA5CA5-9147-497D-81D1-BC2EC61D5D3C}" showlabel="true" colspan="1" auto="true" rowspan="12" ordinalvalue="10000" solutionaction="Modified">
+                        <control id="queuemembersgrid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}">
+                          <parameters>
+                            <AutoExpand solutionaction="Modified">Auto</AutoExpand>
+                            <RecordsPerPage solutionaction="Modified">50</RecordsPerPage>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="QueueMembersNoRecord" showlabel="true" showbar="false" id="{5D36D820-65C5-4F55-B084-33388D7202A9}" IsUserDefined="0" locklevel="0" labelwidth="250" visible="false" ordinalvalue="2" solutionaction="Removed" />
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_4" id="07c6d8ac-bb7d-4aef-a9bd-7ce27ac8933c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="singleComponent" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Queue Items" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_4_section_1" id="ac86bfee-0eaf-4450-b7a0-ea356a3fc6b4" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{fe273b2e-96ba-486b-a92a-097925760d5c}" rowspan="4" colspan="1" auto="false" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="New SG control 1741728551175" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <RelationshipName>queue_entries</RelationshipName>
+                            <TargetEntityType>queueitem</TargetEntityType>
+                            <ViewId>{2D8D408D-C255-4587-9E34-596D496E6738}</ViewId>
+                            <ViewIds>{81484ACC-C30C-4869-B40C-2D1154FC1E5F},{2D8D408D-C255-4587-9E34-596D496E6738}</ViewIds>
+                            <VisualizationId>{475E6F02-32AE-4081-8CB8-E3E24A9FBC0F}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="e37390b2-1f15-40b1-baf3-2e95499a0092" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Added">
+          <labels>
+            <label description="Routing Rules" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_3_section_1" id="2781912a-d22b-40b7-96c9-9d4fb5ee8434" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{60ee2fed-2aa8-4392-8172-d309172427f9}" rowspan="4" colspan="1" auto="true" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="New SG control 1740059616985" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>20</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>tsk_routingrules_DestinationQueue_queue</RelationshipName>
+                            <TargetEntityType>tsk_routingrules</TargetEntityType>
+                            <ViewId>{157A71A6-145B-4C53-9BFB-F6A4B36F4051}</ViewId>
+                            <ViewIds>{157A71A6-145B-4C53-9BFB-F6A4B36F4051}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="b8886630-206f-47b7-b2bc-afb133908cfc" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="3" solutionaction="Added">
+          <labels>
+            <label description="Routing Logs" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_2_section_1" id="cdf65be8-c81d-4bb7-be96-5b5af7096af0" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{d2571532-c41a-47d1-a729-cdfcb0417790}" rowspan="4" colspan="1" auto="true" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="New SG control 1740059182772" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>20</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>tsk_routinglog_AssignedQueue_queue</RelationshipName>
+                            <TargetEntityType>tsk_routinglog</TargetEntityType>
+                            <ViewId>{E3C1C506-A683-4C63-9E74-0FE11CCB247F}</ViewId>
+                            <ViewIds>{E3C1C506-A683-4C63-9E74-0FE11CCB247F}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions FallbackForm="false" Order="1" solutionaction="Modified">
+        <Everyone solutionaction="Removed" />
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" solutionaction="Added" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" solutionaction="Added" />
+      </DisplayConditions>
+      <Navigation>
+        <NavBar />
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{ab46d56a-b584-c91a-1250-8cd282e04e52}" solutionaction="Removed" />
+      </controlDescriptions>
+      <header id="{466d5d44-deea-4438-b3c3-8da4163ea780}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </header>
+      <footer id="{eb4acdc4-2b71-4c69-9544-52eb9e7ecd64}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </footer>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Queue Sys Admin Form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All fields unlocked" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

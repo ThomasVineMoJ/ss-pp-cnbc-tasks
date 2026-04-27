@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{8c571794-51f5-f011-8407-000d3ad615ba}</WebResourceId>
+  <Name>tsk_/images/ic_fluent_braces_variable_24_regular</Name>
+  <DisplayName>tsk_/images/ic_fluent_braces_variable_24_regular</DisplayName>
+  <Description>Icon for Web Form Configuration table.</Description>
+  <WebResourceType>11</WebResourceType>
+  <IntroducedVersion>2.0.0.52</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_imagesic_fluent_braces_variable_24_regular8C571794-51F5-F011-8407-000D3AD615BA</FileName>
+</WebResource>

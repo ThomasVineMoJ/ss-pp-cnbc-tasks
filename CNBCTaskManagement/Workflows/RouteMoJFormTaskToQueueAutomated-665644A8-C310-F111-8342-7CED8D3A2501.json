@@ -1,0 +1,269 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedtsk5ftask20apply20rules5ffbae160ce7719b6c_5217e"
+        },
+        "api": {
+          "name": "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c",
+          "logicalName": "tsk_5Ftask-20apply-20rules"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_Modified_|_New_MoJ_Form_Task_With_Metadata": {
+          "metadata": {
+            "operationMetadataId": "cc28b467-6138-488f-b71e-73769ba9c46d"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "task",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "tsk_webformmetadata",
+              "subscriptionRequest/filterexpression": "tsk_sourcetype eq 957120000 and tsk_webformmetadata ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": []
+        }
+      },
+      "actions": {
+        "Try": {
+          "actions": {
+            "List_rows_|_Fetch_All_Active_MoJ_Form_Routing_Rules": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f4c51097-f898-47f0-b7c6-9a7174b849eb"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tsk_routingruleses",
+                  "$select": "tsk_routingrulesid,\ntsk_webformconditions,\n_tsk_sourcequeue_value,\n_tsk_destinationqueue_value,\ntsk_rulename,\ntsk_searchsequence",
+                  "$filter": "tsk_ruletype eq 957120000 and tsk_webformconditions ne null and statecode eq 0 and _tsk_sourcequeue_value eq @{triggerOutputs()?['body/_tsk_originatingqueue_value']}",
+                  "$orderby": "tsk_searchsequence asc, createdon asc"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Route_Form_Task": {
+              "runAfter": {
+                "Select_|_Routing_Rules": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f0feca38-dc84-452a-937a-f22b91602996"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c",
+                  "operationId": "RouteFormTaskToQueue",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c"
+                },
+                "parameters": {
+                  "body/task": {
+                    "activityid": "@triggerOutputs()?['body/activityid']",
+                    "tsk_webformmetadata": "@json(triggerOutputs()?['body/tsk_webformmetadata'])"
+                  },
+                  "body/routingRules": "@body('Select_|_Routing_Rules')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Select_|_Routing_Rules": {
+              "runAfter": {
+                "List_rows_|_Fetch_All_Active_MoJ_Form_Routing_Rules": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6d0d4601-b170-4577-b436-c2b36208e6c8"
+              },
+              "type": "Select",
+              "inputs": {
+                "from": "@outputs('List_rows_|_Fetch_All_Active_MoJ_Form_Routing_Rules')?['body/value']",
+                "select": {
+                  "tsk_routingrulesid": "@item()?['tsk_routingrulesid']",
+                  "tsk_webformconditions": "@json(item()?['tsk_webformconditions'])",
+                  "_tsk_sourcequeue_value": "@item()?['_tsk_sourcequeue_value']",
+                  "_tsk_destinationqueue_value": "@item()?['_tsk_destinationqueue_value']",
+                  "tsk_rulename": "@item()?['tsk_rulename']"
+                }
+              },
+              "description": "Formatting the tsk_webformconditions as json before passing into custom connector."
+            },
+            "Get_a_row_by_ID_|_Get_Source_Queue_-_No_Match_Queue": {
+              "runAfter": {
+                "Route_Form_Task": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "dfb03229-2478-4781-bc83-ad5b3961a0ef"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queues",
+                  "recordId": "@triggerOutputs()?['body/_tsk_originatingqueue_value']",
+                  "$select": "_tsk_nomatchqueue_value, emailaddress"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Add_a_new_row_|_Add_Task_To_Queue_Items": {
+              "runAfter": {
+                "Get_a_row_by_ID_|_Get_Source_Queue_-_No_Match_Queue": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "52392d05-5875-44cf-8580-128ab067f7ff"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queueitems",
+                  "item/queueid@odata.bind": "queues(@{coalesce(\r\nbody('Route_Form_Task')?[0]?['_tsk_destinationqueue_value'],\r\nbody('Get_a_row_by_ID_|_Get_Source_Queue_-_No_Match_Queue')?['_tsk_nomatchqueue_value']\r\n)\r\n})",
+                  "item/objectid_task@odata.bind": "tasks(@{triggerOutputs()?['body/activityid']})",
+                  "item/tsk_duedate": "@addDays(utcNow(),99)"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "coalesce( body('Route_Form_Task')?[0]?['_tsk_destinationqueue_value'], body('Get_a_row_by_ID_|_Get_Source_Queue_-_No_Match_Queue')?['_tsk_nomatchqueue_value'] )"
+            },
+            "Add_a_new_row_|_Routing_Log": {
+              "runAfter": {
+                "Add_a_new_row_|_Add_Task_To_Queue_Items": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e9e75c77-b94c-4cc7-a9e2-7553fd8c7ba5"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tsk_routinglogs",
+                  "item/tsk_mailbox": "@outputs('Get_a_row_by_ID_|_Get_Source_Queue_-_No_Match_Queue')?['body/emailaddress']",
+                  "item/tsk_AssignedQueue@odata.bind": "queues(@{coalesce(\r\nbody('Route_Form_Task')?[0]?['_tsk_destinationqueue_value'],\r\nbody('Get_a_row_by_ID_|_Get_Source_Queue_-_No_Match_Queue')?['_tsk_nomatchqueue_value']\r\n)\r\n})",
+                  "item/tsk_emailfrom": "@triggerOutputs()?['body/tsk_citizenemail']",
+                  "item/tsk_emailsubject": "MoJ Form Task",
+                  "item/tsk_linktoflowrun": "https://make.powerautomate.com/environments/@{workflow()['tags']['environmentName']}/flows/@{workflow()['name']}/runs/@{workflow()['run']['name']}",
+                  "item/tsk_matchedrules": "@length(body('Route_Form_Task'))",
+                  "item/tsk_rulename": "@coalesce(\r\nbody('Route_Form_Task')?[0]?['tsk_rulename'],\r\n'No Match Fallback'\r\n)",
+                  "item/tsk_Task@odata.bind": "tasks(@{triggerOutputs()?['body/activityid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "44be9a3c-3261-4083-a47e-25a8e772e9a2"
+          },
+          "type": "Scope"
+        },
+        "Catch": {
+          "actions": {
+            "Filter_array_|_Filter_For_Errors": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "487190b0-7e28-4989-a838-8d635e35144b"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@result('Try')",
+                "where": "@equals(item()?['status'], 'Failed')"
+              }
+            },
+            "Terminate_|_Failed": {
+              "runAfter": {
+                "Filter_array_|_Filter_For_Errors": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bcbc1001-0f68-4e03-9085-13b34695eff0"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "@{body('Filter_array_|_Filter_For_Errors')?[0]?['error']?['code']}",
+                  "message": "@{body('Filter_array_|_Filter_For_Errors')?[0]?['error']?['message']}"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0f8ec81e-3995-476a-a8b2-c07e1ec512ae"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

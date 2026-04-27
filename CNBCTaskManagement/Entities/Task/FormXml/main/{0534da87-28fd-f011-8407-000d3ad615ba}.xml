@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{0534da87-28fd-f011-8407-000d3ad615ba}</formid>
+    <IntroducedVersion>2.0.0.52</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <ancestor id="{16654191-19AD-48CA-9E46-C4B4FBDAD76F}" />
+      <hiddencontrols>
+        <data id="modifiedby" datafieldname="modifiedby" classid="{5546E6CD-394C-4bee-94A8-4425E17EF6C6}" />
+      </hiddencontrols>
+      <tabs>
+        <tab name="TASK_TAB" verticallayout="true" id="{ADFD103B-691E-4A92-B4CF-F844B645A1F7}" IsUserDefined="0" showlabel="false" expanded="true" labelid="{42f85e53-c976-4ac8-a50d-4e677eba7e0c}">
+          <labels>
+            <label description="Task" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section name="TASK_TAB_section_req_help" id="5a483fd8-40ec-4ecb-b6e3-1cd03da957fd" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{f1092e7c-ee84-473c-9f7e-96af14ebddb6}">
+                  <labels>
+                    <label description="Requred Help" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell rowspan="1" id="{96731d6a-759e-4a76-bfd1-80aa0e50b3f7}" showlabel="false" colspan="1" labelid="{1be2b2e3-53a3-4ca3-8c19-f0d2eeeeafd9}">
+                        <labels>
+                          <label description="HMTL Required Help" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_Required_Help" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>tsk_HTMLRequiredHelp</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{1f57083f-c6d8-ef11-8ee9-7c1e5203f441}</WebResourceId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="TASK" showlabel="false" showbar="false" id="{EBB3C46D-5E9B-4EBB-A9E4-B8C25D364BB3}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelposition="Left" labelid="{b307f33e-0d0d-43b3-9457-5251ab450a72}">
+                  <labels>
+                    <label description="TASK" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5FD2BE87-C1CF-41A6-9AD9-4D273733422E}" showlabel="true" locklevel="0" colspan="1" labelid="{fd6ea7b0-17dd-4099-85b5-578e7df46e81}">
+                        <labels>
+                          <label description="Subject" languagecode="1033" />
+                        </labels>
+                        <control id="subject" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="subject" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{084a8f30-72ba-4fba-b6f9-b54ab5080e54}" locklevel="0" colspan="1" rowspan="1" labelid="{7466c3a4-67bc-4808-87a4-21e9fbb20d2b}">
+                        <labels>
+                          <label description="Case Number" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_casenumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="tsk_casenumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ab054d4a-90fe-45cc-a22c-7a16bb5c6c1e}" locklevel="0" colspan="1" rowspan="1" labelid="{313fc754-d649-4907-8a73-2c91b780ba2c}">
+                        <labels>
+                          <label description="Task Source Type" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_sourcetype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="tsk_sourcetype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19bd89cd-3e5a-4526-addb-36976d364d6b}" locklevel="0" colspan="1" rowspan="1" labelid="{9531007f-66e5-4299-bf9a-4e0b3e950499}">
+                        <labels>
+                          <label description="Document Types" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_documenttype" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="tsk_documenttype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{430261ed-4596-4ea1-9ab5-f968128c5083}" labelid="{74146aad-2499-4ec5-9a61-01db7c46f58e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{63a111f0-32c6-4fb1-a40e-61190f4ffa25}" labelid="{17bc41ba-bc04-4ad6-b0f0-7eac0fa2b8e8}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{167a03a6-bdc9-47c3-9af6-037de5b27219}" labelid="{ea439bdc-e6e1-43b3-94b3-1e3cfb05a65a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cab65d0c-aadc-48d6-948d-fcb37afdcac0}" locklevel="0" colspan="1" rowspan="1" labelid="{5986be44-2118-455a-a8ea-44191057b131}">
+                        <labels>
+                          <label description="Created On (DD/MM/YYYY)" languagecode="1033" />
+                        </labels>
+                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a4def3ec-08b3-47dc-a53a-5bbc4594aa97}" locklevel="0" colspan="1" rowspan="1" labelid="{b85b5dc5-5bf8-43c9-a109-a2998b9ea024}">
+                        <labels>
+                          <label description="Date Last Parked (DD/MM/YYYY)" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_datelastparked" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="tsk_datelastparked" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{90abb871-0341-4289-a4be-4db65b1662e7}" locklevel="0" colspan="1" rowspan="1" visible="false" labelid="{ef8122c8-679f-4878-98b7-adcffda79079}">
+                        <labels>
+                          <label description="Originating Email" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_originatingemail" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_originatingemail" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cb91c05d-d00c-4b6f-ac0b-16945840e444}" locklevel="0" colspan="1" rowspan="1" visible="false" labelid="{8b1532cd-45e6-4bc4-bbe2-cb33eefea32d}">
+                        <labels>
+                          <label description="Originating Queue" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_originatingqueue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="tsk_originatingqueue" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d62b68dc-aa94-4afd-933e-3eea986dfcca}" locklevel="0" colspan="1" rowspan="1" visible="false" labelid="{80873886-be54-4d35-be73-5c3d60be0614}">
+                        <labels>
+                          <label description="Citizen Email" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_citizenemail" classid="{ADA2203E-B4CD-49BE-9DDF-234642B43B52}" datafieldname="tsk_citizenemail" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cbaaff4a-7088-490b-94d7-58277832559e}" locklevel="1" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Web Form Metadata" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_webformmetadata" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="tsk_webformmetadata" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="section_webformattachments" id="3cc13016-7cb1-4986-a2a0-e6c40ede1544" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{80cdf323-4419-4429-a22c-f19dc684f142}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Web Form Attachments" languagecode="1033" />
+                        </labels>
+                        <control id="cc_1769701584771" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{01a86a3f-ed7c-4c5d-918f-16d0ab3915e4}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="66%">
+              <sections>
+                <section name="section_webformmetadata" id="bb0af3a2-8de0-49a4-8943-9cdc965dddb0" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell rowspan="10" id="{2b0e99cd-ee44-433f-8295-c13bb0481c5e}" showlabel="false" colspan="1" auto="true">
+                        <labels>
+                          <label description="tsk_/html/metadata_viewer.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_metadata_viewer" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>tsk_HTMLMetadataViewer</Url>
+                            <PassParameters>true</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{66afd33f-86f7-f011-8407-7ced8d6b7361}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_6" id="0241a29e-f147-46ae-937e-a505e6be5a3b" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="singleComponent" labelid="{07f28639-1030-45d7-8119-fef58ba0a2f9}">
+          <labels>
+            <label description="Related Tasks" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_6_section_1" id="1316bff6-e7bd-40f2-81aa-a08e33e3e29e" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{e179b769-87b8-4066-8130-556c7e4651c7}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{b2434f2d-6ff6-4e65-86ab-d5f668843c0f}" rowspan="4" colspan="1" auto="true" showlabel="false" labelid="{11ad2d0e-0f34-4281-a4f7-a6796c546f3e}">
+                        <labels>
+                          <label description="New SG control 1744207266274" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="RelatedTaskSubGrid" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>50</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName />
+                            <TargetEntityType>task</TargetEntityType>
+                            <ViewId>{89A58FA7-4A15-F011-9989-6045BD11200E}</ViewId>
+                            <ViewIds>{6CF285AA-EB20-4277-925A-3E9735411FF0},{89A58FA7-4A15-F011-9989-6045BD11200E}</ViewIds>
+                            <VisualizationId>{9E6A8B06-6D14-46E6-BBF5-95C388C6EB7A}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="notes_tab" id="3fb37191-8f1f-4c69-9136-e127b9b486ae" IsUserDefined="0" locklevel="0" showlabel="true" labelid="{13821364-4429-4904-bf25-f4c6dcb876aa}">
+          <labels>
+            <label description="Notes" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="41a3adfc-8138-40ca-9ab5-6e5967586cc5" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{89f600ff-8189-4000-b59f-92c3693f7b59}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{5b099b2e-8c62-467f-b12b-bff6c9b7e6e9}" rowspan="15" colspan="1" labelid="{1d48d52f-3704-4186-89a0-27fe8b05e474}">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="emails_tab" id="5db9dae4-bb50-476e-8943-461280621d74" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" labelid="{2c2142ad-b544-4f72-9dc5-942299e3e49b}">
+          <labels>
+            <label description="Emails" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" id="3c064c63-2c3e-477a-8289-b45f82376546" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{5fdd72cd-cab8-4a95-bb56-7dba706e3b8c}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{f57c3dcc-aed4-4b16-b78e-92121ab80172}" rowspan="4" colspan="1" auto="false" showlabel="false" labelid="{041c931b-e23f-4279-9f71-d407a05e35bc}">
+                        <labels>
+                          <label description="email subgrid" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="email_subgrid" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>tsk_Email_Task_Task</RelationshipName>
+                            <TargetEntityType>email</TargetEntityType>
+                            <ViewId>{CC98CB1F-6552-4FD8-9E2F-39A1CAD2F710}</ViewId>
+                            <ViewIds>{7AFF64B0-5B8C-4AD7-89F8-976777EEE178},{CC98CB1F-6552-4FD8-9E2F-39A1CAD2F710}</ViewIds>
+                            <VisualizationId>{1EC1872A-23DE-4294-9D7F-1B76272A5FD5}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{D7EF0A4A-7B76-4B39-A2E0-4207EC3C8C2D}" columns="1111" celllabelposition="Top" labelwidth="115">
+        <rows>
+          <row>
+            <cell id="{0A9B5273-AD20-4A08-8990-64CB20861D81}" showlabel="true" visible="false" labelid="{df17be5c-17f0-4fce-a249-c929b6d6630b}">
+              <labels>
+                <label description="Priority" languagecode="1033" />
+              </labels>
+              <control id="header_priority" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="prioritycode" />
+            </cell>
+            <cell showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{E3CC7544-665F-4BDC-874C-FD933C7C05ED}" labelid="{328dddc4-7424-4468-9d9c-0dfc511b35b7}">
+              <labels>
+                <label description="Due" languagecode="1033" />
+              </labels>
+              <control id="header_scheduledend" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="scheduledend" disabled="true" />
+            </cell>
+            <cell id="{6A04844E-9375-4428-BF70-85C6C3556B8B}" labelid="{ac39b479-7e30-4546-aad4-98f0b3ce837a}">
+              <labels>
+                <label description="Activity Status" languagecode="1033" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="true" />
+            </cell>
+            <cell id="{20676e0e-e806-4890-9089-518dc6cd5dfa}" locklevel="0" colspan="1" rowspan="1" labelid="{17978d30-5b26-4432-80af-357bf8672b57}">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+              </labels>
+              <control id="header_statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="true" />
+            </cell>
+          </row>
+          <row>
+            <cell id="{59BF22C1-8C1D-4235-8516-4647EDEAE36C}" showlabel="true" locklevel="1" visible="false" labelid="{48c42d11-c408-4a31-971f-ac7b0a254e9e}">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+            <cell id="{ecbdd3b4-2896-485e-803b-f4258eb40ddc}" showlabel="false" labelid="{cb704cbd-dbd9-43b7-a8ac-a256732c3e9e}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{8eea6662-d455-4e2c-b375-decf97dee6c0}" showlabel="false" labelid="{9cfd3c39-33df-425c-a939-1669ef260697}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f409e8d7-db72-4f6d-b9b4-1ac15646b7cc}" showlabel="false" labelid="{ed4e4221-fb5d-463c-bbe1-9b63fc2bf8c3}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <events>
+        <event name="onload" application="true" active="true">
+          <InternalHandlers>
+            <Handler functionName="Activities.Task.Form_onload" libraryName="Activities/SystemLibraries/Task_main_system_library.js" handlerUniqueId="516bea27-d455-43f4-968f-1e372977fc93" enabled="true" parameters="" passExecutionContext="true" />
+          </InternalHandlers>
+          <Handlers>
+            <Handler functionName="tsk.task_mainform.onLoad" libraryName="tsk_/scripts/task_mainform.js" handlerUniqueId="{37fc0fc1-f425-41f9-bd26-92fd086e5851}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="tsk.task_mainform_notes.onLoad" libraryName="tsk_/scripts/task_mainform_notes.js" handlerUniqueId="{3ea0db99-5125-44c3-b533-8c0af370e75e}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="tsk.task_mainform_related.onLoad" libraryName="tsk_/scripts/task_mainform_related.js" handlerUniqueId="{442e9e2e-27cd-44af-8124-b4c6905cbcda}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="tsk.task_mainform_emails.onLoad" libraryName="tsk_/scripts/task_mainform.js" handlerUniqueId="{b7dfd142-1d0c-4415-adb3-d6dba5d78a0c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <clientresources>
+        <internalresources>
+          <clientincludes>
+            <internaljscriptfile src="$webresource:Activities/SystemLibraries/Task_main_system_library.js" />
+          </clientincludes>
+        </internalresources>
+      </clientresources>
+      <footer id="{73e95027-7c67-483a-9334-f3ed400205df}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c7b6cda7-7c73-4058-b331-cfc58731333f}" labelid="{1bae238f-8ce5-49ee-8e01-cd2b01b08568}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{129d7aab-1fb5-4d9e-850c-d025ad81d54a}" labelid="{4ee8be11-513e-4382-a503-19e674611142}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{47fbad01-8769-4e3d-b858-31b69e1114ff}" labelid="{e594658d-fdc2-4612-9ee9-f4b154fb685f}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem Area="Service" Show="false" RelationshipName="task_activitymonitor" Id="navService" Sequence="10">
+            <Titles>
+              <Title Text="Activity monitors" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navConnections" Id="navConnections" Sequence="8500">
+            <Titles>
+              <Title Text="Connections" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="ProcessCenter" Show="false" RelationshipName="hardcoded_{B7196B13-6B9D-42CD-BD58-B19A3953126F}navAsyncOperations" Id="navAsyncOperations" Sequence="9500">
+            <Titles>
+              <Title Text="System Jobs" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="msdyn_msdyn_conversationactionitem_task_msdyn_CreatedActivity" Id="nav_msdyn_msdyn_conversationactionitem_task_msdyn_CreatedActivity" Sequence="10000">
+            <Titles>
+              <Title Text="Conversation Action Items" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="tsk_taskfile_Task_task" Id="nav_tsk_taskfile_Task_task" Sequence="10000">
+            <Titles>
+              <Title Text="Task Files" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="tsk_Email_Task_Task" Id="nav_tsk_Email_Task_Task" Sequence="10000">
+            <Titles>
+              <Title Text="Email Messages" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{01a86a3f-ed7c-4c5d-918f-16d0ab3915e4}">
+          <customControl formFactor="2" name="MscrmControls.FieldControls.AttachmentListControl">
+            <parameters>
+              <marginStart type="Whole.None" static="true">-20</marginStart>
+              <maximumControlheight type="Whole.None" static="true">200</maximumControlheight>
+              <showAttachmentTitle type="Enum" static="true">1</showAttachmentTitle>
+              <showConversationAttachments type="Enum" static="true">0</showConversationAttachments>
+              <showDirectUploadAttachments type="Enum" static="true">1</showDirectUploadAttachments>
+              <showEmailAttachments type="Enum" static="true">1</showEmailAttachments>
+              <showNotesAttachments type="Enum" static="true">1</showNotesAttachments>
+              <allowAddAttachment type="Enum" static="true">0</allowAddAttachment>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.AttachmentListControl">
+            <parameters>
+              <marginStart type="Whole.None" static="true">-20</marginStart>
+              <maximumControlheight type="Whole.None" static="true">200</maximumControlheight>
+              <showAttachmentTitle type="Enum" static="true">1</showAttachmentTitle>
+              <showConversationAttachments type="Enum" static="true">0</showConversationAttachments>
+              <showDirectUploadAttachments type="Enum" static="true">1</showDirectUploadAttachments>
+              <showEmailAttachments type="Enum" static="true">1</showEmailAttachments>
+              <showNotesAttachments type="Enum" static="true">1</showNotesAttachments>
+              <allowAddAttachment type="Enum" static="true">0</allowAddAttachment>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.AttachmentListControl">
+            <parameters>
+              <marginStart type="Whole.None" static="true">-20</marginStart>
+              <maximumControlheight type="Whole.None" static="true">200</maximumControlheight>
+              <showAttachmentTitle type="Enum" static="true">1</showAttachmentTitle>
+              <showConversationAttachments type="Enum" static="true">0</showConversationAttachments>
+              <showDirectUploadAttachments type="Enum" static="true">1</showDirectUploadAttachments>
+              <showEmailAttachments type="Enum" static="true">1</showEmailAttachments>
+              <showNotesAttachments type="Enum" static="true">1</showNotesAttachments>
+              <allowAddAttachment type="Enum" static="true">0</allowAddAttachment>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <formLibraries>
+        <Library name="tsk_/scripts/task_mainform.js" libraryUniqueId="{1b7536ba-20c4-a93e-401e-3c235d2ba0b3}" />
+        <Library name="tsk_/scripts/task_mainform_related.js" libraryUniqueId="{1a53177b-962d-408e-bfbb-4130746216a8}" />
+        <Library name="tsk_/scripts/task_mainform_notes.js" libraryUniqueId="{6d31329f-444f-4b07-b767-bb9fbc70b73a}" />
+        <Library name="tsk_/scripts/task_mainform_emails.js" libraryUniqueId="{5d69c200-af6f-4723-858b-f16d1fdf150d}" />
+      </formLibraries>
+      <DisplayConditions FallbackForm="true" Order="1">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="MoJ Web Submission" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Form used to display tasks from MoJ Web Form submissions" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

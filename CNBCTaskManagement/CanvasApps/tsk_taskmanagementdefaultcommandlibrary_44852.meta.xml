@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>tsk_taskmanagementdefaultcommandlibrary_44852</Name>
+  <AppVersion>2026-04-14T19:26:06Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26035.13.0</CreatedByClientVersion>
+  <MinClientVersion>0.0.0.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","sienaVersion":"20260304T150233Z-3.26022.13.0","deviceCapabilities":"","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.26014.7","minimumRequiredApiVersion":"2.2.0","hasComponent":"true","hasUnlockedComponent":"true","isUnifiedRootApp":"false","showStatusBar":"false"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(251,101,60,1)</BackgroundColor>
+  <DisplayName>TaskManagement_DefaultCommandLibrary</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage>Saved by Command designer.</CommitMessage>
+  <Publisher></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds"},"dataSources":{"Tasks":{"entitySetName":"tasks","logicalName":"task"},"Queue Items":{"entitySetName":"queueitems","logicalName":"queueitem"},"Queues":{"entitySetName":"queues","logicalName":"queue"},"Routing Rules":{"entitySetName":"tsk_routingruleses","logicalName":"tsk_routingrules"},"Keywords":{"entitySetName":"tsk_keywords","logicalName":"tsk_keyword"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>1</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"task","componenttype":1},{"logicalname":"queueitem","componenttype":1},{"logicalname":"queue","componenttype":1},{"logicalname":"tsk_routingrules","componenttype":1},{"logicalname":"tsk_keyword","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/tsk_taskmanagementdefaultcommandlibrary_44852_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/tsk_taskmanagementdefaultcommandlibrary_44852_DocumentUri.msapp</DocumentUri>
+</CanvasApp>

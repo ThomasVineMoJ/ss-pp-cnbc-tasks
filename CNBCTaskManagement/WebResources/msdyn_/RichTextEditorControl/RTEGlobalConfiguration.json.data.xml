@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{b5e12476-8c4a-4848-9b01-c402a3690470}</WebResourceId>
+  <Name>msdyn_/RichTextEditorControl/RTEGlobalConfiguration.json</Name>
+  <DisplayName>RTEGlobalConfiguration.json</DisplayName>
+  <Description>Edit the organization's default rich text editor configuration.</Description>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>9.1.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>1</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"/&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <FileName>/WebResources/msdyn_RichTextEditorControlRTEGlobalConfigurationjB5E12476-8C4A-4848-9B01-C402A3690470</FileName>
+</WebResource>

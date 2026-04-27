@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>tsk_TaskManagement</UniqueName>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="1" schemaName="email" />
+    <AppModuleComponent type="1" schemaName="queue" />
+    <AppModuleComponent type="1" schemaName="queueitem" />
+    <AppModuleComponent type="1" schemaName="task" />
+    <AppModuleComponent type="1" schemaName="template" />
+    <AppModuleComponent type="1" schemaName="tsk_keyword" />
+    <AppModuleComponent type="1" schemaName="tsk_routinglog" />
+    <AppModuleComponent type="1" schemaName="tsk_routingrules" />
+    <AppModuleComponent type="1" schemaName="tsk_userstatus" />
+    <AppModuleComponent type="1" schemaName="tsk_webformconfiguration" />
+    <AppModuleComponent type="26" id="{00000000-0000-0000-00aa-000010001300}" />
+    <AppModuleComponent type="26" id="{5096d5ce-1a3c-4856-b996-007e41199427}" />
+    <AppModuleComponent type="26" id="{240b4abc-99b6-499c-87e2-5c70829ff273}" />
+    <AppModuleComponent type="26" id="{5545f233-bb8b-ef11-ac21-6045bdf3350a}" />
+    <AppModuleComponent type="26" id="{81270043-a34e-4091-8733-608ee808d565}" />
+    <AppModuleComponent type="26" id="{75566a9b-cce8-4ed8-acbd-83ee42dd6dee}" />
+    <AppModuleComponent type="60" id="{0534da87-28fd-f011-8407-000d3ad615ba}" />
+    <AppModuleComponent type="60" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+    <AppModuleComponent type="60" id="{81a89014-442c-44ad-9725-4077426a7fee}" />
+    <AppModuleComponent type="60" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+    <AppModuleComponent type="60" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+    <AppModuleComponent type="60" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+    <AppModuleComponent type="60" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+    <AppModuleComponent type="60" id="{be3e917a-e2e6-ef11-9342-7c1e5203c47f}" />
+    <AppModuleComponent type="60" id="{a1c8a6dc-8804-4019-9c78-7dbe86560ea1}" />
+    <AppModuleComponent type="60" id="{1fac7e2e-0b1c-4b6c-ab92-8af0f92dbdbc}" />
+    <AppModuleComponent type="60" id="{6661cf9b-c178-44fd-b70b-8c632bd0bfb2}" />
+    <AppModuleComponent type="60" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+    <AppModuleComponent type="60" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}" />
+    <AppModuleComponent type="62" schemaName="tsk_TaskManagement" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{5be8c782-93e7-ef11-9342-7c1e5203c47f}" />
+    <Role id="{7ddf0075-ecde-ef11-8ee9-7c1e5203c47f}" />
+    <Role id="{827d033b-ecde-ef11-8ee9-6045bdd184bd}" />
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="CNBC Task Management 2.0" languagecode="1033" />
+  </LocalizedNames>
+  <appelements>
+    <appelement uniquename="tsk_tsk_TaskManagement_canvasappid_tsk_routequeueditem_38004">
+      <canvasappid>
+        <name>tsk_routequeueditem_38004</name>
+      </canvasappid>
+      <iscustomizable>1</iscustomizable>
+      <name>tsk_tsk_TaskManagement_canvasappid_tsk_routequeueditem_38004</name>
+    </appelement>
+    <appelement uniquename="tsk_tsk_TaskManagement_canvasappid_tsk_setuseronlinestatus_d438a">
+      <canvasappid>
+        <name>tsk_setuseronlinestatus_d438a</name>
+      </canvasappid>
+      <iscustomizable>1</iscustomizable>
+      <name>tsk_tsk_TaskManagement_canvasappid_tsk_setuseronlinestatus_d438a</name>
+    </appelement>
+    <appelement uniquename="tsk_tsk_TaskManagement_canvasappid_tsk_taskmanagementdefaultcommandlibrary_44852">
+      <canvasappid>
+        <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+      </canvasappid>
+      <iscustomizable>1</iscustomizable>
+      <name>tsk_tsk_TaskManagement_canvasappid_tsk_taskmanagementdefaultcommandlibrary_44852</name>
+    </appelement>
+  </appelements>
+  <appsettings>
+    <appsetting settingdefinitionid.uniquename="AllowNotificationsEarlyAccess">
+      <iscustomizable>1</iscustomizable>
+      <value>true</value>
+    </appsetting>
+    <appsetting settingdefinitionid.uniquename="AppChannel">
+      <iscustomizable>1</iscustomizable>
+      <value>1</value>
+    </appsetting>
+    <appsetting settingdefinitionid.uniquename="msdyn_TimelineCopilotForApps">
+      <iscustomizable>1</iscustomizable>
+      <value>false</value>
+    </appsetting>
+  </appsettings>
+</AppModule>

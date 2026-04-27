@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{be3e917a-e2e6-ef11-9342-7c1e5203c47f}</formid>
+    <IntroducedVersion>2.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="ACBA75B7-97B6-4116-AA55-51312992B721" name="tab_1" showlabel="false" labelid="{f7c12f4d-4e15-4806-b889-0f80f358831c}">
+          <labels>
+            <label description="New Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section id="AD49B5BF-256F-46A8-9C75-947146172EB9" name="tab_1_column_1_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{5005617b-1e22-48a7-a597-0affd48f16f0}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="C0550AC7-0F44-45A4-8EF5-D2911C0689D9" labelid="{adfc9e7c-03c5-43c7-b776-ed057003733d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6da7ba53-0eb0-4464-ab05-46a7e8729073}" locklevel="0" colspan="1" rowspan="1" labelid="{ef87b677-f841-4679-93e2-1cd3c172855e}">
+                        <labels>
+                          <label description="Parent Activity Id" languagecode="1033" />
+                        </labels>
+                        <control id="parentactivityid" classid="{F3015350-44A2-4AA0-97B5-00166532B5E9}" datafieldname="parentactivityid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{68c14ab6-5f6e-440a-bf2f-4680efcc68f1}" locklevel="0" colspan="1" rowspan="1" labelid="{44d55e71-e2a2-46ef-a719-2c9acd0c4220}">
+                        <labels>
+                          <label description="Subject" languagecode="1033" />
+                        </labels>
+                        <control id="subject" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="subject" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4731e63d-9da6-40d6-b053-187039ea98b7}" locklevel="0" colspan="1" rowspan="1" labelid="{bb9607bb-bfb4-45c1-a7c7-8ec8f4653960}">
+                        <labels>
+                          <label description="Accepting Entity" languagecode="1033" />
+                        </labels>
+                        <control id="acceptingentityid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="acceptingentityid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="2" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Parent Email" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

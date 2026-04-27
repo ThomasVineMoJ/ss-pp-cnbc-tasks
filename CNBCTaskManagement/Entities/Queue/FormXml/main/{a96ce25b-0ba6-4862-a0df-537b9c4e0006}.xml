@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a96ce25b-0ba6-4862-a0df-537b9c4e0006}</formid>
+    <IntroducedVersion>9.0.0.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab name="general" verticallayout="true" id="{6db25522-e754-4585-a071-3c151552131f}" IsUserDefined="0" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="queue information" showlabel="false" showbar="false" id="{a6b7da11-e32c-4759-b349-af7b46c1cb9f}" IsUserDefined="0" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{9687b1b4-f340-42d9-a315-bd2929839614}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Incoming Email" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{a66f8b6d-aed2-4449-9eaf-6debbf4b78be}" ordinalvalue="20002">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell colspan="2" showlabel="true" rowspan="5" id="{1611dcc3-67fe-4db9-8799-d1f582d7caac}" ordinalvalue="10003">
+                        <labels>
+                          <label description="Description" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="email configuration" showlabel="true" showbar="true" locklevel="0" id="{9DE88AB0-DF45-463c-A91D-E4F9AF70B79D}" IsUserDefined="0" ordinalvalue="2">
+                  <rows>
+                    <row>
+                      <cell id="{e582170e-3060-a166-a6ce-b00d8a7e06b5}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Mailbox" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions FallbackForm="false" Order="6" solutionaction="Added">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

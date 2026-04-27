@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{240b4abc-99b6-499c-87e2-5c70829ff273}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" icon="1" preview="1">
+        <row name="result" id="queueid">
+          <cell name="name" width="300" />
+          <cell name="emailaddress" width="200" />
+          <cell name="tsk_sladays" width="100" />
+          <cell name="numberofitems" width="90" />
+          <cell name="numberofmembers" width="110" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="queue">
+          <attribute name="name" />
+          <attribute name="emailaddress" />
+          <attribute name="numberofitems" />
+          <attribute name="numberofmembers" />
+          <attribute name="queueid" />
+          <order attribute="name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="name" operator="not-like" value="&lt;%" />
+            <condition attribute="name" operator="ne" value="Default entity queue" />
+            <condition attribute="name" operator="ne" value="Default messaging queue" />
+          </filter>
+          <attribute name="tsk_sladays" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Queues" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

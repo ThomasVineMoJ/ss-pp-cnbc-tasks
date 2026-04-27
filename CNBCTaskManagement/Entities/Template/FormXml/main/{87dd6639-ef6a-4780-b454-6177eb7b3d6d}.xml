@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{87dd6639-ef6a-4780-b454-6177eb7b3d6d}</formid>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab name="Template" id="{7f59d58b-96ad-4458-9488-51f6a1659ccb}" IsUserDefined="0" locklevel="0" showlabel="false" expanded="false" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="Template editor" showlabel="true" showbar="false" locklevel="0" id="{d9052f7a-1e36-4ea0-b539-0ce3d2e2eb26}" IsUserDefined="0" layout="varwidth" columns="11" height="auto" labelid="{8621663c-077d-475f-917e-c52aafcf66a3}" labelwidth="115" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell colspan="2" showlabel="false" rowspan="12" id="{54217e94-1bcf-4505-82e7-806f8d771adb}" labelid="{634ed83b-ba88-4a52-a322-3391cbf29a14}" locklevel="1" ordinalvalue="10002">
+                        <control id="safehtml" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="safehtml" disabled="false" uniqueid="{f3e04e07-cb66-44d9-a0c6-0df205b6590c}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <controlDescriptions>
+        <controlDescription forControl="{6C705F59-57F3-4271-A59A-3D20DE465A01}" solutionaction="Removed" />
+        <controlDescription forControl="{f3e04e07-cb66-44d9-a0c6-0df205b6590c}" solutionaction="Added">
+          <customControl id="{6F3FB987-393B-4D2D-859F-9D0F0349B6AD}">
+            <parameters>
+              <datafieldname>safehtml</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>safehtml</value>
+              <configUrl type="SingleLine.URL" static="true">/WebResources/tsk_RTE_Config.json</configUrl>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>safehtml</value>
+              <configUrl type="SingleLine.URL" static="true">/WebResources/tsk_RTE_Config.json</configUrl>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>safehtml</value>
+              <configUrl type="SingleLine.URL" static="true">/WebResources/tsk_RTE_Config.json</configUrl>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <Navigation>
+        <NavBar />
+      </Navigation>
+      <footer id="{c2a25eb3-df5a-40c1-82aa-1800b84551d2}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows>
+          <row>
+            <cell id="{6ce94a52-d9de-49d1-a7ce-676d431d40a2}" showlabel="false" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2df5400d-4762-42dc-bbae-ef348b62b085}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9e0eac57-b7a2-404a-b46b-aeff94a9a7ff}" showlabel="false" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Template" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Default UCI Template Form." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

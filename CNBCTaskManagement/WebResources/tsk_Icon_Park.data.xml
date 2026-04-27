@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{5d5e07ff-8fdc-ef11-8ee9-7c1e52029f62}</WebResourceId>
+  <Name>tsk_Icon_Park</Name>
+  <DisplayName>tsk_/images/Icon_Park.svg</DisplayName>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>11</WebResourceType>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_Icon_Park5D5E07FF-8FDC-EF11-8EE9-7C1E52029F62</FileName>
+</WebResource>

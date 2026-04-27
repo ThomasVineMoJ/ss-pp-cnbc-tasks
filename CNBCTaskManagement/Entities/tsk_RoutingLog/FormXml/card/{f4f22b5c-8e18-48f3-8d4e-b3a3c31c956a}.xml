@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{f4f22b5c-8e18-48f3-8d4e-b3a3c31c956a}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab name="general" verticallayout="true" id="{86aed5cf-bf1f-4ecd-995d-d27eb87a6703}" IsUserDefined="0">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="25%">
+              <sections>
+                <section name="ColorStrip" showlabel="false" showbar="false" columns="1" IsUserDefined="0" id="{a65c50f2-a0b4-43d4-b84d-a71d1740d62d}">
+                  <labels>
+                    <label description="ColorStrip" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{73b99eb6-9dcb-48d1-96bf-54ef1357a4b8}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="75%">
+              <sections>
+                <section name="CardHeader" showlabel="false" showbar="false" columns="111" id="{dc1c7de8-819d-42d1-829f-c4864a78ee8c}" IsUserDefined="0">
+                  <labels>
+                    <label description="Header" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{864e3320-f6fd-47b8-aa89-545c56fe9e08}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                      <cell id="{54bea585-16b6-4855-a7cd-5f2c7120bade}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{766bc801-f68c-4bd3-be9f-709d3531dee5}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="CardDetails" showlabel="false" showbar="false" columns="1" id="{e49ba7b1-5b25-4019-ac8a-8e1a3d8173bd}" IsUserDefined="0">
+                  <labels>
+                    <label description="Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{10f6614c-b6d3-4643-9a9b-999fbbf34384}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Mailbox" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_mailbox" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="tsk_mailbox" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c0b51d3b-eb2a-b5da-0a8e-16e823939e09}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Email to Recipients" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailtorecipients" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="tsk_emailtorecipients" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b55de9e3-9ad0-b495-be39-42e38c637294}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Email From" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailfrom" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="tsk_emailfrom" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6163a4b0-6dc7-caa8-ab6e-68edb726d1be}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Email Subject" languagecode="1033" />
+                        </labels>
+                        <control id="tsk_emailsubject" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="tsk_emailsubject" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="CardFooter" showlabel="false" columns="1111" showbar="false" id="{5a67285d-486f-4209-8854-3389bba858f2}" IsUserDefined="0">
+                  <labels>
+                    <label description="Footer" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{245efa55-a3cc-48e4-9b84-22256918effa}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+                      </cell>
+                      <cell id="{efe97871-1c86-446d-a178-adb947dad016}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Created On" languagecode="1033" />
+                        </labels>
+                        <control id="createdon" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdon" disabled="false" />
+                      </cell>
+                      <cell id="{f2ea16eb-6c34-4169-a590-e4e40a279a48}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{2c7c55b4-38c2-48fb-a674-85d6e3961925}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A card form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

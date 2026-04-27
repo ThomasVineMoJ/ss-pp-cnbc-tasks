@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{966b75c4-bdf9-ef11-bae2-7c1e522e5b3c}</WebResourceId>
+  <Name>tsk_/scripts/application_ribbon.js</Name>
+  <DisplayName>tsk_/scripts/application_ribbon.js</DisplayName>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/tsk_scriptsapplication_ribbonjs966B75C4-BDF9-EF11-BAE2-7C1E522E5B3C</FileName>
+</WebResource>

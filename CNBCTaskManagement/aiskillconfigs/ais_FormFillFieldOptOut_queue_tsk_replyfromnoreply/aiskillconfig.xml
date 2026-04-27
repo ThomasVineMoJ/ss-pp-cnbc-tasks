@@ -1,0 +1,15 @@
+<aiskillconfig uniquename="ais_FormFillFieldOptOut_queue_tsk_replyfromnoreply">
+  <aiskill>FormFillFieldOptOut</aiskill>
+  <attribute>
+    <entityid.logicalname>queue</entityid.logicalname>
+    <logicalname>tsk_replyfromnoreply</logicalname>
+  </attribute>
+  <description>queue - Reply from No-Reply Form fill opt out</description>
+  <entity>
+    <logicalname>queue</logicalname>
+  </entity>
+  <iscustomizable>1</iscustomizable>
+  <scope>1</scope>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</aiskillconfig>

@@ -1,0 +1,249 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Email Loop Detection Destination Queue (tsk_EmailLoopDetectionDestinationQueue)": {
+          "defaultValue": "04a82b7d-f297-f011-b41b-6045bdd14a24",
+          "type": "String",
+          "metadata": {
+            "schemaName": "tsk_EmailLoopDetectionDestinationQueue",
+            "description": "When an email loop is detected, which queue should the tasks be routed to. This should be the Queue ID of the queue."
+          }
+        },
+        "Email Loop Detection Time Span (tsk_EmailLoopDetectionTimeSpan)": {
+          "defaultValue": -5,
+          "type": "Int",
+          "metadata": {
+            "schemaName": "tsk_EmailLoopDetectionTimeSpan",
+            "description": "The number of minutes that should be considered for detection. This number should be negative."
+          }
+        },
+        "Email Loop Number Required (tsk_EmailLoopNumberRequired)": {
+          "defaultValue": 5,
+          "type": "Int",
+          "metadata": {
+            "schemaName": "tsk_EmailLoopNumberRequired",
+            "description": "The number of emails required in the Time Span to count as an email loop"
+          }
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1,
+            "startTime": "2025-09-22T09:00:00Z"
+          },
+          "evaluatedRecurrence": {
+            "frequency": "Minute",
+            "interval": 1,
+            "startTime": "2025-09-22T09:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "460abbbd-5770-40f3-b112-d4b799e1c567"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows_|_Get_Tasks_By_Sender_and_Subject": {
+          "runAfter": {
+            "Compose_|_Time_Frame": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "52d675cf-9d5a-45fd-a7bc-15597083a49a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "tasks",
+              "fetchXml": "<fetch top=\"5\" aggregate=\"true\">\n  <entity name=\"task\">\n    <attribute name=\"subject\" alias=\"subject\" groupby=\"true\" />\n    <attribute name=\"tsk_citizenemail\" alias=\"from\" groupby=\"true\" />\n    <attribute name=\"subject\" alias=\"Count\" aggregate=\"count\" />\n    <filter>\n      <condition attribute=\"createdon\" operator=\"ge\" value=\"@{outputs('Compose_|_Time_Frame')}\" />\n      <condition attribute=\"tsk_citizenemail\" operator=\"not-end-with\" value=\"@justice.gov.uk\" />\n    </filter>\n    <order alias=\"Count\" descending=\"true\" />\n  </entity>\n</fetch>"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Compose_|_Time_Frame": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "71081c4e-3aea-460f-b8e2-abefded0fe29"
+          },
+          "type": "Compose",
+          "inputs": "@addMinutes(utcNow(), parameters('Email Loop Detection Time Span (tsk_EmailLoopDetectionTimeSpan)'))"
+        },
+        "Filter_array_|_Over_Threshold": {
+          "runAfter": {
+            "List_rows_|_Get_Tasks_By_Sender_and_Subject": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f70ac279-4821-44f0-8cd3-40a453c846d2"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@outputs('List_rows_|_Get_Tasks_By_Sender_and_Subject')?['body/value']",
+            "where": "@greaterOrEquals(item()['Count'], parameters('Email Loop Number Required (tsk_EmailLoopNumberRequired)'))"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Filter_array_|_Over_Threshold')",
+          "actions": {
+            "Compose_|_Rule_Name": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "9addf909-1073-4baf-8073-1918504d3acb"
+              },
+              "type": "Compose",
+              "inputs": "@concat('Global Loop', ' - ', item()['subject'],' - ', item()['from'])"
+            },
+            "List_rows_|_Existing_Rule": {
+              "runAfter": {
+                "Compose_|_Rule_Name_(Escaped)": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bf7f4317-3d1c-41a5-a81b-bab0328840ab"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "tsk_routingruleses",
+                  "$select": "tsk_rulename",
+                  "$filter": "tsk_rulename eq '@{outputs('Compose_|_Rule_Name_(Escaped)')}'",
+                  "$top": 1
+                },
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition_|_Rule_Does_Not_Exists": {
+              "actions": {
+                "Add_a_new_row_|_Create_Global_Routing_Rule": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6372a53e-c1b2-418d-b8e3-68a215bf0139"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "entityName": "tsk_routingruleses",
+                      "item/tsk_DestinationQueue@odata.bind": "queues(@{parameters('Email Loop Detection Destination Queue (tsk_EmailLoopDetectionDestinationQueue)')})",
+                      "item/tsk_rulename": "@outputs('Compose_|_Rule_Name')",
+                      "item/tsk_ruletype": 957120002,
+                      "item/tsk_searchsequence": 1,
+                      "item/tsk_SourceQueue@odata.bind": "queues(@{parameters('Email Loop Detection Destination Queue (tsk_EmailLoopDetectionDestinationQueue)')})",
+                      "item/tsk_musthavekeyword": "@item()['subject']",
+                      "item/statuscode": 1
+                    },
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Add_a_new_row_|_Add_Keyword": {
+                  "runAfter": {
+                    "Add_a_new_row_|_Create_Global_Routing_Rule": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "d5a8c072-7058-42fd-a596-b75fd7526b80"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "entityName": "tsk_keywords",
+                      "item/tsk_keyword": "@item()['from']",
+                      "item/tsk_RoutingRule@odata.bind": "tsk_routingruleses(@{outputs('Add_a_new_row_|_Create_Global_Routing_Rule')?['body/tsk_routingrulesid']})",
+                      "item/statuscode": 1
+                    },
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_rows_|_Existing_Rule": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@length(outputs('List_rows_|_Existing_Rule')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f5fd06a1-0ff4-4a8e-bd04-360396741ce6"
+              },
+              "type": "If"
+            },
+            "Compose_|_Rule_Name_(Escaped)": {
+              "runAfter": {
+                "Compose_|_Rule_Name": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7be91789-7d3f-4e56-8847-e5186293e833"
+              },
+              "type": "Compose",
+              "inputs": "@replace(outputs('Compose_|_Rule_Name'),'''','''''')"
+            }
+          },
+          "runAfter": {
+            "Filter_array_|_Over_Threshold": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3504b815-9da6-4e89-9105-3472eb25e531"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

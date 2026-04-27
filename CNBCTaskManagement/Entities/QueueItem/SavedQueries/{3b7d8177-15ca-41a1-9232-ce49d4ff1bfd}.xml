@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{3b7d8177-15ca-41a1-9232-ce49d4ff1bfd}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="0">
+        <row name="result" id="queueitemid">
+          <cell name="title" width="300" />
+          <cell name="queueid" width="100" />
+          <cell name="a_562a86acfd164509ad0f5fad68292286.tsk_sourcetype" width="161" />
+          <cell name="a_562a86acfd164509ad0f5fad68292286.statuscode" width="170" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="queueitem">
+          <attribute name="objectid" />
+          <attribute name="title" />
+          <order attribute="title" descending="false" />
+          <attribute name="queueitemid" />
+          <attribute name="queueid" />
+          <link-entity alias="a_562a86acfd164509ad0f5fad68292286" name="task" to="objectid" from="activityid" link-type="outer" visible="false">
+            <attribute name="tsk_sourcetype" />
+            <attribute name="statuscode" />
+          </link-entity>
+          <attribute name="createdon" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="QueueItems Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

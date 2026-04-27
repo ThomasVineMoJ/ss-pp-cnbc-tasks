@@ -1,0 +1,109 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "4bb3e5f8-989b-4ec4-ab1c-5b6433ffcff3"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "UserId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Scope_|_Try": {
+          "actions": {
+            "Run_a_Child_Flow_|_Auto_Allocation_Get_Next_Task_(Child)": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c20a81aa-bf9a-4d67-8ded-fd1a2ba18cd1"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "19833a68-3b25-f011-8c4d-6045bd0e6831"
+                },
+                "body": {
+                  "text": "@triggerBody()['text']"
+                }
+              }
+            },
+            "Respond_to_a_Power_App_or_flow": {
+              "runAfter": {
+                "Run_a_Child_Flow_|_Auto_Allocation_Get_Next_Task_(Child)": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "30f7c705-247c-4784-a681-4c225120fec5"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "taskurl": "@body('Run_a_Child_Flow_|_Auto_Allocation_Get_Next_Task_(Child)')?['taskurl']",
+                  "taskurlparams": "@body('Run_a_Child_Flow_|_Auto_Allocation_Get_Next_Task_(Child)')?['taskurlparams']",
+                  "taskid": "@body('Run_a_Child_Flow_|_Auto_Allocation_Get_Next_Task_(Child)')?['taskid']"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "taskurl": {
+                      "title": "TaskUrl",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "taskurlparams": {
+                      "title": "TaskUrlParams",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    },
+                    "taskid": {
+                      "title": "TaskId",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1fbbbe5c-03d0-4053-9f6a-f4e98638a430"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,256 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "d6b652e5-42f5-4051-bd0b-ca3f2901f46a"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "EmailQueueItemID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_|_vEmailQueueItemDeleted_as_false": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "ebd60e16-a281-4c1c-98ee-c4a83c673779"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "vEmailQueueItemDeleted",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Scope_|_Try": {
+          "actions": {
+            "Do_until_|_vEmailQueueItemDeleted_equals_true": {
+              "actions": {
+                "Delete_a_row_|_Queue_Item": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "15cae0ff-bf8b-47de-81f5-5a93c8ed9022"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "DeleteRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "queueitems",
+                      "recordId": "@triggerBody()['text']"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Delay_|_5_Seconds": {
+                  "runAfter": {
+                    "Delete_a_row_|_Queue_Item": [
+                      "Failed",
+                      "Skipped",
+                      "TimedOut"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "14028773-6397-4f6e-921d-3b082163e823"
+                  },
+                  "type": "Wait",
+                  "inputs": {
+                    "interval": {
+                      "count": 5,
+                      "unit": "Second"
+                    }
+                  }
+                },
+                "Set_variable_|_vEmailQueueItemDeleted_to_true": {
+                  "runAfter": {
+                    "Delete_a_row_|_Queue_Item": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9108b2cb-15e6-48f1-aaae-bb1dbe6b7da7"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "vEmailQueueItemDeleted",
+                    "value": "@true"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": "@equals(variables('vEmailQueueItemDeleted'), true)",
+              "limit": {
+                "count": 10,
+                "timeout": "PT1H"
+              },
+              "metadata": {
+                "operationMetadataId": "4842506e-0b5d-40bf-bcaa-cd7657a618fd"
+              },
+              "type": "Until"
+            },
+            "Respond_to_a_Power_App_or_flow_|_Loop_Finished": {
+              "runAfter": {
+                "Do_until_|_vEmailQueueItemDeleted_equals_true": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "712f3fcf-3cf5-4a8a-abb6-39f7395f2a08"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "deleteemailqueueitemresult": "Success"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deleteemailqueueitemresult": {
+                      "title": "DeleteEmailQueueItemResult",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_|_vEmailQueueItemDeleted_as_false": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5a63c3b0-56b1-4260-95fc-aa1831b367d5"
+          },
+          "type": "Scope"
+        },
+        "Scope_|_Catch": {
+          "actions": {
+            "Terminate_|_Error": {
+              "runAfter": {
+                "Respond_to_a_Power_App_or_flow_|_When_Error": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "27d4d6a9-a4c9-4ef8-98d2-52c60dafad36"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "800",
+                  "message": "An unhandled error has occured"
+                }
+              }
+            },
+            "Compose_|_Placeholder_for_error_logging": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bc1afef5-f8d9-46c2-adfb-3ea39c3a1e20"
+              },
+              "type": "Compose",
+              "inputs": "placeholder"
+            },
+            "Respond_to_a_Power_App_or_flow_|_When_Error": {
+              "runAfter": {
+                "Compose_|_Placeholder_for_error_logging": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e85dd83e-d97b-4d4f-81fd-6aded3ab29ae"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "deleteemailqueueitemresult": "Failed"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deleteemailqueueitemresult": {
+                      "title": "DeleteEmailQueueItemResult",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a4c6981a-c4e0-4162-ab41-96d973c73543"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

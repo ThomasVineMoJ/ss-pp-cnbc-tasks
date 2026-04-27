@@ -1,0 +1,306 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedtsk5ftask20apply20rules5ffbae160ce7719b6c_5217e"
+        },
+        "api": {
+          "name": "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c",
+          "logicalName": "tsk_5Ftask-20apply-20rules"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "6bd1c020-cf79-4565-a674-c46a6fc7820f"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "textToSearch",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_|_strCaseNumber": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "7f5d6373-1fa4-47a4-8995-1c9ac578498e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strCaseNumber",
+                "type": "string"
+              }
+            ]
+          },
+          "description": "this is the value that will be returned from the flow, and set depending on on how many case numbers were found"
+        },
+        "Scope_|_Try_Get_Case_Number": {
+          "actions": {
+            "Compose_|_case_number_pattern": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "637ba282-b423-48c2-8338-f374fb090d4c"
+              },
+              "type": "Compose",
+              "inputs": "\\b[a-zA-Z0-9]\\d[a-zA-Z0-9]{3}[a-zA-Z0-9]{3}\\b",
+              "description": "to be replaced at a later date with a pattern stored somewhere in the app or make it an input to this flow"
+            },
+            "Get_Case_Numbers": {
+              "runAfter": {
+                "Compose_|_case_number_pattern": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "47711e2f-b270-43cb-8e82-161d01d4a563"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c",
+                  "operationId": "GetCaseNumbers",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_tsk-5ftask-20apply-20rules-5ffbae160ce7719b6c"
+                },
+                "parameters": {
+                  "body/textToSearch": "@triggerBody()['text']",
+                  "body/caseNumberPattern": "@outputs('Compose_|_case_number_pattern')"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Switch_|_On_how_many_case_numbers_found": {
+              "runAfter": {
+                "Get_Case_Numbers": [
+                  "Succeeded"
+                ]
+              },
+              "cases": {
+                "Case_|_No_Case_Numbers": {
+                  "case": 0,
+                  "actions": {
+                    "Set_variable_|_strCaseNumber_to_None": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "8cb156aa-b07a-4e88-8372-681f4751ef59"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "strCaseNumber",
+                        "value": "None"
+                      }
+                    }
+                  }
+                },
+                "Case_|_One_Case_Number": {
+                  "case": 1,
+                  "actions": {
+                    "Compose_|_First_Case_Number": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "23f2f942-698c-4541-a784-8b664c9416e2"
+                      },
+                      "type": "Compose",
+                      "inputs": "@first(outputs('Get_Case_Numbers')?['body/CaseNumbers'])"
+                    },
+                    "Set_variable_|_strCaseNumber_to_first_CaseNumber": {
+                      "runAfter": {
+                        "Compose_|_First_Case_Number": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "334e22a0-2c3d-49ff-8d0e-b15e78594ea3"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "strCaseNumber",
+                        "value": "@{outputs('Compose_|_First_Case_Number')}"
+                      }
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {
+                  "Set_variable_|_strCaseNumber_to_Multiple": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "9eac8160-37c7-4824-8d0a-092031fa364f"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "strCaseNumber",
+                      "value": "Multiple"
+                    }
+                  }
+                }
+              },
+              "expression": "@outputs('Get_Case_Numbers')?['body/MatchCount']",
+              "metadata": {
+                "operationMetadataId": "d68d0b84-3b3a-4ac1-849c-ae280b827c28"
+              },
+              "type": "Switch"
+            },
+            "Respond_to_a_Power_App_or_flow": {
+              "runAfter": {
+                "Switch_|_On_how_many_case_numbers_found": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c1411c52-9fb3-4f8c-8117-5a295ef7bca3"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "casenumber": "@variables('strCaseNumber')"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "casenumber": {
+                      "title": "CaseNumber",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Compose_|_text_to_search_for_testing": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "327b26f7-c546-40bb-a220-6e8e8ecb11ef"
+          },
+          "type": "Scope"
+        },
+        "Compose_|_text_to_search_for_testing": {
+          "runAfter": {
+            "Initialize_variable_|_strCaseNumber": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "da5f7fe5-8979-4427-87ae-43f263ae76ab"
+          },
+          "type": "Compose",
+          "inputs": "lets have some text here K12YJ123 with some kind k23yh543 of case number in the middle"
+        },
+        "Scope_|_Catch_All_Errors": {
+          "actions": {
+            "Terminate": {
+              "runAfter": {
+                "Respond_to_a_Power_App_or_flow_|_On_Error": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "958fbc01-cbeb-4ebf-84f9-0c1a69068c8e"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "800",
+                  "message": "An unhandled error has occured"
+                }
+              }
+            },
+            "Compose_|_Placeholder_for_logging": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "5143c593-cc9b-4f7f-a152-b9841d615f28"
+              },
+              "type": "Compose",
+              "inputs": "placeholder"
+            },
+            "Respond_to_a_Power_App_or_flow_|_On_Error": {
+              "runAfter": {
+                "Compose_|_Placeholder_for_logging": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1a111b22-16fa-4f84-a25c-05fe5276c641"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "casenumber": "None"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "casenumber": {
+                      "title": "CaseNumber",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope_|_Try_Get_Case_Number": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "301cdf8d-50cf-4185-ba72-df02c636f375"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

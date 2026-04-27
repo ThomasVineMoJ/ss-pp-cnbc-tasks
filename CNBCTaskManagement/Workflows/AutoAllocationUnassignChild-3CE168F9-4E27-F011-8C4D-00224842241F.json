@@ -1,0 +1,167 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "c552b9cf-18f3-47cf-a35f-831d8cbdf398"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "UserId",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows_|_Get_Open_Queue_Items": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "05c17548-b692-4e31-8644-406e95f03506"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "queueitems",
+              "fetchXml": "<fetch>\n  <entity name=\"queueitem\">\n    <attribute name=\"queueitemid\" />\n    <attribute name=\"objectid\" />\n    <attribute name=\"owninguser\" />\n    <filter type=\"and\">\n <condition attribute=\"workerid\" operator=\"eq\" value=\"@{triggerBody()['text']}\" />\n <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n    </filter>\n     <link-entity name=\"task\" from=\"activityid\" to=\"objectid\" alias=\"t\">\n      <filter type=\"and\">\n        <condition attribute=\"statuscode\" operator=\"neq\" value=\"4\" />\n        <condition attribute=\"tsk_isautoallocated\" operator=\"eq\" value=\"1\" />\n      </filter>\n      </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Apply_to_each_|_Get_Open_Queue_Items": {
+          "foreach": "@outputs('List_rows_|_Get_Open_Queue_Items')?['body/value']",
+          "actions": {
+            "Update_a_row_|_Queue_Item": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "36dc291d-e87c-4f4a-8c59-eb82aa192202"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queueitems",
+                  "recordId": "@items('Apply_to_each_|_Get_Open_Queue_Items')?['queueitemid']",
+                  "item/workerid_systemuser@odata.bind": "@null"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Update_a_row_|_Task": {
+              "runAfter": {
+                "Update_a_row_|_Queue_Item": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "48d6962c-4ec7-4c06-be32-4478302d5747"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tasks",
+                  "recordId": "@items('Apply_to_each_|_Get_Open_Queue_Items')?['_objectid_value']",
+                  "item/ownerid_task@odata.bind": "systemusers(@{items('Apply_to_each_|_Get_Open_Queue_Items')?['_owninguser_value']})",
+                  "item/actualstart": "@null",
+                  "item/tsk_isautoallocated": false
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_|_Get_Open_Queue_Items": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "71c42882-52a3-489b-ad62-f4fdd3bc985c"
+          },
+          "type": "Foreach"
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Apply_to_each_|_Get_Open_Queue_Items": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6b0b8757-64bf-4852-8e89-6961dfe1cfd3"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {},
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

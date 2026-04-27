@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{2b5f5a5d-2d23-4fe7-aa58-e77995368ae7}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" preview="1" icon="1">
+        <row name="result" id="activityid">
+          <cell name="subject" width="250" />
+          <cell name="tsk_casenumber" width="117" />
+          <cell name="tsk_documenttype" width="130" />
+          <cell name="tsk_currentqueue" width="100" />
+          <cell name="tsk_sourcetype" width="111" />
+          <cell name="statuscode" width="119" />
+          <cell name="scheduledend" width="100" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="task">
+          <attribute name="subject" />
+          <attribute name="activityid" />
+          <attribute name="tsk_sourcetype" />
+          <attribute name="createdon" />
+          <attribute name="statuscode" />
+          <attribute name="tsk_casenumber" />
+          <attribute name="scheduledend" />
+          <attribute name="tsk_currentqueue" />
+          <order attribute="tsk_sourcetype" descending="false" />
+          <order attribute="scheduledend" descending="false" />
+          <order attribute="createdon" descending="false" />
+          <attribute name="tsk_documenttype" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <roledisplayconditionsxml>
+      <DisplayConditions>
+        <Role Id="{5BE8C782-93E7-EF11-9342-7C1E5203C47F}" />
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+        <Role Id="{827D033B-ECDE-EF11-8EE9-6045BDD184BD}" />
+      </DisplayConditions>
+    </roledisplayconditionsxml>
+    <LocalizedNames>
+      <LocalizedName description="All Tasks" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{c70aa09e-b6f5-ef11-be20-7c1e522e5b3c}" Name="Convert Email Body to Plain Text (Child)" Description="This flow will accept an email body in HMTL format, and a number of characters. It will Convert HMTL to plain text, remove inline image tags and remove new line characters. It will return a string of the length of characters requested" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/ConvertEmailBodytoPlainTextChild-C70AA09E-B6F5-EF11-BE20-7C1E522E5B3C.json</JsonFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>5</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>2.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>none</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Convert Email Body to Plain Text (Child)" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This flow will accept an email body in HMTL format, and a number of characters. It will Convert HMTL to plain text, remove inline image tags and remove new line characters. It will return a string of the length of characters requested" />
+  </Descriptions>
+</Workflow>

@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="tsk_EmailLoopNumberRequired">
+  <defaultvalue>5</defaultvalue>
+  <description default="The number of emails required in the Time Span to count as an email loop">
+    <label description="The number of emails required in the Time Span to count as an email loop" languagecode="1033" />
+  </description>
+  <displayname default="Email Loop Number Required">
+    <label description="Email Loop Number Required" languagecode="1033" />
+  </displayname>
+  <introducedversion>2.0.0.45</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000001</type>
+</environmentvariabledefinition>

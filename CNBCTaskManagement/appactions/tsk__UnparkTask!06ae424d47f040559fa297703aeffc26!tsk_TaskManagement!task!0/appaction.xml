@@ -1,0 +1,39 @@
+<appaction uniquename="tsk__UnparkTask!06ae424d47f040559fa297703aeffc26!tsk_TaskManagement!task!0">
+  <appmoduleid>
+    <uniquename>tsk_TaskManagement</uniquename>
+  </appmoduleid>
+  <buttonlabeltext default="Unpark Task">
+    <label description="Unpark Task" languagecode="1033" />
+  </buttonlabeltext>
+  <context>1</context>
+  <contextentity>
+    <logicalname>task</logicalname>
+  </contextentity>
+  <contextvalue>task</contextvalue>
+  <hidden>0</hidden>
+  <iconwebresourceid>
+    <webresourceid>6f4b6b12-90dc-ef11-8ee9-7c1e52029f62</webresourceid>
+  </iconwebresourceid>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>0</location>
+  <name>UnparkTask!06ae424d47f040559fa297703aeffc26</name>
+  <onclickeventformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </onclickeventformulacomponentlibraryid>
+  <onclickeventformulacomponentname>3f838f5092594894beba6c6866984d12</onclickeventformulacomponentname>
+  <onclickeventformulafunctionname>OnSelect</onclickeventformulafunctionname>
+  <onclickeventtype>1</onclickeventtype>
+  <origin>0</origin>
+  <sequence>100100035.6250000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilityformulacomponentlibraryid>
+    <name>tsk_taskmanagementdefaultcommandlibrary_44852</name>
+  </visibilityformulacomponentlibraryid>
+  <visibilityformulacomponentname>3f838f5092594894beba6c6866984d12</visibilityformulacomponentname>
+  <visibilityformulafunctionname>Visible</visibilityformulafunctionname>
+  <visibilitytype>1</visibilitytype>
+</appaction>

@@ -1,0 +1,248 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_2": {
+        "impersonation": {
+          "source": "invoker"
+        },
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tsk_sharedcommondataserviceforapps_ec655"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Email_Created": {
+          "metadata": {
+            "operationMetadataId": "4fecc908-c0ee-476c-a16e-33f66ccf8715"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "email",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "(directioncode eq true and _tsk_task_value eq null)",
+              "subscriptionRequest/runas": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Old condition - tsk_isinitialoutbound eq true"
+        }
+      },
+      "actions": {
+        "Core_Operation": {
+          "actions": {
+            "Update_Email": {
+              "runAfter": {
+                "Create_Task": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "356d0c8a-4712-426b-b41e-b5b17dcb13bc"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emails",
+                  "recordId": "@triggerOutputs()?['body/activityid']",
+                  "item/tsk_Task_Email@odata.bind": "/tasks(@{outputs('Create_Task')?['body/activityid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Update_Task_to_Completed": {
+              "runAfter": {
+                "Update_Email": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "619135e0-bb58-4ca1-8d4e-1637b576d79e"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tasks",
+                  "recordId": "@outputs('Create_Task')?['body/activityid']",
+                  "item/statecode": 1,
+                  "item/statuscode": 5
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Create_Task": {
+              "runAfter": {
+                "Run_a_Child_Flow_|_Extract_Case_Number": [
+                  "Succeeded",
+                  "Failed",
+                  "Skipped",
+                  "TimedOut"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "153eff42-f6f6-43ea-ade4-da28949dee69"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tasks",
+                  "item/subject": "@coalesce(triggerOutputs()?['body/subject'], 'No Subject')",
+                  "item/tsk_casenumber": "@body('Run_a_Child_Flow_|_Extract_Case_Number')?['casenumber']",
+                  "item/tsk_citizenemail": "@triggerOutputs()?['body/torecipients']",
+                  "item/tsk_OriginatingEmail_Task@odata.bind": "/emails(@{triggerOutputs()?['body/activityid']})",
+                  "item/tsk_sourcetype": 957120003
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Run_a_Child_Flow_|_Extract_Case_Number": {
+              "runAfter": {
+                "Run_a_Child_Flow_|_Convert_Email_Body_to_Plain_Text": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "22df0a78-e123-4a88-af75-e6b5e4d83bc7"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "edfde4df-64f3-ef11-be20-7c1e522e5b3c"
+                },
+                "body": {
+                  "text": "@{outputs('Compose_|_Coalesce_Subject')} @{body('Run_a_Child_Flow_|_Convert_Email_Body_to_Plain_Text')?['processedtext']}"
+                }
+              }
+            },
+            "Compose_|_Coalesce_Subject": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ced88265-e62d-436a-b143-97a5d82ac76d"
+              },
+              "type": "Compose",
+              "inputs": "@coalesce(triggerOutputs()?['body/subject'],'(no subject)')"
+            },
+            "Run_a_Child_Flow_|_Convert_Email_Body_to_Plain_Text": {
+              "runAfter": {
+                "Compose_|_Coalesce_Subject": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "72e921b3-5b7d-43f8-8590-79ed72966e85"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "c70aa09e-b6f5-ef11-be20-7c1e522e5b3c"
+                },
+                "body": {
+                  "text": "@triggerOutputs()?['body/description']",
+                  "number": 400
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "341ca7bc-911b-4879-8586-8b9ce6c4b9f5"
+          },
+          "type": "Scope"
+        },
+        "Catch_All_Errors": {
+          "actions": {
+            "Compose_|_Place_Holder_for_Logging": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d6f87a6b-b524-4aae-81eb-e8d33b5e13f7"
+              },
+              "type": "Compose",
+              "inputs": "placeholder"
+            },
+            "Terminate_|_Failed_": {
+              "runAfter": {
+                "Compose_|_Place_Holder_for_Logging": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5e35a172-b90c-4e72-93a8-b2c5ce856a34"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "800",
+                  "message": "An unhandled error has occured"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Core_Operation": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3ba89dad-a6a3-4d5c-8162-eb9126ced70d"
+          },
+          "type": "Scope"
+        },
+        "Compose": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "89219f7c-8fed-4493-a58f-329473184530"
+          },
+          "type": "Compose",
+          "inputs": "direction: @{triggerOutputs()?['body/directioncode']}\ntask: @{triggerOutputs()?['body/_tsk_task_value']}\nparent: @{triggerOutputs()?['body/_parentactivityid_value']}"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

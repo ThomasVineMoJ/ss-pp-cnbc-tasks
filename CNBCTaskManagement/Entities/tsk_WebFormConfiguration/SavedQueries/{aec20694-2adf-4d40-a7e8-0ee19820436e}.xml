@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{aec20694-2adf-4d40-a7e8-0ee19820436e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tsk_id" select="1" icon="1" preview="1">
+        <row name="result" id="tsk_webformconfigurationid">
+          <cell name="tsk_id" width="100" />
+          <cell name="tsk_name" width="300" />
+          <cell name="tsk_metadatajson" width="130" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tsk_webformconfiguration">
+          <attribute name="tsk_webformconfigurationid" />
+          <attribute name="tsk_id" />
+          <attribute name="createdon" />
+          <order attribute="tsk_id" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tsk_name" />
+          <attribute name="tsk_metadatajson" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Web Form Configurations" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

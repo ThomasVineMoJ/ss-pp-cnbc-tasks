@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.AddToQueue.Hide" Location="Mscrm.Form.email.AddToQueue" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Assign.Hide" Location="Mscrm.Form.email.Assign" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.ConvertTo.Hide" Location="Mscrm.Form.email.ConvertTo" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Flows.RefreshCommandBar.Flows.Hide" Location="Mscrm.Form.email.Flows.RefreshCommandBar.Flows" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Flows.RefreshCommandBar.Hide" Location="Mscrm.Form.email.Flows.RefreshCommandBar" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Forward.Hide" Location="Mscrm.Form.email.Forward" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.InsertKbArticle.Hide" Location="Mscrm.Form.email.InsertKbArticle" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.InsertKnowledgeArticleV2.Hide" Location="Mscrm.Form.email.InsertKnowledgeArticleV2" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Permissions.Sharing.Hide" Location="Mscrm.Form.email.Permissions.Sharing" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.QueueItemDetail.Hide" Location="Mscrm.Form.email.QueueItemDetail" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Reply.Hide" Location="Mscrm.Form.email.Reply" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.ReplyAll.Hide" Location="Mscrm.Form.email.ReplyAll" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.Reports.Hide" Location="Mscrm.Form.email.Reports" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.SendSelected.Hide" Location="Mscrm.Form.email.SendSelected" />
+    <HideCustomAction HideActionId="tsk.Mscrm.Form.email.WordTemplate.Hide" Location="Mscrm.Form.email.WordTemplate" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.email.AddToQueue.Hide" Location="Mscrm.HomepageGrid.email.AddToQueue" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.email.Flows.RefreshCommandBar.Flows.Hide" Location="Mscrm.HomepageGrid.email.Flows.RefreshCommandBar.Flows" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.email.Flows.RefreshCommandBar.Hide" Location="Mscrm.HomepageGrid.email.Flows.RefreshCommandBar" />
+    <HideCustomAction HideActionId="tsk.Mscrm.HomepageGrid.email.MBPF.ConvertTo.Hide" Location="Mscrm.HomepageGrid.email.MBPF.ConvertTo" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.email.AddExistingAssoc" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.AddExistingStandard.Hide" Location="Mscrm.SubGrid.email.AddExistingStandard" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.AddNewStandard.Hide" Location="Mscrm.SubGrid.email.AddNewStandard" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.AddToQueue.Hide" Location="Mscrm.SubGrid.email.AddToQueue" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.Assign.Hide" Location="Mscrm.SubGrid.email.Assign" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.Flows.RefreshCommandBar.Hide" Location="Mscrm.SubGrid.email.Flows.RefreshCommandBar" />
+    <HideCustomAction HideActionId="tsk.Mscrm.SubGrid.email.NewRecord.Hide" Location="Mscrm.SubGrid.email.NewRecord" />
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions />
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels />
+</RibbonDiffXml>

@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.26034.167" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26034.167" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.26034.00167">
+  <SolutionManifest>
+    <UniqueName>CNBCTaskManagement</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="CNBC Task Management" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>2.0.0.60</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>CNBCTaskManagement</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="CNBC Task Management" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>tsk</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>95712</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="1" schemaName="annotation" behavior="1" />
+      <RootComponent type="1" schemaName="email" behavior="1" />
+      <RootComponent type="1" schemaName="queue" behavior="2" />
+      <RootComponent type="1" schemaName="queueitem" behavior="0" />
+      <RootComponent type="1" schemaName="systemuser" behavior="1" />
+      <RootComponent type="1" schemaName="task" behavior="2" />
+      <RootComponent type="1" schemaName="template" behavior="2" />
+      <RootComponent type="1" schemaName="tsk_filestoragetransfer" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_keyword" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_refdataloader_importlog" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_rolemarkerserviceleader" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_rolemarkerstandarduser" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_rolemarkerteamleader" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_routinglog" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_routingrules" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_userstatus" behavior="0" />
+      <RootComponent type="1" schemaName="tsk_webformconfiguration" behavior="0" />
+      <RootComponent type="20" id="{581d1b52-11f9-ef11-bae2-6045bd11200e}" behavior="0" />
+      <RootComponent type="20" id="{5be8c782-93e7-ef11-9342-7c1e5203c47f}" behavior="0" />
+      <RootComponent type="20" id="{6de73768-3b27-f011-8c4e-6045bd11200e}" behavior="0" />
+      <RootComponent type="20" id="{7ddf0075-ecde-ef11-8ee9-7c1e5203c47f}" behavior="0" />
+      <RootComponent type="20" id="{8045fb4b-3b27-f011-8c4d-00224842241f}" behavior="0" />
+      <RootComponent type="20" id="{827d033b-ecde-ef11-8ee9-6045bdd184bd}" behavior="0" />
+      <RootComponent type="29" id="{019c62df-6efa-ef11-bae2-7c1e522e5b3c}" behavior="0" />
+      <RootComponent type="29" id="{0cbac914-cafe-ef11-bae2-6045bdd1b017}" behavior="0" />
+      <RootComponent type="29" id="{19833a68-3b25-f011-8c4d-6045bd0e6831}" behavior="0" />
+      <RootComponent type="29" id="{240107a9-d2d8-ef11-8ee9-7c1e5203f441}" behavior="0" />
+      <RootComponent type="29" id="{2ccd7d92-55f5-f011-8407-000d3ad615ba}" behavior="0" />
+      <RootComponent type="29" id="{3ce168f9-4e27-f011-8c4d-00224842241f}" behavior="0" />
+      <RootComponent type="29" id="{487ba970-acfb-f011-8407-000d3ad615ba}" behavior="0" />
+      <RootComponent type="29" id="{4ce8ab8a-4536-f011-8c4c-7c1e52793da2}" behavior="0" />
+      <RootComponent type="29" id="{5f2a8204-9fe3-ef11-9342-6045bdd184bd}" behavior="0" />
+      <RootComponent type="29" id="{60ea51b5-12d7-ef11-8ee9-7c1e5203f441}" behavior="0" />
+      <RootComponent type="29" id="{61185723-f097-f011-b41b-6045bd101082}" behavior="0" />
+      <RootComponent type="29" id="{646b9f50-a927-f011-8c4e-6045bd0e6831}" behavior="0" />
+      <RootComponent type="29" id="{664e544a-67dd-ef11-8ee9-6045bdd184bd}" behavior="0" />
+      <RootComponent type="29" id="{665644a8-c310-f111-8342-7ced8d3a2501}" behavior="0" />
+      <RootComponent type="29" id="{66f8b773-4025-f011-8c4e-6045bd11200e}" behavior="0" />
+      <RootComponent type="29" id="{6f287d15-cafd-ef11-bae2-6045bd11200e}" behavior="0" />
+      <RootComponent type="29" id="{713d2508-c8f9-ef11-bae2-6045bd11200e}" behavior="0" />
+      <RootComponent type="29" id="{7231f33b-09d7-ef11-8ee9-7c1e5264e27b}" behavior="0" />
+      <RootComponent type="29" id="{7738cd6f-520a-f011-bae2-6045bd13af6b}" behavior="0" />
+      <RootComponent type="29" id="{7ebca158-ac0d-f111-8407-7c1e5264ec44}" behavior="0" />
+      <RootComponent type="29" id="{a005632d-a3fd-ef11-bae2-6045bd11df63}" behavior="0" />
+      <RootComponent type="29" id="{a5254194-4fd7-f011-8544-00224842ff6a}" behavior="0" />
+      <RootComponent type="29" id="{b6e17b4a-b3ea-ef11-9342-7c1e5203c47f}" behavior="0" />
+      <RootComponent type="29" id="{bf789ca9-c863-f011-bec2-6045bd137475}" behavior="0" />
+      <RootComponent type="29" id="{c70aa09e-b6f5-ef11-be20-7c1e522e5b3c}" behavior="0" />
+      <RootComponent type="29" id="{c8039d6a-6827-f011-8c4e-6045bd11200e}" behavior="0" />
+      <RootComponent type="29" id="{cda99085-6a27-f011-8c4e-6045bd11200e}" behavior="0" />
+      <RootComponent type="29" id="{e5277e96-e9f5-f011-8407-7c1e5264ec44}" behavior="0" />
+      <RootComponent type="29" id="{e6fbf9ae-368b-ef11-ac21-6045bdf3350a}" behavior="0" />
+      <RootComponent type="29" id="{edfde4df-64f3-ef11-be20-7c1e522e5b3c}" behavior="0" />
+      <RootComponent type="29" id="{f4d0981f-6462-f011-bec2-6045bd11200e}" behavior="0" />
+      <RootComponent type="300" schemaName="tsk_jsonquerybuilder_5228a" behavior="0" />
+      <RootComponent type="300" schemaName="tsk_movetofilestorage_c9c8b" behavior="0" />
+      <RootComponent type="300" schemaName="tsk_routequeueditem_38004" behavior="0" />
+      <RootComponent type="300" schemaName="tsk_setuseronlinestatus_d438a" behavior="0" />
+      <RootComponent type="300" schemaName="tsk_taskmanagementdefaultcommandlibrary_44852" behavior="0" />
+      <RootComponent type="401" id="{46ea6bd7-aa58-44d3-ad7b-e41d96a6fd99}" behavior="0" />
+      <RootComponent type="61" schemaName="msdyn_/RichTextEditorControl/RTEGlobalConfiguration.json" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/images/email_forward.svg" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/images/email_reply_all.svg" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/images/email_reply.svg" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/images/ic_fluent_braces_variable_24_regular" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/images/new_email.svg" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/application_ribbon.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/email_mainform.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/queueitem_view.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/task_mainform_emaildownload.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/task_mainform_emails.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/task_mainform_notes.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/task_mainform_related.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/task_mainform.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/tsk_queue_form.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/tsk_routingrules_mainform.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_/scripts/tsk_webformconfiguration_banner.js" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_HTMLMetadataViewer" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_HTMLRequiredHelp" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_Icon_Park" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_Icon_Unpark" behavior="0" />
+      <RootComponent type="61" schemaName="tsk_RTE_Config.json" behavior="0" />
+      <RootComponent type="62" schemaName="tsk_TaskManagement" behavior="0" />
+      <RootComponent type="80" schemaName="tsk_TaskManagement" behavior="0" />
+      <RootComponent type="9" schemaName="tsk_documenttype" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="appnotification" displayName="Notification" solution="AppNotifications (10.0.0.17)">
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.62">msft_PowerAppsUnifiedClientInfraExtensions (1.0.0.62)</package>
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.103">PowerAppsUnifiedClientExtensionApp_Anchor (1.0.0.103)</package>
+        </Required>
+        <Dependent type="29" displayName="Auto Allocation Get Next Task (Child)" id="{19833a68-3b25-f011-8c4d-6045bd0e6831}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="appnotification" displayName="Notification" solution="AppNotifications (10.0.0.17)">
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.62">msft_PowerAppsUnifiedClientInfraExtensions (1.0.0.62)</package>
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.103">PowerAppsUnifiedClientExtensionApp_Anchor (1.0.0.103)</package>
+        </Required>
+        <Dependent type="29" displayName="Task QueueItem Added Modified (Automated)" id="{5f2a8204-9fe3-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="appnotification" displayName="Notification" solution="AppNotifications (10.0.0.17)">
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.62">msft_PowerAppsUnifiedClientInfraExtensions (1.0.0.62)</package>
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.103">PowerAppsUnifiedClientExtensionApp_Anchor (1.0.0.103)</package>
+        </Required>
+        <Dependent type="29" displayName="Auto Allocation Assign on Park or Complete" id="{646b9f50-a927-f011-8c4e-6045bd0e6831}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2406.4)">
+          <package appName="EnvironmentVariables" version="1.0.2406.4">EnvironmentVariablesSolutionAnchor (1.0.2406.4)</package>
+        </Required>
+        <Dependent type="62" schemaName="tsk_TaskManagement" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.140)">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="1" schemaName="queueitem" displayName="Queue Item" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_unifiedroutingdiagnostic" displayName="Routing diagnostic item" solution="DecisionEngine (1.5.25041.1000)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="1" schemaName="queueitem" displayName="Queue Item" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_unifiedroutingrun" displayName="Routing diagnostic" solution="DecisionEngine (1.5.25041.1000)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="1" schemaName="queueitem" displayName="Queue Item" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="systemuser" displayName="SystemUser" parentSchemaName="" solution="msdyn_UserShareSecuredFields (1.0.0.0)" />
+        <Dependent type="1" schemaName="systemuser" displayName="SystemUser" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="template" displayName="Template" parentSchemaName="" solution="Active (1.0)" />
+        <Dependent type="1" schemaName="template" displayName="Template" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="acceptingentityid" displayName="Accepting Entity" parentSchemaName="email" parentDisplayName="Email" solution="msft_ActivitiesInfra_Extensions (9.2.0.80)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+          <package appName="ActivitiesInfra Package" version="1.0.0.0">msft_ActivitiesInfra_Anchor (1.0.0.0)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="acceptingentityid" displayName="Accepting Entity" parentSchemaName="email" parentDisplayName="Email" solution="msft_ActivitiesInfra_Extensions (9.2.0.80)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+          <package appName="ActivitiesInfra Package" version="1.0.0.0">msft_ActivitiesInfra_Anchor (1.0.0.0)</package>
+        </Required>
+        <Dependent type="60" displayName="Parent Email" parentDisplayName="Email" id="{be3e917a-e2e6-ef11-9342-7c1e5203c47f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="activityid" displayName="activityid" parentSchemaName="task" solution="System (5.0)" />
+        <Dependent type="2" schemaName="activityid" displayName="activityid" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="attachmentcount" displayName="attachmentcount" parentSchemaName="email" solution="System (5.0)" />
+        <Dependent type="2" schemaName="attachmentcount" displayName="attachmentcount" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="bcc" displayName="bcc" parentSchemaName="email" solution="msdynce_LeadManagement (9.0.4.0066)" />
+        <Dependent type="2" schemaName="bcc" displayName="bcc" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="cc" displayName="cc" parentSchemaName="email" solution="msdynce_LeadManagement (9.0.4.0066)" />
+        <Dependent type="2" schemaName="cc" displayName="cc" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="createdon" displayName="createdon" parentSchemaName="task" solution="System (5.0)" />
+        <Dependent type="2" schemaName="createdon" displayName="createdon" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="description" displayName="description" parentSchemaName="email" solution="System (5.0)" />
+        <Dependent type="2" schemaName="description" displayName="description" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="directioncode" displayName="directioncode" parentSchemaName="email" solution="System (5.0)" />
+        <Dependent type="2" schemaName="directioncode" displayName="directioncode" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="emailaddress" displayName="emailaddress" parentSchemaName="queue" solution="System (5.0)" />
+        <Dependent type="2" schemaName="emailaddress" displayName="emailaddress" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="emailsignature" displayName="Email Signature" parentSchemaName="queue" parentDisplayName="Queue" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="emailsignature" displayName="Email Signature" parentSchemaName="queue" parentDisplayName="Queue" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="emailsignature" displayName="Email Signature" parentSchemaName="queue" parentDisplayName="Queue" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="emailsignature" displayName="Email Signature" parentSchemaName="queue" parentDisplayName="Queue" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Read Only Form" parentDisplayName="Queue" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="emailsignature" displayName="Email Signature" parentSchemaName="queue" parentDisplayName="Queue" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="enhancededitorhtml" displayName="field" parentSchemaName="template" parentDisplayName="Email Template" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="isautonomouslycreated" displayName="Is autonomously created" parentSchemaName="annotation" parentDisplayName="Note" solution="msdynce_ServicePatch201911 (9.0.26031.1003)">
+          <package appName="msdynce_Service" version="9.0.26031.1003">msdynce_ServiceAnchor (9.0.26031.1003)</package>
+        </Required>
+        <Dependent type="29" displayName="Notes Prevent Edit Delete" id="{664e544a-67dd-ef11-8ee9-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="isenhancededitorenabled" displayName="isenhancededitorenabled" parentSchemaName="template" parentDisplayName="Email Template" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_sentiment" displayName="Sentiment" parentSchemaName="email" parentDisplayName="Email" solution="msdyn_EmailIntelligence (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="name" displayName="name" parentSchemaName="queue" solution="System (5.0)" />
+        <Dependent type="2" schemaName="name" displayName="name" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="queueid" displayName="queueid" parentSchemaName="queue" solution="System (5.0)" />
+        <Dependent type="2" schemaName="queueid" displayName="queueid" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="queuetypecode" displayName="queuetypecode" parentSchemaName="queue" solution="System (5.0)" />
+        <Dependent type="2" schemaName="queuetypecode" displayName="queuetypecode" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="receivingmailboxid" displayName="Receiving Mailbox" parentSchemaName="email" parentDisplayName="Email" solution="msft_ActivitiesInfra_Extensions (9.2.0.80)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+          <package appName="ActivitiesInfra Package" version="1.0.0.0">msft_ActivitiesInfra_Anchor (1.0.0.0)</package>
+        </Required>
+        <Dependent type="26" schemaName="All Emails" displayName="All Emails" parentSchemaName="email" parentDisplayName="Email" id="{cc98cb1f-6552-4fd8-9e2f-39a1cad2f710}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="safehtml" displayName="Safe HTML of email template" parentSchemaName="template" parentDisplayName="Email Template" solution="msdynce_ActivitiesPatch (9.0.26034.260325003)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="scheduledend" displayName="scheduledend" parentSchemaName="task" solution="Active (1.0)" />
+        <Dependent type="2" schemaName="scheduledend" displayName="scheduledend" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="sender" displayName="sender" parentSchemaName="email" solution="System (5.0)" />
+        <Dependent type="2" schemaName="sender" displayName="sender" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="statuscode" displayName="statuscode" parentSchemaName="email" solution="msdynce_Activities (9.0.1.2033)" />
+        <Dependent type="2" schemaName="statuscode" displayName="statuscode" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="subject" displayName="subject" parentSchemaName="email" solution="msdynce_ActivitiesPatch (9.0.26034.260325003)" />
+        <Dependent type="2" schemaName="subject" displayName="subject" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="subjectsafehtml" displayName="Safe HTML of email template subject" parentSchemaName="template" parentDisplayName="Email Template" solution="msdynce_ActivitiesPatch (9.0.26034.260325003)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="torecipients" displayName="torecipients" parentSchemaName="email" solution="System (5.0)" />
+        <Dependent type="2" schemaName="torecipients" displayName="torecipients" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Entity Queues" displayName="Entity Queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{597e5016-ebc4-4d4b-a7dc-ebd41ff66cfb}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Entity Queues" displayName="Entity Queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{597e5016-ebc4-4d4b-a7dc-ebd41ff66cfb}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Entity Queues" displayName="Entity Queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{597e5016-ebc4-4d4b-a7dc-ebd41ff66cfb}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Entity Queues" displayName="Entity Queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{597e5016-ebc4-4d4b-a7dc-ebd41ff66cfb}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Read Only Form" parentDisplayName="Queue" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Entity Queues" displayName="Entity Queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{597e5016-ebc4-4d4b-a7dc-ebd41ff66cfb}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Read Only Form" parentDisplayName="Queue" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for Entity" displayName="Omnichannel queues for Entity" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{94a21ec6-5bed-483a-bf49-8db31c15ce0c}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for Entity" displayName="Omnichannel queues for Entity" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{94a21ec6-5bed-483a-bf49-8db31c15ce0c}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for Entity" displayName="Omnichannel queues for Entity" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{94a21ec6-5bed-483a-bf49-8db31c15ce0c}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for Entity" displayName="Omnichannel queues for Entity" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{94a21ec6-5bed-483a-bf49-8db31c15ce0c}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Read Only Form" parentDisplayName="Queue" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for Entity" displayName="Omnichannel queues for Entity" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{94a21ec6-5bed-483a-bf49-8db31c15ce0c}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for messaging" displayName="Omnichannel queues for messaging" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{3c891757-8003-4852-bfca-e5673963ada6}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for messaging" displayName="Omnichannel queues for messaging" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{3c891757-8003-4852-bfca-e5673963ada6}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for messaging" displayName="Omnichannel queues for messaging" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{3c891757-8003-4852-bfca-e5673963ada6}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for messaging" displayName="Omnichannel queues for messaging" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{3c891757-8003-4852-bfca-e5673963ada6}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Read Only Form" parentDisplayName="Queue" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Omnichannel queues for messaging" displayName="Omnichannel queues for messaging" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.140)" id="{3c891757-8003-4852-bfca-e5673963ada6}">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Fcsv-20parser" displayName="CSV Parser" solution="Active" id="{6d2165fe-9101-448a-8ad4-694bde8e2585}" />
+        <Dependent type="29" displayName="Create Task From Web Form Submission | Automated" id="{7ebca158-ac0d-f111-8407-7c1e5264ec44}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Fcsv-20parser" displayName="CSV Parser" solution="Active" id="{6d2165fe-9101-448a-8ad4-694bde8e2585}" />
+        <Dependent type="connectionreference" displayName="tsk_CSVParserCNBC" id.connectionreferencelogicalname="tsk_CSVParserCNBC" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Fregex-20engine" displayName="RegEx Engine" solution="Active" id="{dc4d9553-0c52-417a-8d0e-51c6a4337994}" />
+        <Dependent type="29" displayName="Create Task From Web Form Submission | Automated" id="{7ebca158-ac0d-f111-8407-7c1e5264ec44}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Fregex-20engine" displayName="RegEx Engine" solution="Active" id="{dc4d9553-0c52-417a-8d0e-51c6a4337994}" />
+        <Dependent type="connectionreference" displayName="tsk_RegExEngineCNBC" id.connectionreferencelogicalname="tsk_RegExEngineCNBC" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Ftask-20apply-20rules" displayName="Task Apply Rules" solution="Active" id="{79d841f4-fceb-41a6-ad71-b383ac0c7992}" />
+        <Dependent type="29" displayName="Route MoJ Form Task To Queue | Automated" id="{665644a8-c310-f111-8342-7ced8d3a2501}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Ftask-20apply-20rules" displayName="Task Apply Rules" solution="Active" id="{79d841f4-fceb-41a6-ad71-b383ac0c7992}" />
+        <Dependent type="29" displayName="Apply Rules (Child)" id="{7231f33b-09d7-ef11-8ee9-7c1e5264e27b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Ftask-20apply-20rules" displayName="Task Apply Rules" solution="Active" id="{79d841f4-fceb-41a6-ad71-b383ac0c7992}" />
+        <Dependent type="29" displayName="Extract Case Number (Child)" id="{edfde4df-64f3-ef11-be20-7c1e522e5b3c}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Ftask-20apply-20rules" displayName="Task Apply Rules" solution="Active" id="{79d841f4-fceb-41a6-ad71-b383ac0c7992}" />
+        <Dependent type="connectionreference" displayName="tsk_sharedtsk5ftask20apply20rules5ffbae160ce7719b6c_5217e" id.connectionreferencelogicalname="tsk_sharedtsk5ftask20apply20rules5ffbae160ce7719b6c_5217e" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Fweb-20form-20json-20mapper" displayName="Web Form JSON Mapper" solution="Active" id="{ad2b9015-2050-4546-9a82-06a2160d4c32}" />
+        <Dependent type="29" displayName="Create Task From Web Form Submission | Automated" id="{7ebca158-ac0d-f111-8407-7c1e5264ec44}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="372" schemaName="tsk_5Fweb-20form-20json-20mapper" displayName="Web Form JSON Mapper" solution="Active" id="{ad2b9015-2050-4546-9a82-06a2160d4c32}" />
+        <Dependent type="connectionreference" displayName="tsk_WebFormJSONMapperCNBC" id.connectionreferencelogicalname="tsk_WebFormJSONMapperCNBC" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="59" schemaName="Emails by Month Due" displayName="Emails by Month Due" parentSchemaName="email" parentDisplayName="Email" solution="msdynce_AppCommon (9.0.4.0066)" id="{1ec1872a-23de-4294-9d7f-1b76272a5fd5}">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="MoJ Web Submission" parentDisplayName="Task" id="{0534da87-28fd-f011-8407-000d3ad615ba}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="59" schemaName="Emails by Month Due" displayName="Emails by Month Due" parentSchemaName="email" parentDisplayName="Email" solution="msdynce_AppCommon (9.0.4.0066)" id="{1ec1872a-23de-4294-9d7f-1b76272a5fd5}">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Task" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="59" schemaName="Tasks by Month Due" displayName="Tasks by Month Due" parentSchemaName="task" parentDisplayName="Task" solution="msdynce_AppCommon (9.0.4.0066)" id="{9e6a8b06-6d14-46e6-bbf5-95c388c6eb7a}">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="MoJ Web Submission" parentDisplayName="Task" id="{0534da87-28fd-f011-8407-000d3ad615ba}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="59" schemaName="Tasks by Month Due" displayName="Tasks by Month Due" parentSchemaName="task" parentDisplayName="Task" solution="msdynce_AppCommon (9.0.4.0066)" id="{9e6a8b06-6d14-46e6-bbf5-95c388c6eb7a}">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Task" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="60" displayName="Email" parentDisplayName="Email" solution="msdynce_Activities (9.0.1.2033)" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="60" displayName="Email" parentDisplayName="Task" solution="msdynce_Activities (9.0.1.2033)" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Task" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="60" displayName="Template" parentDisplayName="Email Template" solution="msdynce_ActivitiesPatch (9.0.26034.260325003)" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="60" displayName="Task quick create form." parentDisplayName="Task" solution="msdynce_Activities (9.0.1.2033)" id="{a1c8a6dc-8804-4019-9c78-7dbe86560ea1}">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="80" schemaName="tsk_TaskManagement" displayName="CNBC Task Management 2.0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Activities/SystemLibraries/Task_main_system_library.js" displayName="Activities/SystemLibraries/Task_main_system_library.js" solution="msdynce_Activities (9.0.1.2033)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Task" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Queue/Queue_main_system_library.js" displayName="AppCommon/Queue/Queue_main_system_library.js" solution="msdynce_AppCommonPatch (9.0.1904.4006)">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Queue/Queue_main_system_library.js" displayName="AppCommon/Queue/Queue_main_system_library.js" solution="msdynce_AppCommonPatch (9.0.1904.4006)">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Queue/Queue_main_system_library.js" displayName="AppCommon/Queue/Queue_main_system_library.js" solution="msdynce_AppCommonPatch (9.0.1904.4006)">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Queue/Queue_main_system_library.js" displayName="AppCommon/Queue/Queue_main_system_library.js" solution="msdynce_AppCommonPatch (9.0.1904.4006)">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/QueueItem/QueueItem.js" displayName="AppCommon/QueueItem/QueueItem.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package appName="msdynce_AppCommon" version="9.0.26022.10001">msdynce_AppCommonAnchor (9.0.26022.10001)</package>
+        </Required>
+        <Dependent type="50" schemaName="queueitem:RibbonDiffXml" displayName="queueitem:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="EmailIntelligence/EmailSentiment/msdyn_EmailSentiment.js" displayName="EmailIntelligence/EmailSentiment/msdyn_EmailSentiment.js" solution="msdyn_EmailIntelligence (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" displayName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Rules Admin Form" parentDisplayName="Queue" id="{50875465-435b-f011-bec1-000d3ad68796}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" displayName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Team Leader Form" parentDisplayName="Queue" id="{6799e3d3-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" displayName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Sys Admin Form" parentDisplayName="Queue" id="{6ed25386-e3ec-4e2b-bc5e-6a2a7803c8f3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" displayName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Read Only Form" parentDisplayName="Queue" id="{832e4eaf-5edd-ef11-8ee9-6045bdcfaff5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" displayName="EmailTemplateConfig/EmailSignature/msdynce_EmailSignatureLibrary.js" solution="msdynce_EmailTemplateConfigSolution (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Queue Service Leader Form" parentDisplayName="Queue" id="{cbfbb204-fce9-ef11-9342-6045bdd184bd}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/FollowAttachments/Scripts/Email_Engagement_Attachments.js" displayName="msdyn_/FollowAttachments/Scripts/Email_Engagement_Attachments.js" solution="EmailEngagement (9.0.1.7018)">
+          <package appName="msdynce_SalesInsights" version="9.0.26022.10002">msdynce_SalesInsightsAnchor (9.0.26022.10002)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)">
+          <package appName="AppModule Web Resources Package" version="2.5">AppModuleWebResources (2.5)</package>
+        </Required>
+        <Dependent type="80" schemaName="tsk_TaskManagement" displayName="CNBC Task Management 2.0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/RichTextEditorControl/RTEGlobalConfiguration.json" displayName="msdyn_/RichTextEditorControl/RTEGlobalConfiguration.json" solution="msdyn_RichTextEditor (9.0.26034.1015)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+          <package appName="msdyn_CustomControlsExtended" version="9.0.26034.1015">msdyn_TimelineExtended (9.0.26034.1015)</package>
+        </Required>
+        <Dependent type="61" schemaName="msdyn_/RichTextEditorControl/RTEGlobalConfiguration.json" displayName="msdyn_/RichTextEditorControl/RTEGlobalConfiguration.json" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_CopilotEmailAssist.js" displayName="msdyn_CopilotEmailAssist.js" solution="msdyn_CSIntelligence (9.2.26031.1088)">
+          <package appName="Service Intelligence Package" version="9.2.26031.1088">msdyn_ServiceIntelligenceAnchor (9.2.26031.1088)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_CopilotIcon.svg" displayName="msdyn_CopilotIcon.svg" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction" displayName="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_CopilotSummarizeLibrary.js" displayName="msdyn_CopilotSummarizeLibrary.js" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction" displayName="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_csac_usermanagement" displayName="msdyn_csac_usermanagement" solution="msdyn_CSAdminCenterApp (1.180.3369.4)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="62" schemaName="tsk_TaskManagement" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_OmnichannelBase/_imgs/SitemapIcon/Users" displayName="msdyn_OmnichannelBase/_imgs/SitemapIcon/Users" solution="OmnichannelBase (1.10.0.140)">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.186">UnifiedRoutingPrimeAnchor (1.5.27.186)</package>
+        </Required>
+        <Dependent type="62" schemaName="tsk_TaskManagement" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_SalesCopilot/Copilot.Library.js" displayName="msdyn_SalesCopilot/Copilot.Library.js" solution="msdyn_SalesCopilot (9.1.26033.10001)">
+          <package appName="msdynce_Sales" version="9.0.26033.10004">msdynce_SalesAnchor (9.0.26033.10004)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Activity.TemplateTypeControl" displayName="MscrmControls.Activity.TemplateTypeControl" solution="msdynce_ActivitiesPatch (9.0.26034.260325003)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Canvas.CanvasControl" displayName="MscrmControls.Canvas.CanvasControl" solution="BaseCustomControlsCore (9.0.2603.4013)">
+          <package appName="Base Custom Controls" version="9.0.2603.4013">BaseCustomControlsCore (9.0.2603.4013)</package>
+        </Required>
+        <Dependent type="60" displayName="Information" parentDisplayName="Routing Rules" id="{c83b023d-b846-4e3f-8231-209ac06e8bb9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.ContentEditor.EditorControl" displayName="MscrmControls.ContentEditor.EditorControl" solution="MicrosoftDynamics_ContentEditor (1.90.3048.215)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.FieldControls.AttachmentListControl" displayName="MscrmControls.FieldControls.AttachmentListControl" solution="msdyn_ModernCaseManagement (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="MoJ Web Submission" parentDisplayName="Task" id="{0534da87-28fd-f011-8407-000d3ad615ba}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.FieldControls.EmailSentimentControl" displayName="MscrmControls.FieldControls.EmailSentimentControl" solution="msdyn_EmailIntelligence (9.0.26031.2021)">
+          <package appName="ServiceExtended" version="9.0.26031.2021">msdyn_ServiceExtendedAnchor (9.0.26031.2021)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2603.4013)">
+          <package appName="Base Custom Controls" version="9.0.2603.4013">BaseCustomControlsCore (9.0.2603.4013)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2603.4013)">
+          <package appName="Base Custom Controls" version="9.0.2603.4013">BaseCustomControlsCore (9.0.2603.4013)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.ModelForm.ModelFormControl" displayName="MscrmControls.ModelForm.ModelFormControl" solution="BaseCustomControlsCore (9.0.2603.4013)">
+          <package appName="Base Custom Controls" version="9.0.2603.4013">BaseCustomControlsCore (9.0.2603.4013)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Task" id="{16654191-19ad-48ca-9e46-c4b4fbdad76f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.RichTextEditor.RichTextEditorControl" displayName="MscrmControls.RichTextEditor.RichTextEditorControl" solution="msdyn_RichTextEditor (9.0.26034.1015)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+          <package appName="msdyn_CustomControlsExtended" version="9.0.26034.1015">msdyn_TimelineExtended (9.0.26034.1015)</package>
+        </Required>
+        <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.RichTextEditor.RichTextEditorControl" displayName="MscrmControls.RichTextEditor.RichTextEditorControl" solution="msdyn_RichTextEditor (9.0.26034.1015)">
+          <package appName="msdynce_Activities" version="9.0.26034.260325003">msdynce_EnableUCIByDefault (9.0.26034.260325003)</package>
+          <package appName="msdyn_CustomControlsExtended" version="9.0.26034.1015">msdyn_TimelineExtended (9.0.26034.1015)</package>
+        </Required>
+        <Dependent type="60" displayName="Template" parentDisplayName="Email Template" id="{87dd6639-ef6a-4780-b454-6177eb7b3d6d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.CopilotClientApi!1" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)" id.uniquename="msdyn_Mscrm.CopilotClientApi!1">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.CopilotClientApi!1" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.CopilotClientApi!1" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.EnableCopilotSummarizeCommandButton!1" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)" id.uniquename="msdyn_Mscrm.EnableCopilotSummarizeCommandButton!1">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.EnableCopilotSummarizeCommandButton!1" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.EnableCopilotSummarizeCommandButton!1" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.EnableCopilotSummarizeFeatures!1" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)" id.uniquename="msdyn_Mscrm.EnableCopilotSummarizeFeatures!1">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.EnableCopilotSummarizeFeatures!1" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.EnableCopilotSummarizeFeatures!1" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.FormStateNotNew!0" solution="msdyn_SystemAppActions (9.1.0.57)" id.uniquename="msdyn_Mscrm.FormStateNotNew!0">
+          <package appName="PowerAppsActions Package" version="9.1.0.57">PowerAppsActions_Anchor (9.1.0.57)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.FormStateNotNew!0" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.FormStateNotNew!0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.HideOnMobile!0" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)" id.uniquename="msdyn_Mscrm.HideOnMobile!0">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.HideOnMobile!0" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.HideOnMobile!0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.InitializeCopilotSidePaneOnBoot!1" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)" id.uniquename="msdyn_Mscrm.InitializeCopilotSidePaneOnBoot!1">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.InitializeCopilotSidePaneOnBoot!1" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.InitializeCopilotSidePaneOnBoot!1" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="appactionrule" displayName="msdyn_Mscrm.IsAppCopilotEnabled!0" solution="msdyn_AppCopilotFeatures (9.2.2026033.260316057)" id.uniquename="msdyn_Mscrm.IsAppCopilotEnabled!0">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="appaction_appactionrule_classicrules" displayName="appactionid.uniquename=tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0,appactionruleid.uniquename=msdyn_Mscrm.IsAppCopilotEnabled!0" id.appactionid.uniquename="tsk__msdyn_Mscrm.Form.Copilot.Summarize!tsk_TaskManagement!task!0" id.appactionruleid.uniquename="msdyn_Mscrm.IsAppCopilotEnabled!0" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AllowNotificationsEarlyAccess" solution="AppNotifications (10.0.0.17)" id.uniquename="AllowNotificationsEarlyAccess">
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.62">msft_PowerAppsUnifiedClientInfraExtensions (1.0.0.62)</package>
+          <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.103">PowerAppsUnifiedClientExtensionApp_Anchor (1.0.0.103)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=tsk_TaskManagement,settingdefinitionid.uniquename=AllowNotificationsEarlyAccess" id.parentappmoduleid.uniquename="tsk_TaskManagement" id.settingdefinitionid.uniquename="AllowNotificationsEarlyAccess" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.16)" id.uniquename="AppChannel">
+          <package appName="PowerAppsAppFramework Package" version="1.0.0.25">PowerAppsAppFramework_Anchor (1.0.0.25)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=tsk_TaskManagement,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="tsk_TaskManagement" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="appcopilotenabled" solution="msdyn_AppCopilotAppInfraSettings (9.2.2026033.260316057)" id.uniquename="appcopilotenabled">
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.2025042.250409005">PowerAppsAppCopilotApp_Anchor (9.2.2025042.250409005)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="1.0.0.2">msdyn_SuggestedAction (1.0.0.2)</package>
+          <package appName="PowerAppsAppCopilotApp Package" version="9.2.0.4">msdyn_M365CopilotAppInfraSettings (9.2.0.4)</package>
+        </Required>
+        <Dependent type="OrganizationSetting" displayName="appcopilotenabled" id.settingdefinitionid.uniquename="appcopilotenabled" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="EnableCopilotAnswerControl" solution="msdyn_CopilotAnswerControl (9.1.2024085.240823014)" id.uniquename="EnableCopilotAnswerControl">
+          <package appName="PowerAppsMobile Package" version="9.1.2024085.240823014">msdyn_CopilotAnswerControl (9.1.2024085.240823014)</package>
+        </Required>
+        <Dependent type="OrganizationSetting" displayName="EnableCopilotAnswerControl" id.settingdefinitionid.uniquename="EnableCopilotAnswerControl" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="FormPredictEnabled" solution="msdyn_FormPredict (1.0.0.1)" id.uniquename="FormPredictEnabled">
+          <package appName="PowerAppsProductivityApp Package" version="1.0.0.1">msdyn_FormPredict (1.0.0.1)</package>
+        </Required>
+        <Dependent type="OrganizationSetting" displayName="FormPredictEnabled" id.settingdefinitionid.uniquename="FormPredictEnabled" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="msdyn_TimelineCopilotForApps" solution="msdyn_TimelineExtended (9.0.26034.1015)" id.uniquename="msdyn_TimelineCopilotForApps">
+          <package appName="msdyn_CustomControlsExtended" version="9.0.26034.1015">msdyn_TimelineExtended (9.0.26034.1015)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=tsk_TaskManagement,settingdefinitionid.uniquename=msdyn_TimelineCopilotForApps" id.parentappmoduleid.uniquename="tsk_TaskManagement" id.settingdefinitionid.uniquename="msdyn_TimelineCopilotForApps" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="NLGridSearchSetting" solution="msdyn_NLGridSearchSettings (1.0.0.0)" id.uniquename="NLGridSearchSetting">
+          <package appName="PowerAppsDataVizApp Package" version="1.0.0.8">PowerAppsDataVizApp_Anchor (1.0.0.8)</package>
+          <package appName="PowerAppsDataVizApp Package" version="1.0.0.2">msdyn_PowerAppsNLChartVizSettings (1.0.0.2)</package>
+          <package appName="PowerAppsDataVizApp Package" version="1.0.0.0">msdyn_FuzzySearchSettings (1.0.0.0)</package>
+        </Required>
+        <Dependent type="OrganizationSetting" displayName="NLGridSearchSetting" id.settingdefinitionid.uniquename="NLGridSearchSetting" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>
