@@ -1,163 +1,170 @@
 # High‑Level Design (HLD)
-This document provides a high-level architectural overview of the Email Retention Management (ERM) solution, including it's purpose and core components.
+This document provides a high-level architectural overview of the base task management solution, including it's purpose and core components.
 
->This HLD is intended for architects, administrators, developers and delivery teams working with or supporting the solution.
+>This HLD is intended for architects, administrators, developers and delivery teams working with or supporting the solution for use on other task management solutions.
 
 ## Project Background
 
 ### Purpose 
-The Email Retention Management (ERM) solution provides automated governance and lifecycle management for shared mailboxes by enforcing retention rules, identifying qualifying emails, and removing them based on configurable policies. The solution replaces legacy VBA code used to regularly clean-up shared mailboxes.
+
+The base task management solution serves as the starting foundations for all future task management solutions, including MEBC and Tax email management.
+
+The solution works without any additional development but is expected to be deployed as unmanaged to a new environment, before being adapted to each email & task management project that comes through the low code platform team.
+
+Many teams across HMCTS experience large numbers of emails into shared mailboxes, which often become difficult to manage and assign. The task management base solution connects to the shared mailbox via server-side synchronisation, and processes all incoming emails into actionable tasks, assigned to the correct team through routing rules.
 
 ### References
 
 | Title                                                       | Description             | Link                                            |
 |-------------------------------------------------------------|-------------------------|-------------------------------------------------|
-| DSO Email Deletion Process                                  | JIRA Epic for Project   | https://tools.hmcts.net/jira/browse/DTSRPA-2500 |
-| Enable "Delete Emails after Processing" option in mailboxes | Original Demand Request | https://hmcts.haloitsm.com/ticket?id=97784      |
+| CNBC epic | Original JIRA epic used to develop the base solution   | https://tools.hmcts.net/jira/browse/DTSRPA-601 |
+| Power Platform development environment | Current environment for making changes | https://make.powerapps.com/environments/c48b3376-9d1b-efeb-9da6-42c9adad53a4      |
 
 
 ## Business Architecture
 
 ### Business Process
-Shared mailboxes often accumulate large volumes of incoming emails, causing storage issues and operational inefficiencies. Manual clean‑up required the use of VBA scripts to clear folders of specific inboxes.
+As an example, the Civil National Business Centre (CNBC) team have 23 separate email inboxes, which recieves hundreds of emails each day to support the early administrative and processing stages of county court claims.
 
 ### Problem Statement
-The existing solution is reaching end-of-life support and requires manual interaction to maintain mailbox capacity. The proposed Power Platform solution automates and centralises retention enforcement to ensure emails are automatically deleted on a regular basis.
+Continuing with the CNBC example, the volume of emails arriving across the 23 mailboxes became difficult to manage, with users running into frequent API issues and Outlook crashes.
 
 ### Requirements
-The requirements captured below were created based on information provided via the initial service request ([SR-0097784](https://hmcts.haloitsm.com/ticket?id=97784)) and Tech Questionnaire.
+The requirements below have been written up retrospectively based on the current implementation of CNBC, as a guide for other task & email management solutions.
 
 #### Functional
 |ID |Title |Description |
 |-|-|-|
-|DTSRPA-2501|Configure mailbox record |As a Mailbox Administrator, I want to create and manage a mailbox configuration record containing a typed mailbox address and activation status, so that the system knows which mailboxes are available for retention management.|
-|DTSRPA-2502|Configure folder-level rules |As a Mailbox Administrator, I want to configure separate retention settings for folders such as Inbox and Sent Items within a mailbox, so that different types of emails are retained or deleted according to their operational and regulatory importance.|
-|DTSRPA-2503|Delete processed emails automatically|As a Mailbox Administrator, I want the system to automatically delete emails that have been processed and synchronized with Dynamics 365 once they exceed their configured retention window, so that mailbox sizes are controlled without deleting unprocessed emails.|
-|DTSRPA-2504|View retention cleanup logs |As a Mailbox Administrator, I want to view summary logs showing how many emails were evaluated and deleted during retention cleanup, so that I can verify the system is operating correctly without exposing the content of individual emails.|
+|TBC| TBC|TBC|
+
 
 #### Non-functional
-- **Performance & Efficiency** - The solution must process each configured mailbox within the scheduled flow window, completing Graph API queries and deletion operations without exceeding platform timeouts or throttling limits.
-
-- **Scalability** - The solution must support onboarding additional shared mailboxes and retention rules without requiring architectural changes or causing performance degradation.
-
-- **Email Throughput** - The solution must be able to handle 7.5k - 10k emails per day.
-
-- **Security & Access Control** - All components must enforce least‑privilege access, ensuring only authorised roles and service accounts can configure retention settings or access mailbox data.
-
-- **Auditability & Traceability** - Every deletion action must be logged with mailbox, metadata, and applied retention rule details to provide a complete and transparent audit trail.
-
-- **Reliability & Resilience** - Cloud flows must handle transient errors (e.g., Graph throttling or Dataverse delays) using retry policies and fail predictably with clear error visibility for administrators.
+- **TBC** - TBC
 
 ### RAID Log
 #### Risks
 | ID  | Risk                          | Description                                                                                                 |
 |-----|--------------------------------|-------------------------------------------------------------------------------------------------------------|
-| R1  | Graph API Throttling          | High‑volume or large shared mailboxes may cause Microsoft Graph API throttling, delaying or interrupting processing. |
-| R2  | Misconfigured Retention Rules | Incorrect or overly broad retention rules may result in unintended email deletions.                        |
-| R3  | Permission Changes            | Unexpected changes to mailbox or Graph API permissions may prevent flows from running successfully.         |
+| R1  | Dataverse Throttling          | High‑volume of incoming emails may hinder Power Automate & Dataverse performance. Since CNBC, several performance changes have been made to reduce billable actions. |
+| R2  | Misconfigured Routing Rules | Incorrect or overly broad routing rules may result in tasks being assigned an incorrect queue & user. The option to re-run routing rules for multiple queue items was added to the solution, especially beneficial in early hypercare periods.                        |
 
 #### Assumptions
 
 | ID  | Assumption                          | Description                                                                                      |
 |-----|--------------------------------------|--------------------------------------------------------------------------------------------------|
-| A1  | Mailbox Access is Maintained         | Required shared mailboxes remain licensed and correctly permissioned for the service account.   |
-| A2  | Mailboxes Hosted in Exchange Online      | All targeted shared mailboxes are cloud‑based in Exchange Online, ensuring compatibility with Microsoft Graph API operations.            |
-| A3  | Stable Mailbox Volumes               | Mailbox sizes remain within expected ranges to complete processing within scheduling windows.   |
+| A1  | Project specific discovery & requirements         | Each implementation of the task management base should still conduct thorough and fair discovery, including requirements gathering, before aligning with the base solution.   |
+
 
 #### Issues
 
 | ID  | Issue                        | Description                                                                                               |
 |-----|------------------------------|-----------------------------------------------------------------------------------------------------------|
-| I1  | Folder-Level Limitations     | Graph API limitations in complex or deeply nested folder structures may restrict retention targeting.    |
+| I1  | None documented     |   |
 
 #### Decisions
 
-| ID  | Decision                       | Description                                                                                                             |
+| ID  | Decision                       | Description                                                                                                      |
 |-----|--------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| D1  | Use Permanent Delete for Retention Enforcement | Emails are permanently deleted rather than soft‑deleted to ensure mailbox storage is actually reduced and retention objectives are met, as soft‑deleted items continue to consume storage. An environment variable was added to provide the option of soft-deleting emails for testing purposes.   |
+| D1  | Deploy base solution as unmanaged and customise | The original approach was to host the base solution in a development environment and deploy to project-specific development environments as a managed solution, with project-specific customisations applied in a separate solution. This quickly became cumbersome, with each development requiring a change to the base solution, so the decision was taken to deploy the base solution as unmanaged without any dependencies.   |
 
 ## Data Architecture
-The data model consists of three core entities: Shared Mailbox, Retention Rule, and Retention Rule Log. Shared Mailbox stores mailbox identities and links to Retention Rules that define deletion criteria, while Retention Rule Log is implemented as an elastic table to handle high‑volume, append‑only execution results efficiently and to support scalable logging without affecting Dataverse performance.
+The data model consists of fourteen core entities, a mix of standard and custom Dataverse tables, based on the structure of tasks and queues.
 
 ### Data Model
 ```mermaid
 erDiagram
-    erm_sharedmailbox ||--o{ erm_retentionrule : "has"
-    erm_retentionrule ||--o{ erm_retentionrulelog : "produces"
+  Queue ||--|{ "Queue Item" : ""
+  "Queue Item" ||--|| Task : ""
+  Task ||--o{ Email : ""
+  Task ||--o{ Note : "Via Activity Table"
+  Email ||--o{ Attachment : ""  
+  Queue ||--o{ "Routing Log" : ""
+  "Routing Rule" ||--o{ "Routing Log" : ""
+  Task ||--o| "Routing Log" : ""
+  Queue ||--o{ "Routing Rule" : ""
+  "Routing Rule" ||--o{ Keyword : ""
+  Task ||--o{ "Task Event" : ""
+  User ||--o{ "User Status" : ""
+  "Role Marker - Standard User"
+  "Web Form Configuration"
 ```
 
 ### Data Glossary
 
 | Entity            | Description |
 |--------------------------|-------------|
-| **Shared Mailbox**       | Represents a shared mailbox configured for retention management, including its display name and email address. |
-| **Retention Rule**       | A configuration record that defines how retention should be applied to a specific shared mailbox, including folder, scope, and retention duration in days. |
-| **Retention Rule Log**   | A log entry produced each time a retention rule is executed, capturing the number of emails processed, failures, errors (if any), and the timestamp of execution. |
+| **Activity**       | Relate Notes to Tasks |
+| **Attachment**       | Store files against email records.  |
+| **Email**       | Ingested emails from shared mailboxes using server-side synchronisation |
+| **Keyword**       | Capture keywords to search against for each routing rule |
+| **Queue**       | A list of records that require action   |
+| **Queue Item**       | A specific item in a queue, such as a task or email. |
+| **Role Marker - Standard User**       | Empty table used in Ribbon Workbench to customise command bar |
+| **Routing Log**       | Record all successful attempts at routing tasks to queues |
+| **Routing Rules**       | Criteria to evaluate tasks against before assigning to a queue |
+| **Task**       | Generic activity representing an email (or multiple) to be actioned  |
+| **Task Event**       | Audit log of key actions taken against a task |
+| **User**       | Default system user table |
+| **User Status**       | Store user online/offline status for auto-allocation |
+| **Web Form Configuration**       | JSON records containing question/answer config for MoJ Web Forms  |
+
+
 
 ### Data Flow
 
 ```mermaid
-flowchart LR
-
-    %% Entities
-    Admin["Administrator<br/>(Model-Driven App)"]
-    DV[(Dataverse<br/>Config & Logs)]
-    PA[Power Automate Cloud Flow]
-    Graph[Microsoft Graph API]
-    Mailbox[Shared Mailbox]
-    Admin -->|Manage retention rules| DV
-
-    %% Flow retrieves config
-    PA -->|Fetch mailbox & rule config| DV
-
-    %% Flow queries mailbox
-    PA -->|Query folders & messages| Graph
-
-    Mailbox -->|Retrieve messages| Graph
-
-    %% Evaluate & delete
-    PA -->|Delete qualifying emails| Graph
-    Graph -->|Delete items| Mailbox
-
-    %% Log results
-    PA -->|Write log entries| DV
+flowchart TD
+    A[Email recieved in shared mailbox] -->|Server-side sync| B
+    B[(Sync to Dataverse Email table)] --> C
+    C[(Ingest email as task)] --> D
+    D[Route task to Queue via Queue Item] --> E
+    E[Assign user manually or via auto-allocation] --> F
+    F[Complete task]
 ```
 
 ## Solution Design
 The ERM solution is built using Microsoft Power Platform and automates the scanning, evaluation, and deletion of emails within shared mailboxes. Administrators (within the Low Code Platform Team) configure mailboxes and retention rules through a model‑driven app, while Power Automate flows execute scheduled, automated processes against Microsoft's Graph API.
 
+The base task management solution is built using Microsoft Power Platform and connects to Microsoft Exchange using server-side synchronisation, to ingest emails into the application. Users automatically pick up newly assigned tasks and action them outside of the app, marking them as complete once finished. The solution makes use of many out-of-the-box features include queues/queue items and task management.
+
 ### High-Level Architecture
 ```mermaid
-flowchart LR
+flowchart TD
+subgraph "Microsoft Exchange"
+sm[Shared Mailbox]
+end
 
-    %% Nodes
-    DV["(Dataverse<br/>Config + Logging)"]
-    MDA[Model-Driven App]
-    PA[Power Automate]
-
-    subgraph GraphAPILoop[For each mailbox → folder]
-        QUERY["Query mailbox via Graph API<br/>(Up to 1000 items)"]
-        DEL[Delete batches of 20 emails<br/>via Graph API]
-    end
-
-    %% Flows
-    MDA -- "Admin configuration" --> DV
-    PA -- "Fetch configs" --> DV
-    PA -- "Hourly schedule"--> QUERY
-    QUERY --> DEL
+subgraph "Power Platform"
+sm --> E[Email Ingestion + Task Creation]
+E --> F[Routing Engine]
+F --> G[Auto-Allocation]
+G --> H[Task completion via model-driven app]
+end
 ```
 
-The model‑driven app provides administrators with an easy interface to configure retention settings and review activity logs, while the Dataverse tables serve as the central source of configuration and the repository for all logging. Scheduled cloud flows use this configuration to retrieve mailbox details, query shared mailboxes via Microsoft Graph, evaluate emails against retention rules, delete those that meet the criteria, and record all actions back into Dataverse.
+ Scheduled cloud flows use this configuration to retrieve mailbox details, query shared mailboxes via Microsoft Graph, evaluate emails against retention rules, delete those that meet the criteria, and record all actions back into Dataverse.
+
+The model-driven app provides case workers with an easy interface to view and manage their assigned tasks whilst administrators can configure routing rules and re-route items to the correct team or queue.
+
+Classic workflows are leveraged to ensure quality data hygiene whilst Power Automate flows carry out the bulk of processing from ingestion and routing, to auto-allocation and data capacity maintenance.
 
 ### Solution Components
-- **Model‑Driven App** - Managing configuration, retention settings, and reviewing logs.
-- **Dataverse Tables** - Storing mailbox definitions, retention policies, and deletion logs.
-- **Power Automate Cloud Flows** - Scan mailboxes, evaluate email age, delete qualifying emails, and log actions.
-- **Microsoft Graph API** - Used by flows to read and delete mailbox content securely.
+Below are some of the critical developed components, excluding those used in governance and configuration (such as environment variables, connection references).
+
+- **Model-Driven App** - Email and task handling, queue maintenance and routing rule development
+- **AI Model** - Adoption of a custom prompt to extract hearing dates from the incoming email body text
+- **Canvas App** - JSON query builder is nested on the routing rule form, to build JSON queries for routing MoJ form tasks
+- **Cloud Flows** - Task creation, routing, auto-allocation and data hygiene tasks
+- **Component library** - Managing Power Fx command bar buttons applied to tasks, queue items and routing rules
+- **Pages** - Custom pages used to provide additional functionality for auto-allocation and routing tasks to queues within the model-driven app
+- **Processes** - Supporting and managing data hygiene in real-time
+- **Dataverse Tables** - Store Email + Task data, routing rule metadata, task-queue assignments and user status data for auto-allocation
+
+
 
 ### Processes
 
-#### Mailbox Retention Processing Workflow
+#### Email Ingestion
 The `Trigger Mailbox Email Retention` flow runs on an hourly schedule, retrieves all active mailbox-folder configurations, and sends each one to the child flow, `Get Emails And Delete`, for processing. 
 
 The child flow queries emails that meet the retention criteria, batches them into groups of 20, and repeatedly deletes each batch using the Graph API while logging any errors, until all qualifying emails are removed and the final deletion count is written to Dataverse.
@@ -196,15 +203,7 @@ flowchart LR
 ```
 
 ### Integrations
-#### Microsoft Graph API
-Microsoft Graph is used to securely query and permanently delete emails from shared mailboxes, enabling the solution to retrieve message metadata and enforce retention rules programmatically.
-
-Authentication is via the `HTTP With Entra ID` connector between the service account and shared mailbox.
-
-| API Endpoint | Purpose | Key Parameters / Notes |
-|--------------|----------|-------------------------|
-| **GET /users /{mailbox} /mailFolders /{folder} /messages** | Retrieves up to 1,000 messages from the specified mailbox folder, filtered by retention window and (optionally) Dynamics 365 tracking category. | - **mailbox** → mailbox email address from Dataverse config<br>- **folder** → configured folder name (Inbox or SentItems) <br>- **$top=1000** → maximum items returned<br>- **$select=id** → retrieves message IDs only for efficiency<br>- **$filter** → lastModifiedDateTime \< (now - retentionDays)<br>- Conditional filter: `categories/any(c:c eq 'Tracked to Dynamics 365')` when scope = 2 |
-| **POST /$batch** | Sends multiple delete commands in a single request for performance and throttling reduction. | - Depending on the environment variable set, each batch item issues either a soft delete or hard delete. Hard delete:<br>  **POST /users /{mailbox} /messages /{emailId} /microsoft.graph.permanentDelete**<br>Soft delete:<br> **DELETE /users /{mailbox} /messages /{emailid}** <br>- Supports batching of up to 20 deletes per child‑flow cycle<br>- Used after message IDs are grouped into batches |
+#### Microsoft Exchange
 
 ### Security
 #### Service Accounts
