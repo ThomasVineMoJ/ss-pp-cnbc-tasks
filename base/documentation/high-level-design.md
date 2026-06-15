@@ -98,7 +98,7 @@ erDiagram
 | **Email**       | Ingested emails from shared mailboxes using server-side synchronisation |
 | **Keyword**       | Capture keywords to search against for each routing rule |
 | **Queue**       | A list of records that require action   |
-| **Queue Item**       | A specific item in a queue, such as a task or email. |
+| **Queue Item**       | A specific item in a queue, such as a task or email |
 | **Role Marker - Standard User**       | Empty table used in Ribbon Workbench to customise command bar |
 | **Routing Log**       | Record all successful attempts at routing tasks to queues |
 | **Routing Rules**       | Criteria to evaluate tasks against before assigning to a queue |
@@ -149,7 +149,7 @@ The model-driven app provides case workers with an easy interface to view and ma
 Classic workflows are leveraged to ensure quality data hygiene whilst Power Automate flows carry out the bulk of processing from ingestion and routing, to auto-allocation and data capacity maintenance.
 
 ### Solution Components
-Below are some of the critical developed components, excluding those used in governance and configuration (such as environment variables, connection references).
+Below are the key power platform components, excluding those used in governance and configuration (such as environment variables, connection references).
 
 - **Model-Driven App** - Email and task handling, queue maintenance and routing rule development
 - **AI Model** - Adoption of a custom prompt to extract hearing dates from the incoming email body text
@@ -165,42 +165,26 @@ Below are some of the critical developed components, excluding those used in gov
 ### Processes
 
 #### Email Ingestion
-The `Trigger Mailbox Email Retention` flow runs on an hourly schedule, retrieves all active mailbox-folder configurations, and sends each one to the child flow, `Get Emails And Delete`, for processing. 
+A vital part of the solution is configuration of the email server profile to pick up emails that arrive into a shared mailbox being used by caseworkers and team members. This ingestion uses the [server-side synchronisation](https://learn.microsoft.com/en-us/power-platform/admin/server-side-synchronization) feature which processes received emails and creates them in the 'Email' Dataverse table.
+
+```mermaid
+erDiagram
+Mailbox ||--|| Queue: ""
+Mailbox ||--|| User: ""
+"Email Server Profile" ||--o{ Mailbox: ""
+```
+Similarly, if a user sends an email from within the model-driven app, then a record is added to the email table, before it is sent via Microsoft Exchange.
 
 The child flow queries emails that meet the retention criteria, batches them into groups of 20, and repeatedly deletes each batch using the Graph API while logging any errors, until all qualifying emails are removed and the final deletion count is written to Dataverse.
 
-```mermaid
-flowchart LR
+The classic workflow `Set Default Email Subject/Body` automatically sets the body or subject of an incoming email to "(None)" if either field is blank upon receipt. This ensures there is always a string for future automations to use and avoid user confusion.
 
-    %% Parent flow
-    A([Hourly Trigger])
-    B["Fetch all active config records<br/>(split by mailbox/folder)"]
-    C([Pass folder-config<br/>to child flow])
 
-    %% Child flow starts
-    D([Child flow receives<br/>mailbox/folder config])
-    E[Query emails to be deleted<br/>based on timeframe & tag via Graph API]
-    F["Batch up to 1000 emails<br/>into groups of 20<br/>(custom connector)"]
-    G{All emails<br/>deleted?}
+#### Task Creation
 
-    H[Call Graph API to delete<br/>current batch of 20 emails]
-    I{Errors returned<br/>from API?}
-    J[Log error in<br/>Dataverse table]
+#### Task Routing
 
-    K[Log number of<br/>emails deleted]
-    L([End automation])
-
-    %% Flow connections
-    A --> B --> C --> D --> E --> F --> G
-
-    %% Decision: all emails deleted?
-    G -- No --> H --> I
-    G -- Yes --> K --> L
-
-    %% Error path
-    I -- Yes --> J --> F
-    I -- No --> F
-```
+#### Auto-Allocation
 
 ### Integrations
 #### Microsoft Exchange
@@ -208,6 +192,8 @@ flowchart LR
 ### Security
 #### Service Accounts
 For any environment the solution is hosted within, an Entra ID service account must be used to manage the solution, including ownership of any connection references.
+
+#### Shared Mailbox
 
 #### Dataverse Roles
 Currently, no custom security roles have been created for this solution. The expectation is the app will be used by the Low Code Platform Team to manage mailbox retention policies, without granting access to end-users. Any user wishing to access the solution should do so via a default security role, such as System Administrator.
