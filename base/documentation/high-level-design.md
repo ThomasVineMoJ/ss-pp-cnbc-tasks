@@ -180,7 +180,68 @@ The classic workflow `Set Default Email Subject/Body` automatically sets the bod
 
 #### Task Creation
 
+All tasks in the task table are created by 3 Power Automate flows described below. Two are responsible for creating tasks for 'Email' and 'MoJ Form Submission' source types, whilst the third creates completed tasks off the back of newly sent emails by an application user.
+
+```mermaid
+flowchart TD
+    A[<b>Trigger:</b> Record added to Email table] --> B{Is it a regular email or MOJ form submission?}
+    
+    B -- Regular Email --> C[<b>Run Flow:</b> Create Task From Incoming Email]
+    B -- MOJ Form --> D[<b>Run Flow:</b> Create Task From Web Form Submission]
+
+    C --> E[Create Task and set tsk_sendtoqueue as true]
+    D --> E
+
+    E --> F[[Trigger routing automations]]
+
+    G[User sends a new email from the model-driven app] --> H[Record added to Email table]
+
+    H --> I{Does the email have an associated task?}
+    I -- Yes --> J[Do nothing]
+    I -- No --> K[<b>Run Flow:</b> Create Task From Outgoing Email]
+    K --> L[Create Task and mark as complete]
+```
+
+The flag 'tsk_sendtoqueue' on the Task table is universally used to trigger separate routing automations, whenever a task is created that needs to be routed. Only incoming emails need to be routed as tasks to a queue.
+
 #### Task Routing
+
+Upon task creation, the flag 'tsk_sendtoqueue' is set to true, triggering downstream automations to route the initial task to a queue, based on routing rules which are defined for both 'Email' and 'MoJ Form Submission' source types. The basic email routing is based on keywords and pattern matching, whilst the MoJ form routing uses a defined JSON query of question-answer combinations to match against.
+
+```mermaid
+ flowchart TD
+  A[<b>Run Flow:</b> Create Task From Incoming Email]
+  B[<b>Run Flow:</b> Create Task From Incoming Email]
+  C[<b>Run Flow:</b> Re-Route Tasks For Source Queue]
+  D[<b>Power Fx Button: </b>'Resubmit Routing' On Queue Item Grid]
+  E[Modify tsk_sendtoqueue on Task table record to true]
+  F{Is task source type either 'Email' or 'MoJ Form Submission?'}
+  G["<b>Automated Trigger:</b> Route Task (Incoming Email) To Queue"]
+  H["<b>Automated Trigger:</b> Route Task (MoJ Form) To Queue"]
+  I[Route task to queue via queue item]
+  J["<b>Classic Workflow:</b> Queue Item Sync (Queue)"]
+  K["<b>Classic Workflow:</b> Queue Item Sync (Worked By)"]
+  L[Task assigned to a queue and owner]
+
+  A --> E
+  B --> E
+  C --> E
+  D --> E
+  E --> F
+  F -- Email-type --> G
+  F -- MoJ Form-type --> H
+  G --> I
+  H --> I
+  I --> J
+  I --> K
+  J -- Update queue and due date against Task --> L
+  K -- Update Task owner based on Queue Item 'Worked By' --> L
+
+ ```
+
+The goal of the automated routing is to route incoming tasks to an initial queue and user, which can be picked up by a specific member of that queue, or routed to another queue if more appropriate.
+
+Once initially routed, users have the option of using a custom pop up (triggered by 'Route' button on Queue Item Grid) or the default command buttons 'Queue Item Details', 'Add To Queue', 'Pick' or 'Release' to assign the queue item to a new user or queue.
 
 #### Auto-Allocation
 
