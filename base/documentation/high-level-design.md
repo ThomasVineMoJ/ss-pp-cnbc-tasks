@@ -244,6 +244,50 @@ The goal of the automated routing is to route incoming tasks to an initial queue
 Once initially routed, users have the option of using a custom pop up (triggered by 'Route' button on Queue Item Grid) or the default command buttons 'Queue Item Details', 'Add To Queue', 'Pick' or 'Release' to assign the queue item to a new user or queue.
 
 #### Auto-Allocation
+The auto-allocation feature streamlines caseworker's workload by assigning new items to work on without team lead involvement. 
+
+A case worker sets their status to 'Online' using the custom page 'My Online Status', which updates a record in the User Status table. This is used by various automations to assign tasks and queue items to users.
+
+```mermaid
+
+ flowchart TD
+ A[User sets online status via custom page]
+ B[<b>Flow Triggered:</b> Auto Allocation Assign]
+ C[<b>Flow Triggered:</b> Auto Allocation Get Next Task]
+ D[Queue Item assigned to user]
+ E[Task status marked as complete or parked]
+ F[<b>Flow Triggered:</b> Auto Allocation Assign on Park or Complete]
+ G[User is unassigned from a Queue Item]
+ H[<b>Flow Triggered:</b> Auto Allocation Assign on Unassignment]
+
+ A --> B
+ B -- Runs child flow to assign Queue Item --> C
+ C -- Checks status and updates Queue Item --> D
+ E --> F
+ F --> C
+ G --> H
+ H --> C
+```
+Automatic unassignment of tasks also takes place at 2am every morning and whenever a user is marked offline but still has tasks allocated to them. These are removed so that they can be re-assigned to another user who is online.
+
+```mermaid
+
+ flowchart TD
+ A[At 02:00 each morning]
+ B[<b>Flow Triggered:</b> Auto Allocation Automatic Force Offline]
+ C[<b>Flow Triggered:</b> Auto Allocation Unassign]
+ D[Fetch all allocated queue items and clear 'Worked By']
+ E[Recurring every 1 minute]
+ F[<b>Flow Triggered:</b> Auto Allocation Automatic Unassign]
+
+ A --> B
+ B -- Force all users offline and unassign any tasks --> C
+ C -- Unassign all tasks and queue items for a UserId--> D
+ E --> F
+ F -- List all offline users and mark them as unallocated--> C
+
+ ```
+
 
 ### Integrations
 #### Microsoft Exchange
