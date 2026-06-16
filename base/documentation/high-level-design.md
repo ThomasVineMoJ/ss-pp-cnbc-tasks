@@ -184,22 +184,27 @@ All tasks in the task table are created by 3 Power Automate flows described belo
 
 ```mermaid
 flowchart TD
-    A[<b>Trigger:</b> Record added to Email table] --> B{Is it a regular email or MOJ form submission?}
-    
-    B -- Regular Email --> C[<b>Run Flow:</b> Create Task From Incoming Email]
-    B -- MOJ Form --> D[<b>Run Flow:</b> Create Task From Web Form Submission]
 
-    C --> E[Create Task and set tsk_sendtoqueue as true]
-    D --> E
+    A[Record added to Email table] --> B{Email source/type?}
 
-    E --> F[[Trigger routing automations]]
+    %% Branch 1: Incoming email / MOJ form
+    B -->|"Incoming (Email or MOJ Form)"| C{Is it a regular email or MOJ form submission?}
 
-    G[User sends a new email from the model-driven app] --> H[Record added to Email table]
+    C -->|Regular Email| D[<b>Flow:</b> Create Task From Incoming Email]
+    C -->|MOJ Form| E[<b>Flow:</b> Create Task From Web Form Submission]
 
-    H --> I{Does the email have an associated task?}
-    I -- Yes --> J[Do nothing]
-    I -- No --> K[<b>Run Flow:</b> Create Task From Outgoing Email]
-    K --> L[Create Task and mark as complete]
+    D --> F[Create Task and set tsk_sendtoqueue as true]
+    E --> F
+
+    F --> G[[Trigger routing automations]]
+
+    %% Branch 2: Outgoing email from app
+    B -->|"Outgoing (Created in model-driven app)"| H{Does the email have an associated task?}
+
+    H -->|Yes| I[Do nothing]
+    H -->|No| J[<b>Flow:</b> Create Task From Outgoing Email]
+
+    J --> K[Create Task and mark as complete]
 ```
 
 The flag 'tsk_sendtoqueue' on the Task table is universally used to trigger separate routing automations, whenever a task is created that needs to be routed. Only incoming emails need to be routed as tasks to a queue.
@@ -210,14 +215,14 @@ Upon task creation, the flag 'tsk_sendtoqueue' is set to true, triggering downst
 
 ```mermaid
  flowchart TD
-  A[<b>Run Flow:</b> Create Task From Incoming Email]
-  B[<b>Run Flow:</b> Create Task From Incoming Email]
-  C[<b>Run Flow:</b> Re-Route Tasks For Source Queue]
+  A[<b>Flow:</b> Create Task From Incoming Email]
+  B[<b>Flow:</b> Create Task From Incoming Email]
+  C[<b>Flow:</b> Re-Route Tasks For Source Queue]
   D[<b>Power Fx Button: </b>'Resubmit Routing' On Queue Item Grid]
-  E[Modify tsk_sendtoqueue on Task table record to true]
+  E[Set tsk_sendtoqueue on Task table record to true]
   F{Is task source type either 'Email' or 'MoJ Form Submission?'}
-  G["<b>Automated Trigger:</b> Route Task (Incoming Email) To Queue"]
-  H["<b>Automated Trigger:</b> Route Task (MoJ Form) To Queue"]
+  G["<b>Flow:</b> Route Task (Incoming Email) To Queue"]
+  H["<b>Flow:</b> Route Task (MoJ Form) To Queue"]
   I[Route task to queue via queue item]
   J["<b>Classic Workflow:</b> Queue Item Sync (Queue)"]
   K["<b>Classic Workflow:</b> Queue Item Sync (Worked By)"]
@@ -252,23 +257,23 @@ A case worker sets their status to 'Online' using the custom page 'My Online Sta
 
  flowchart TD
  A[User sets online status via custom page]
- B[<b>Flow Triggered:</b> Auto Allocation Assign]
- C[<b>Flow Triggered:</b> Auto Allocation Get Next Task]
+ B[<b>Flow:</b> Auto Allocation Assign]
+ C[<b>Flow:</b> Auto Allocation Get Next Task]
  D[Queue Item assigned to user]
  E[Task status marked as complete or parked]
- F[<b>Flow Triggered:</b> Auto Allocation Assign on Park or Complete]
+ F[<b>Flow:</b> Auto Allocation Assign on Park or Complete]
  G[User is unassigned from a Queue Item]
- H[<b>Flow Triggered:</b> Auto Allocation Assign on Unassignment]
+ H[<b>Flow:</b> Auto Allocation Assign on Unassignment]
 
  A --> B
  B -- Runs child flow to assign Queue Item --> C
- C -- Checks status and updates Queue Item --> D
+ C -- Checks status and updates next available Queue Item --> D
  E --> F
- F --> C
+ F -- Runs child flow to get next Queue Item--> C
  G --> H
- H --> C
+ H -- Runs child flow to get next Queue Item--> C
 ```
-Automatic unassignment of tasks also takes place at 2am every morning and whenever a user is marked offline but still has tasks allocated to them. These are removed so that they can be re-assigned to another user who is online.
+Automatic unassignment of tasks also takes place at 2am every morning and whenever a user is marked offline but still has tasks allocated to them. These tasks are removed so that they can be re-assigned to another user who is online.
 
 ```mermaid
 
@@ -285,18 +290,33 @@ Automatic unassignment of tasks also takes place at 2am every morning and whenev
  C -- Unassign all tasks and queue items for a UserId--> D
  E --> F
  F -- List all offline users and mark them as unallocated--> C
-
  ```
 
 
 ### Integrations
 #### Microsoft Exchange
+The system uses server-side sync with Microsoft Exchange to synchronise emails between the shared mailboxes and the Dataverse 'Email' table.
+
+This is acheived by first creating or enabling the mailbox record in Dataverse (Advanced Settings → Email Configuration → Mailboxes) and link it to the shared mailbox email address. Then configure Server-Side Synchronization with an approved Exchange/Office 365 profile (likely an admin from MoJ), test and enable the mailbox, and set incoming email processing to "Server-Side Synchronization."
+
+The user creating the mailbox record will need full access rights to the shared mailbox in Exchange (e.g., full access or send-as), otherwise sync and tracking won’t activate.
 
 ### Security
 #### Service Accounts
-For any environment the solution is hosted within, an Entra ID service account must be used to manage the solution, including ownership of any connection references.
+For any environment the solution is hosted within, an Entra ID service account must be used to manage the solution, including ownership of any connection references and components with access to the relevant shared mailboxes for ingestion and synchronisation.
 
 #### Shared Mailbox
+Currently, there is 1 shared mailbox dedicated to the base solution, specifically for the development environment: lcpt-base-tasks-dev1@justice.gov.uk.
+
+Any projects forking from the base solution should have a separate Power Platform development environment and shared mailbox(s) created, these can be submitted using a standard SNOW request in ServiceNow.
 
 #### Dataverse Roles
-Currently, no custom security roles have been created for this solution. The expectation is the app will be used by the Low Code Platform Team to manage mailbox retention policies, without granting access to end-users. Any user wishing to access the solution should do so via a default security role, such as System Administrator.
+The solution includes 6 Dataverse roles, which are grouped into 4 teams (Rule Admins, Service Leaders, Standard Users and Team Leaders):
+
+
+| Team                | Role Rules Administrator | Role Auto Allocation Leader | Role Auto Allocation User | Role Service Leader | Role Standard User | Role Team Leader |
+|--------------------|--------------------------|------------------------------|----------------------------|---------------------|--------------------|------------------|
+| Rule Administrators| ✅                        |                              |                            |                     |                    |                  |
+| Service Leaders    |                          | ✅                            | ✅                          | ✅                   |                    |                  |
+| Standard Users     |                          |                              | ✅                          |                     | ✅                  |                  |
+| Team Leaders       |                          | ✅                            |                            |                     |                    | ✅                |
