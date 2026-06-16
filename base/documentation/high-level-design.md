@@ -149,7 +149,7 @@ The model-driven app provides case workers with an easy interface to view and ma
 Classic workflows are leveraged to ensure quality data hygiene whilst Power Automate flows carry out the bulk of processing from ingestion and routing, to auto-allocation and data capacity maintenance.
 
 ### Solution Components
-Below are the key power platform components, excluding those used in governance and configuration (such as environment variables, connection references).
+Below are the key Power Platform components, excluding those used in governance and configuration (such as environment variables, connection references).
 
 - **Model-Driven App** - Email and task handling, queue maintenance and routing rule development
 - **AI Model** - Adoption of a custom prompt to extract hearing dates from the incoming email body text
@@ -158,7 +158,7 @@ Below are the key power platform components, excluding those used in governance 
 - **Component library** - Managing Power Fx command bar buttons applied to tasks, queue items and routing rules
 - **Pages** - Custom pages used to provide additional functionality for auto-allocation and routing tasks to queues within the model-driven app
 - **Processes** - Supporting and managing data hygiene in real-time
-- **Dataverse Tables** - Store Email + Task data, routing rule metadata, task-queue assignments and user status data for auto-allocation
+- **Dataverse Tables** - Store Email and Task data, routing rule metadata, task-queue assignments and user status data for auto-allocation
 
 
 
@@ -279,11 +279,11 @@ Automatic unassignment of tasks also takes place at 2am every morning and whenev
 
  flowchart TD
  A[At 02:00 each morning]
- B[<b>Flow Triggered:</b> Auto Allocation Automatic Force Offline]
- C[<b>Flow Triggered:</b> Auto Allocation Unassign]
+ B[<b>Flow:</b> Auto Allocation Automatic Force Offline]
+ C[<b>Flow:</b> Auto Allocation Unassign]
  D[Fetch all allocated queue items and clear 'Worked By']
  E[Recurring every 1 minute]
- F[<b>Flow Triggered:</b> Auto Allocation Automatic Unassign]
+ F[<b>Flow:</b> Auto Allocation Automatic Unassign]
 
  A --> B
  B -- Force all users offline and unassign any tasks --> C
