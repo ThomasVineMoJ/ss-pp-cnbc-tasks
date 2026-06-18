@@ -56,41 +56,62 @@ All environment variables are included in the core solution `Task Management Bas
 |Email Loop Detection Time Span|The number of minutes that should be considered for detection. This number should be negative.| -5 | |
 |Email Loop Number Required|The number of emails required in the Time Span to count as an email loop.| 5 | |
 |Email Total Attachment Size Limit (Bytes)|The maximum cumulative size (in bytes) allowed for all attachments combined on a single outgoing email. | 5242880 |  |
-|Hearing Date Detection|Is automatic hearing date detection is enabled. | No | This is yet to be enabled in any other live solution. |
+|Hearing Date Detection|Is automatic hearing date detection is enabled. | No | This is yet to be enabled in any production environment. |
 |Outbound Email Queue Settings| JSON configuration of the default Queue to send emails from. | {  "outbound": {    "QueueName": "CNBC Incoming 2",    "QueueId": "e4c5ff1e-54b1-ef11-b8e9-6045bdfc394d"  },  "accessibility": {    "QueueName": "Accessibility Emails",    "QueueId": "f2b8127d-b7e6-ef11-9342-7c1e5203c47f"  }} | This can only be set once the solution has been imported and both queues have been created in the environment. Edit via default solution. |
+
 ### Connection References
 
-|Name|Connector|Purpose|DEV|UAT|PROD|Notes|
-|-|-|-|-|-|-|-|
-|Dataverse \| ERM|Microsoft Dataverse| Authenticate Cloud Flows to Dataverse|SVC Account|SVC Account|SVC Account||
-|HTTP with Microsoft entra ID (preauthorized) \| ERM |HTTP with Microsoft entra ID (preauthorized)|Connect to Microsoft Graph from Cloud Flows| https://graph.microsoft.com| https://graph.microsoft.com|https://graph.microsoft.com| Both Base Resource URL and Microsoft Entra ID Resource URI should be set to https://graph.microsoft.com
+|Name|Purpose|DEV|Notes|
+|-|-|-|-|
+|Content Conversion \| TSK|||
+|CSV Parser \| TSK|||
+|HTTP with Microsoft Entra ID (preauthorised) \| TSK|||
+|Microsoft Dataverse \| TSK|||
+|RegEx Engine \| TSK|||
+|Task Apply Rules \| TSK|||
+| Web Form JSON Mapper \| TSK|||
 
+### Deployment Steps
 
 ```mermaid
 flowchart LR
-    subgraph DEV["Development"]
-        A[Unmanaged Solution<br/>DEV]
+    subgraph DEV["HMCTS-LCPT-TASKS-BASE-DEV"]
+        A["Task Management Base<br>(Unmanaged)"]
+        B["Task Management Custom Connector<br>(Unmanaged)"]
+        C["Task Management Ribbon Customisations 1<br>(Unmanaged)"]
+        D["Task Management Ribbon Customisations 2<br>(Unmanaged)"]
+        E["User Settings Updater<br>(Unmanaged)"]
+
+
     end
 
-    subgraph SCM["Source Control & CI"]
-        B[Commit to Git]
-        C[GitHub Action<br/>Export Managed Solution]
+    subgraph PRODUCT["HMCTS-{PRODUCT}-TASKS-DEV"]
+        1A["Task Management Base<br>(Unmanaged)"]
+        1B["Task Management Custom Connector<br>(Unmanaged)"]
+        1C["Task Management Ribbon Customisations 1<br>(Unmanaged)"]
+        1D["Task Management Ribbon Customisations 2<br>(Unmanaged)"]
+        1E["User Settings Updater<br>(Unmanaged)"]
+        1F["Ribbon Workbench<br>(Managed)"]
+        1G["UltimateWorkflowToolkit<br>(Managed)"]
+
     end
 
-    subgraph ENVS["Downstream Environments"]
-        D[UAT<br/>Managed Solution]
-        E[Production<br/>Managed Solution]
+    subgraph EXTERNAL["EXTERNAL / 3<sup>rd</sup> PARTY"]
+        2F["Ribbon Workbench<br>(Managed)"]
+        2G["UltimateWorkflowToolkit<br>(Managed)"]
+
     end
 
-    A --> B --> C --> D --> E
-
-    class B,C gitops;
-    classDef gitops fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px;
+    A -- Manual Export/Environment Backup --> 1A
+    B -- Manual Export/Environment Backup --> 1B
+    C -- Manual Export/Environment Backup --> 1C
+    D -- Manual Export/Environment Backup --> 1D
+    E -- Manual Export/Environment Backup --> 1E
+    2F -- Manual Download/Environment Backup --> 1F
+    2G -- Manual Download/Environment Backup --> 1G
 ```
 
 This diagram illustrates the end‑to‑end ALM flow for the Power Platform solution, showing how changes are developed and maintained as an unmanaged solution in the DEV environment before being committed to source control. Each commit to the Git repository triggers a GitHub Action responsible for importing an unmanaged solution artifact, which is then deployed consistently (as managed) to downstream environments such as UAT and Production.
-
-### Deployment Steps
 
 ## Configuration
 
