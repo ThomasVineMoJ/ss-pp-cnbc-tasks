@@ -144,7 +144,7 @@ To update the Post Configuration for the task table, navigate to the legacy sett
 
 Admin Centre > Environment > Settings > Resources > All Legacy Settings
 
-Under the 'System' heading, select 'Activity Feeds Configuration.
+Under the 'System' heading, select Activity Feeds Configuration.
 
 ![Activity Feeds Configuration location](./images/postconfigsettings.png)
 
