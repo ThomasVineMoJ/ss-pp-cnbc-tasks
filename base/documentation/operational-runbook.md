@@ -1,43 +1,42 @@
 # Operational Runbook
-The runbook document provides operational guidance for deploying, configuring, and supporting the Task Management base solution, outlining the steps and controls required to deploy the solution downstream, so that it can be customised for new products in the low code platform team.
+The runbook provides operational guidance for deploying, configuring, and supporting the Task Management base solution. It defines the steps and controls required to deploy the solution to downstream environments, enabling it to be customised for new products within the Low Code Platform Team.
 
 ## Solutions
+The project consists of eight Power Platform solutions. All solutions must be imported into the initial development environment before any customisation begins.
 
-The project is formed of 6 different Power Platform solutions, all 6 should be imported into the starting development environment before customising the project.
-
-> **Note:** Ribbon Workbench only accepts solutions containing a maximum of 5 entities with no other component types in that solution.
+> **Note:** Ribbon Workbench only supports solutions that contain a maximum of five entities and no other component types.
 
 |Name|Purpose|
 |-|-|
-|Task Management Base|Main store of all core customisations including tables, apps and automations.|
-|Task Management Custom Connector| Contains separate, re-usable custom connectors which should be deployed before the base solution.
-|Task Management Ribbon Customisations 1|Contains custom command buttons and hide rules for the first 5 entities, edited in Ribbon Workbench.
-|Task Management Ribbon Customisations 2|Contains the 6<sup>th</sup>, and final entity, customised in Ribbon Workbench with custom commands and hide rules.| 
-|Task Management Global Command Bar|Holds the Application Ribbon component used to customise the global command bar, separate from entity-based command bars.
-|[Ribbon Workbench](https://www.develop1.net/public/rwb/ribbonworkbench.aspx) (Managed)| 3<sup>rd</sup> party solution used to administer command bars and application ribbons. Please note Ribbon Workbench is also accessable via XRMToolBox, without needing to install the solution.
-|[UltimateWorkflowToolkit](https://github.com/AndrewButenko/UltimateWorkflowToolkit) (Managed)| 3<sup>rd</sup> party solution used in classic workflows to calculate task due date, based on Queue SLA's.
-|User Settings Updater (Optional)| 2 utility Power Automate flows to manage user settings in the environment, such as date formatting and language. This can also be achieved using the [User Settings Utility](https://www.xrmtoolbox.com/plugins/MsCrmTools.UserSettingsUtility/) in XRMToolBox.
+|Task Management Base|Primary solution containing all core customisations, including tables, apps, and automations.|
+|Task Management Custom Connector| Contains reusable custom connectors. This solution must be deployed before the base solution.
+|Task Management Ribbon Customisations 1|Includes custom command buttons and hide rules for the first five entities, managed in Ribbon Workbench.
+|Task Management Ribbon Customisations 2|Contains custom command buttons and hide rules for the sixth and final entity, configured in Ribbon Workbench.| 
+|Task Management Global Command Bar|Stores the Application Ribbon component used to customise the global command bar, separate from entity-level command bars.
+|[Ribbon Workbench](https://www.develop1.net/public/rwb/ribbonworkbench.aspx) (Managed)| Third-party solution used to configure command bars and application ribbons. It can also be accessed via XRMToolBox without installing the solution.
+|[UltimateWorkflowToolkit](https://github.com/AndrewButenko/UltimateWorkflowToolkit) (Managed)| Third-party solution used within classic workflows to calculate task due dates based on queue SLAs.
+|User Settings Updater (Optional)| Provides two utility Power Automate flows for managing user settings (e.g. date formatting and language). Alternatively, this can be managed using the [User Settings Utility](https://www.xrmtoolbox.com/plugins/MsCrmTools.UserSettingsUtility/) in XRMToolBox.
 
 ## Deployment
-This section covers the dependencies and steps to import the project into a new development environment.
+This section outlines the dependencies and required steps for importing the project into a new development environment.
 
 ### Dependencies
-
 #### Dynamics 365 Apps
-The main base solution has several dependencies on existing Dynamics 365 products. When creating a new developer environment to customise the solution, it is recommended to check the setting `Install D365 apps`. Alternatively, developers can now install any required dependencies through the solution import wizard.
+The base solution has several dependencies on existing Dynamics 365 applications. When creating a new development environment for customisation, it is recommended to enable the `Install D365 apps` setting.
+Alternatively, required dependencies can be installed during the solution import process using the solution import wizard.
 
 ![Missing dependencies in solution import](./images/install_dependencies.png)
 
 #### Ultimate Workflow Toolkit
-The Classic Workflow `Queue Item Sync (Queue)` requires the Ultimate Workflow Toolkit solution, which can be downloaded from the [GitHub Repo](https://github.com/AndrewButenko/UltimateWorkflowToolkit/releases), managed by the creator Andrew butenko.
+The `Queue Item Sync (Queue)` classic workflow depends on the Ultimate Workflow Toolkit solution. This can be downloaded from the [GitHub Repo](https://github.com/AndrewButenko/UltimateWorkflowToolkit/releases), managed by its creator, Andrew Butenko.
 
-This solution contains a custom action which allows the calculation of task due date, inside the classic workflow, based on the task creation date + assigned Queue SLA (days).
+The solution provides a custom action used within the workflow to calculate the task due date. This is determined based on the task creation date combined with the assigned queue SLA (in days).
 
 #### DLP Policies
-By default, many MoJ environments block the use of custom connectors and the `HTTP with Entra ID` connector, both of which are required to use the solution. Ensure the accepting environment has a DLP appropriate for the main base solution. A list of connection references can be found below.
+By default, many MoJ environments restrict the use of custom connectors and the `HTTP with Entra ID` connector, both of which are required by this solution. Ensure that the target environment has an appropriate DLP policy configured to support the base solution. A list of required connection references is provided below.
 
 #### Dedicated Shared Mailbox
-As part of Microsoft's server-side synchronisation feature, only 1 Power Platform environment can be linked to a shared email mailbox at any given time. This means the new development environment must have it's own shared mailbox in order to test and develop features in the development environment. Mailboxes cannot be shared between 2 or more environments.
+Due to Microsoft's server-side synchronisation limitations, a shared mailbox can only be linked to a single Power Platform environment at a time. As a result, each development environment must have its own dedicated shared mailbox for testing and development purposes. Shared mailboxes cannot be used across multiple environments.
 
 ### Environments
 |Name|Type|Purpose|URL|
@@ -51,16 +50,16 @@ All environment variables are included in the core solution `Task Management Bas
 |-|-|-|-|
 |Auto Allocation Delay Length Before Unassign|For auto allocation, how many minutes should the user be offline for before any tasks get auto unassigned from them. | 2 |  |
 |Auto Allocation Related Tasks|Tasks with the same Case Number can be auto allocated.| Yes |  |
-|Case Number Pattern|Stores the regular expression (regex) pattern used to identify and extract case reference numbers from email subject lines and message bodies.| \b[a-zA-Z0-9]\d[a-zA-Z0-9]{3}[a-zA-Z0-9]{3}\b | This will always differ depending on the target solution. |
+|Case Number Pattern|Stores the regular expression (regex) pattern used to identify and extract case reference numbers from email subject lines and message bodies.| \b[a-zA-Z0-9]\d[a-zA-Z0-9]{3}[a-zA-Z0-9]{3}\b | This will differ depending on the target solution and case number formatting. |
 |Email Loop Detection Destination Queue|When an email loop is detected, which queue should the tasks be routed to. This should be the Queue ID.| 04a82b7d-f297-f011-b41b-6045bdd14a24 |  |
 |Email Loop Detection Time Span|The number of minutes that should be considered for detection. This number should be negative.| -5 | |
 |Email Loop Number Required|The number of emails required in the Time Span to count as an email loop.| 5 | |
 |Email Total Attachment Size Limit (Bytes)|The maximum cumulative size (in bytes) allowed for all attachments combined on a single outgoing email. | 5242880 |  |
 |Hearing Date Detection|Is automatic hearing date detection is enabled. | No | This is yet to be enabled in any production environment. |
-|Outbound Email Queue Settings| JSON configuration of the default Queue to send emails from. | {  "outbound": {    "QueueName": "CNBC Incoming 2",    "QueueId": "e4c5ff1e-54b1-ef11-b8e9-6045bdfc394d"  },  "accessibility": {    "QueueName": "Accessibility Emails",    "QueueId": "f2b8127d-b7e6-ef11-9342-7c1e5203c47f"  }} | This can only be set once the solution has been imported and both queues have been created in the environment. Edit via default solution. |
+|Outbound Email Queue Settings| JSON configuration of the default Queue to send emails from. |``` {  "outbound": {    "QueueName": "CNBC Incoming 2",    "QueueId": "e4c5ff1e-54b1-ef11-b8e9-6045bdfc394d"  },  "accessibility": {    "QueueName": "Accessibility Emails",    "QueueId": "f2b8127d-b7e6-ef11-9342-7c1e5203c47f"  }} ```| This can only be set once the solution has been imported and both queues have been created in the environment. Edit via default solution. |
 
 ### Connection References
-Listed below are the connection references used within the base solution, note that the `HTTP with Microsoft Entra ID` connection should be based on the environment's URL.
+The following section lists the connection references used within the base solution. Note that the `HTTP with Microsoft Entra ID` connection must be configured using the target environment's URL.
 
 |Name|Purpose|DEV Value|
 |-|-|-|
@@ -73,8 +72,7 @@ Listed below are the connection references used within the base solution, note t
 | Web Form JSON Mapper \| TSK|Map incoming web form data against web form config to produce an array of questions & answers|Developer personal connection|
 
 ### Deployment Steps
-
-To deploy the base product to a new development environment for configuration, users can either backup the base environment into a new environment with the product name, or manually import each solution as shown below.
+To deploy the base solution to a new development environment for configuration, you can either restore the base environment into a new environment (named for the target product), or manually import each solution as outlined below.
 
 ```mermaid
 flowchart LR
@@ -113,9 +111,9 @@ flowchart LR
     2F -- Manual Download/Environment Backup --> 1F
     2G -- Manual Download/Environment Backup --> 1G
 ```
-Ensure that all dependencies are resolved before importing, particularly with D365 Apps and the `UltimateWorkFlowToolkit` solution.
+Ensure all dependencies are resolved prior to import, particularly Dynamics 365 applications and the `UltimateWorkflowToolkit` solution.
 
-If importing each solution individually, then it is advised to import in the following order:
+If importing solutions individually, it is recommended to follow the sequence outlined below:
 
 1. UltimateWorkFlowToolkit
 2. Task Management Custom Connector
@@ -126,20 +124,74 @@ If importing each solution individually, then it is advised to import in the fol
 7. User Settings Updater (Optional)
 8. Ribbon Workbench (Optional)
 
-During solution import, set any connection references to a personal developer account, or a service account if available (except `HTTP With Entra ID`).
+During solution import, configure all connection references to authenticate using a personal developer account, or a service account if available (excluding `HTTP with Entra ID`).
 
-Most environment variables can be left as default, with the exception of `Outbound Email Queue Settings` and `Email Loop Detection Destination Queue` which can only be set once the initial queues have been created.
+Most environment variables can remain at their default values. The exceptions are `Outbound Email Queue Settings` and `Email Loop Detection Destination Queue`, which can only be configured after the initial queues have been created.
 
-After successful solution import, be sure to click `Publish Customisations` against each solution, particularly for command bar customisations.
-
+After successfully importing the solutions, ensure you publish customisations for each solution, with particular attention to command bar customisations.
 
 ## Configuration
+The following steps are required to complete the setup of the base solution in a new environment.
 
+### Activity Feeds
+Several Power Automate flows implement a try–catch–finally pattern. Within the finally scope, a success or error message is recorded against the relevant task record to help correlate flow execution results with individual tasks. This is achieved by creating an *auto-post* record in the Post table.
 
+By default, post records cannot be associated with custom or standard tables without updating the Activity Feeds configuration in each Dataverse environment. If this configuration is not applied, an error will occur when attempting to enable the Power Automate flows:
 
+**[Insert image of error in PROD here]**
 
+To update the Post Configuration for the task table, navigate to the legacy settings menu in Power Platform:
 
+Admin Centre > Environment > Settings > Resources > All Legacy Settings
 
-## Operational Support
-N/A
+Under the 'System' heading, select 'Activity Feeds Configuration.
 
+![Activity Feeds Configuration location](./images/postconfigsettings.png)
+
+Locate and select the relevant entity (for example, Task) and click 'Activate' in the command bar.
+
+![Selected Task entity for posts](./images/task-activityfeedsconfig.png)
+
+Once activated, the Power Automate flows that create auto-posts against the task table can be enabled within the base solution.
+
+### Shared Mailboxes
+
+To receive emails within the Task Management application, at least one shared mailbox must be configured in the Power Platform environment for server-side synchronisation.
+
+Navigate to:
+
+Power Platform Admin Centre > Manage > Select the appropriate environment > Settings > Email > Mailboxes
+
+From here, environment administrators can create a new mailbox. The mailbox must then be approved by a Power Platform Administrator (for example, within MoJ) before it can be used.
+
+![Successful mailbox setup](./images/mailboxcompletion.png)
+
+A successful configuration should show both `Incoming Email Status` and `Outgoing Email Status` as Success. Additionally, both `Incoming Email` and `Outgoing Email` must be set to Server-Side Synchronisation.
+
+### Queues
+After configuring the shared mailbox, Power Platform automatically creates a corresponding queue to receive incoming emails.
+
+Typically, the Task Management base solution should include one or more dedicated queues to support the following scenarios:
+
+- Receiving emails (automatically created with the mailbox)
+- Sending outbound emails (often using the same queue as above)
+- Sending outbound emails for accessibility-related scenarios
+- Handling tasks with no matching routing rules during assignment
+- Managing email loop messages (e.g. non-deliverable reports, spam, or bounce-backs)
+
+> **Note:** It is recommended to create queues **after** importing the solution. This ensures that column defaults and required fields (such as `Exclude From Routing` and `SLA Days`) are correctly applied to all queues.
+
+### Environment Variables
+Once all queues have been setup, administrators can update 2 of the environment variables to finish configuration of the solution:
+
+|Environment Variable|Format|
+|-|-|
+|Outbound Email Queue Settings|``` {  "outbound": {    "QueueName": "CNBC Incoming 2",    "QueueId": "e4c5ff1e-54b1-ef11-b8e9-6045bdfc394d"  },  "accessibility": {    "QueueName": "Accessibility Emails",    "QueueId": "f2b8127d-b7e6-ef11-9342-7c1e5203c47f"  }} ```|
+|Email Loop Detection Destination Queue|04a82b7d-f297-f011-b41b-6045bdd14a24|
+
+### Common Smoke Tests
+The following tests are recommended after migrating the solution to a new environment:
+- **App Views:** Verify that all views for `Queue Items` and `Tasks` are consistent. Importing an unmanaged model-driven app can sometimes introduce unintended or duplicate views.
+- **Command Bars:** Validate key command bars, particularly the Task Home Grid, Task Form, and Queue Item Home Grid (when a record is selected).
+- **Email Ingestion:** With all flows enabled, send a test email to the shared mailbox. The email should be ingested as a task, assigned to a queue, and given a due date based on the queue’s SLA.
+- **Create New Email:** Confirm the presence of the + New Email option in the global application ribbon. This should open a new email form, with the `From` field defaulting to the configured outbound email environment variable.
