@@ -60,18 +60,21 @@ All environment variables are included in the core solution `Task Management Bas
 |Outbound Email Queue Settings| JSON configuration of the default Queue to send emails from. | {  "outbound": {    "QueueName": "CNBC Incoming 2",    "QueueId": "e4c5ff1e-54b1-ef11-b8e9-6045bdfc394d"  },  "accessibility": {    "QueueName": "Accessibility Emails",    "QueueId": "f2b8127d-b7e6-ef11-9342-7c1e5203c47f"  }} | This can only be set once the solution has been imported and both queues have been created in the environment. Edit via default solution. |
 
 ### Connection References
+Listed below are the connection references used within the base solution, note that the `HTTP with Microsoft Entra ID` connection should be based on the environment's URL.
 
-|Name|Purpose|DEV|Notes|
-|-|-|-|-|
-|Content Conversion \| TSK|||
-|CSV Parser \| TSK|||
-|HTTP with Microsoft Entra ID (preauthorised) \| TSK|||
-|Microsoft Dataverse \| TSK|||
-|RegEx Engine \| TSK|||
-|Task Apply Rules \| TSK|||
-| Web Form JSON Mapper \| TSK|||
+|Name|Purpose|DEV Value|
+|-|-|-|
+|Content Conversion \| TSK|Convert HTML to plain text on task creation|Developer personal connection|
+|CSV Parser \| TSK|Parse CSV to JSON for Web Form ingestion|Developer personal connection|
+|HTTP with Microsoft Entra ID (preauthorised) \| TSK|Carry out bulk updates and Upserts to Dataverse |Dataverse environment URL (https://hmcts-lcpt-tasks-base-dev.crm11.dynamics.com)|
+|Microsoft Dataverse \| TSK|General data management|Developer personal connection|
+|RegEx Engine \| TSK|Extract GUIDs and case numbers|Developer personal connection|
+|Task Apply Rules \| TSK|Process tasks against routing rules to route to queues|Developer personal connection|
+| Web Form JSON Mapper \| TSK|Map incoming web form data against web form config to produce an array of questions & answers|Developer personal connection|
 
 ### Deployment Steps
+
+To deploy the base product to a new development environment for configuration, users can either backup the base environment into a new environment with the product name, or manually import each solution as shown below.
 
 ```mermaid
 flowchart LR
@@ -110,8 +113,25 @@ flowchart LR
     2F -- Manual Download/Environment Backup --> 1F
     2G -- Manual Download/Environment Backup --> 1G
 ```
+Ensure that all dependencies are resolved before importing, particularly with D365 Apps and the `UltimateWorkFlowToolkit` solution.
 
-This diagram illustrates the end‑to‑end ALM flow for the Power Platform solution, showing how changes are developed and maintained as an unmanaged solution in the DEV environment before being committed to source control. Each commit to the Git repository triggers a GitHub Action responsible for importing an unmanaged solution artifact, which is then deployed consistently (as managed) to downstream environments such as UAT and Production.
+If importing each solution individually, then it is advised to import in the following order:
+
+1. UltimateWorkFlowToolkit
+2. Task Management Custom Connector
+3. Task Management Base
+4. Task Management Ribbon Customisations 1
+5. Task Management Ribbon Customisations 2
+6. Task Management Global Command Bar
+7. User Settings Updater (Optional)
+8. Ribbon Workbench (Optional)
+
+During solution import, set any connection references to a personal developer account, or a service account if available (except `HTTP With Entra ID`).
+
+Most environment variables can be left as default, with the exception of `Outbound Email Queue Settings` and `Email Loop Detection Destination Queue` which can only be set once the initial queues have been created.
+
+After successful solution import, be sure to click `Publish Customisations` against each solution, particularly for command bar customisations.
+
 
 ## Configuration
 
