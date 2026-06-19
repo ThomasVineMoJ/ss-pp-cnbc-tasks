@@ -134,7 +134,7 @@ After successfully importing the solutions, ensure you publish customisations fo
 The following steps are required to complete the setup of the base solution in a new environment.
 
 ### Activity Feeds
-Several Power Automate flows implement a try–catch–finally pattern. Within the finally scope, a success or error message is recorded against the relevant task record to help correlate flow execution results with individual tasks. This is achieved by creating an *auto-post* record in the Post table.
+Several Power Automate flows implement a try-catch-finally pattern. Within the finally scope, a success or error message is recorded against the relevant task record to help correlate flow execution results with individual tasks. This is achieved by creating an *auto-post* record in the Post table.
 
 By default, post records cannot be associated with custom or standard tables without updating the Activity Feeds configuration in each Dataverse environment. If this configuration is not applied, an error will occur when attempting to enable the Power Automate flows:
 
@@ -142,7 +142,7 @@ By default, post records cannot be associated with custom or standard tables wit
 
 To update the Post Configuration for the task table, navigate to the legacy settings menu in Power Platform:
 
-Admin Centre > Environment > Settings > Resources > All Legacy Settings
+Admin Centre → Environment → Settings → Resources → All Legacy Settings
 
 Under the 'System' heading, select Activity Feeds Configuration.
 
@@ -160,7 +160,7 @@ To receive emails within the Task Management application, at least one shared ma
 
 Navigate to:
 
-Power Platform Admin Centre > Manage > Select the appropriate environment > Settings > Email > Mailboxes
+Power Platform Admin Centre → Manage → Select the appropriate environment → Settings → Email → Mailboxes
 
 From here, environment administrators can create a new mailbox. The mailbox must then be approved by a Power Platform Administrator (for example, within MoJ) before it can be used.
 
