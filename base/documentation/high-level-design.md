@@ -108,8 +108,6 @@ erDiagram
 | **User Status**       | Store user online/offline status for auto-allocation |
 | **Web Form Configuration**       | JSON records containing question/answer config for MoJ Web Forms  |
 
-
-
 ### Data Flow
 
 ```mermaid
