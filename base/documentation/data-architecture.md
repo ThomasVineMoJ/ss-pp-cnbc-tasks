@@ -63,7 +63,7 @@ MIME attachment for an activity.
 Activity that is delivered using email protocols.
 
 #### Core Fields
-- Is Initial Outbound (Yes/No) - Indicates whether an email is a new outbound message, if so set to true. Previously used in triggering `Create Task From Outgoing Email` cloud flow.
+- Is Initial Outbound (Yes/no) - Indicates whether an email is a new outbound message, if so set to true. Previously used in triggering `Create Task From Outgoing Email` cloud flow.
 - Task (Lookup) - Associated task created as a result of ingesting this email. Set in all 3 ingestion cloud flows:
     - `Create Task From Incoming Email`
     - `Create Task From Outgoing Email`
@@ -75,95 +75,79 @@ Activity that is delivered using email protocols.
 - For incoming emails, a classic workflow `Set Default Email Subject/Body` sets either the 'Subject' or 'Body' to '(No Subject) or (No Body), to ensure both fields always contain data to avoid user confusion.
 
 #### Integrations
-- Emails are auto-created by server-side synchronisation, whenever an email is recieved to a shared mailbox.
+- Emails are auto-created by server-side synchronisation whenever an email is recieved to a shared mailbox.
 
 #### Design Decisions
 - Standard Email table used to align with Microsoft ecosystem, due to OOTB integrations.
 - Includes many Ribbon Workbench customisations to hide most command bar buttons.
 
-### Keyword (new_keyword)
+### Keyword (tsk_keyword)
 Captures keywords to search against for each routing rule.
 
 #### Core Fields
-- Name (Text) — Keyword value
-- Routing Rule (Lookup) — Associated rule
-
-#### Business Logic
-- Keywords are evaluated against incoming content during routing
+- Keyword (Single line of text) - Term or phrase to match a routing rule against.
+- Routing Rule (Lookup) - Associated Routing Rule.
 
 #### Integrations
-- Used by routing logic within Power Automate
-
-#### Design Decisions
-- Separate table used to allow flexible keyword management
-
----
+- Used by routing logic (`Route Task (Incoming Email) To Queue`) within Power Automate
 
 ### Queue (queue)
 A list of records that require action.
 
 #### Core Fields
-- Name (Text) — Queue name
-- Owner (User/Team) — Responsible party
+- Auto Allocation Enabled (Yes/no) - When set to 'Yes', tasks belonging to this queue can be auto-allocated to online users.
+- Exclude From Routing (Yes/no) - Prevent tasks from being automatically routed when set to 'Yes'.
+- No Match Queue (Lookup) - Fallback queue if no matches are found from routing engine.
+- Parent Queue (Lookup) - Group queues by area/team, so that tasks arriving into a parent queue, can only be routed to the child queues of the receiving queue.
+- SLA Days (Whole number) - Used to calculate the due date of the task/queue item, based on date received.
 
 #### Business Logic
-- Queues group actionable items for users or teams
-
-#### Integrations
-- Used by routing flows and task assignment logic
-
-#### Design Decisions
-- Standard Queue table leveraged to utilise built-in queue capabilities
-
----
+- Parent queue is mandatory, if `Reply from No-Reply` equals 'No', set by `Parent Queue Requirement set by Reply From field` business rule.
+- Prevent user from setting a 'No Match Queue' for accepting queues, or those excluded from routing. Defined by `No Match Queue Required Base on Incoming Email`
+- Default `Type` to 'Private' when creating a new queue. Set via the business rule: `Set Type to Private for New Queues`.
 
 ### Queue Item (queueitem)
 A specific item in a queue, such as a task or email.
 
 #### Core Fields
-- Queue (Lookup) — Defines the queue the item is assigned to
+- Due Date (Date and time) - Target completion date, based on date received + SLA of assigned queue.
+- Previous Worked By (Lookup) - Records the pre-image `Worked By` value before it changes. Used by auto allocation to assign a new task when a queue item is unassigned.
+- Worked By (Lookup) - Shows who is working on the queue item.
 
 #### Business Logic
-- Queue Items are automatically created when activities (e.g. tasks or emails) are routed into a queue  
+- The previous `Worked By` value is captured by a classic workflow (`QueueItem Last Worked By`) which runs before the 'Worked By' field is modified and saved. This is used to support auto-allocation.
+- `Queue Item Sync (Queue)` and `Queue Item Sync (Worked By)` are two classic workflows used to set the `Due Date` and update the related Task `Owner`, based on changes to the queue item, to keep both records synchronised. The `Due Date` is calculated using the 'UltimateWorkFlowToolkit' solution.
 
 #### Integrations
-- Power Automate flows monitor Queue Items for assignment and escalation scenarios
+- A task is routed to a queue (thus creating a queue item) via 2 key Power Automate cloud flows:
+    - `Route Task (Incoming Email) To Queue`
+    - `Route Task (MoJ Form) To Queue`
+- Once created, queue items can be modified using multiple OOTB and custom command buttons, see documentation on command ribbons.
+- The auto allocation feature revolves around re-assigning the 'Worked By' field to users to streamline task management. This is handled via several cloud flows:
+    - `Auto Allocation Get Next Task`
+    - `Auto Allocation Assign on Unassignment`
+    - `Auto Allocation Unassign`
 
 #### Design Decisions
-- Standard Dataverse Queue Item table is used to leverage built-in queue management capabilities
+- When an email arrives in a shared mailbox and is synchronised to Dataverse, a queue item is automatically created, linking the email to the accepting queue. The decision was taken to remove these email-based queue items to avoid confusion with task-based queue items. The email-based queue items are deleted as part of the 2 ingestion flows which trigger the child flow `Delete Email Queue Item Loop (Child)`. These are also cleaned up via a nightly batch job running as a cloud flow: `QueueItems - Nightly Email Cleanup`.
+- Previously the out-of-the-box command button 'Route' allowed users to remove queue items from queues. This button was hidden (via Ribbon Workbench) and replaced with a button that appears the same, but launches a custom pop-up, allowing users to re-assign the `Queue` & `Worked By`, without removing it from a queue entirely.
 
----
-
-### Role Marker - Standard User (new_rolemarkerstandarduser)
-Empty table used in Ribbon Workbench to customise command bar.
-
-#### Core Fields
-- N/A — No functional fields
-
-#### Business Logic
-- Used purely as a marker for enabling/disabling UI commands
-
-#### Integrations
-- Referenced in Ribbon Workbench customisations
+### Role Marker - Standard User (tsk_rolemarkerstandarduser)
+Dummy table used in Ribbon Workbench to create display rules for showing/hiding the 'Release' button on Queue Items.
 
 #### Design Decisions
-- Dummy table created to work around platform limitations in command bar customisation
+- Unclear on use case of building empty/dummy table vs customising the JavaScript to check permissions before executing.
 
----
-
-### Routing Log (new_routinglog)
+### Routing Log (tsk_routinglog)
 Records all successful attempts at routing tasks to queues.
 
 #### Core Fields
-- Task (Lookup) — Related task
-- Queue (Lookup) — Destination queue
-- Timestamp (Datetime) — When routing occurred
-
-#### Business Logic
-- Logs are created whenever routing succeeds
+- Assigned Queue (Lookup) - Queue that the task was routed to.
+- Matched Rules (Whole number) - Number of routing rules successfully matched for Web Form Tasks.
+- Rule Name (Single line of text) - Name of Routing Rule that was used to route the task/queue item to the assigned queue.
 
 #### Integrations
-- Used by monitoring and reporting processes
+- Used for monitoring purposes, a record is created in the `Routing Log` table as the last action in both routing cloud flows `Route Task (Incoming Email) To Queue` and `Route Task (MoJ Form) To Queue`
 
 #### Design Decisions
 - Separate logging table created to provide auditability
