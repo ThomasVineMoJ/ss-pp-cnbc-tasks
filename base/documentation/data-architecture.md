@@ -147,30 +147,35 @@ Records all successful attempts at routing tasks to queues.
 - Rule Name (Single line of text) - Name of Routing Rule that was used to route the task/queue item to the assigned queue.
 
 #### Integrations
-- Used for monitoring purposes, a record is created in the `Routing Log` table as the last action in both routing cloud flows `Route Task (Incoming Email) To Queue` and `Route Task (MoJ Form) To Queue`
+- Used for monitoring purposes, a record is created in the `Routing Log` table as the last action in both routing cloud flows `Route Task (Incoming Email) To Queue` and `Route Task (MoJ Form) To Queue`.
 
-#### Design Decisions
-- Separate logging table created to provide auditability
-
----
-
-### Routing Rules (new_routingrules)
+### Routing Rules (tsk_routingrules)
 Criteria to evaluate tasks against before assigning to a queue.
 
 #### Core Fields
-- Name (Text) — Rule name
-- Priority (Number) — Order of evaluation
+- Attachment Queue (Lookup) - If the rule matches and the Task has an attachment it should be routed to this queue.
+- Destination Queue (Lookup) - If the rule matches, this is the queue the Task should be routed to.
+- Pattern Match (Single line of text) - RegEx pattern to check the email body, subject and attachment names against.
+- Rule Type (Choice) - Defines whether the routing rule is for `MoJ Form Routing`, `Email Routing` or `Global Email Routing`.
+- Search Sequence (Whole number) - The order to prioritise routing rules, where the lowest number takes priority.
+- Source Queue (Lookup) - The queue the email was accepted against before being routed.
+- Web Form Conditions (Multiple lines of text) - JSON metadata containing conditions for tasks via MoJ Forms.
 
 #### Business Logic
-- Rules are evaluated sequentially to determine queue assignment
+- Routing rules are evaluated where the lowest search sequence value is prioritised.
+- The business rule `Show hide fields based on RuleType` is vital in maintaining data integrity across different columns in the routing rules table. The rule takes 3 paths depending on the type:
+    - Email Routing
+        - Show `Source Queue` field and set required, clearing `Web Form Conditions`.
+    - Global Email Routing
+        - Hide, clear and set optional the `Source Queue` field, as well as clear `Web Form Conditions`.
+    - MoJ Form
+        - Hide `Must Have Keyword`, `Pattern Match` and `Check Attachments` fields.
 
 #### Integrations
-- Used by Power Automate routing flows
+- Rules are evaluated against a routing engine, built as a custom connector: `Task Apply Rules`.
 
 #### Design Decisions
-- Rules externalised into a table for configurability and maintainability
-
----
+- Web Form conditions are stored as a JSON so they can have multiple nested groups and conditions, which are editable by the `JSON Query Builder` canvas app. This is built into the main form for routing rules.
 
 ### Task (task)
 Generic activity representing an email (or multiple) to be actioned.
