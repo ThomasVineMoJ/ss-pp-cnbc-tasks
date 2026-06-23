@@ -181,21 +181,26 @@ Criteria to evaluate tasks against before assigning to a queue.
 Generic activity representing an email (or multiple) to be actioned.
 
 #### Core Fields
-- Subject (Text) — Task description
-- Status (Choice) — Current state
-- Regarding (Lookup) — Related record
+- Case Number (Single line of text) - The case number for which this task relates. This is extracted from the original email using RegEx in the task creation flows. 
+- Queue (Lookup) - The queue the Task is currently in. This is the same as the queue which the queue item belongs to, kept synchronised by the classic workflow `Queue Item Sync (Queue)`.
+- Originating Email (Lookup) - The original email which prompted the task to be created. This email is then displayed on the Dataverse form for that specific task.
+- Originating Queue (Lookup) - The original queue that the email was accepted into, usually a shared mailbox-dedicated queue.
+- Send To Queue (Yes/no) - Flag used to trigger automated task routing. When set to true, a routing flow will assign this record to the appropriate queue. This field is controlled by system processes and should not be updated by users.
+- Web Form Metadata (Multiple lines of text) - Stores JSON‑formatted metadata containing all question and answer values submitted through the MoJ web form. This is then surfaced through a custom HTML control on the Dataverse form as a 2-column table.
+- Web Form Submission Id - Unique GUID of form submitted via MoJ Forms. This forms a separate alternate key, ensuring the same submission cannot be created twice when receiving multiple emails regarding the same submission.
 
 #### Business Logic
-- Tasks are created from emails and routed to queues
-- Task status drives workflow behaviour
+- When the `Status Reason` of a task is modified by a user, the timestamp of that change is captured into the field `Status Reason Modified On` by the classic workflow `Set Status Reason Modified On`.
+- Depending on the `Source Type` of the task, a different Dataverse form is displayed on the Task record to only show relevant data.
+- An alternate key is defined against `Web Form Submission` to ensure multiple emails from MoJ forms regarding the same submission, only successfully create 1 task.
+- The `Duration` and `Duration Assigned` fields are updated by the cloud flow `Calculate Task Completion Time`.
+- During initial task creation, the `Due Date` is set to 99 days from `UtcNow()`, this so that tasks display at the bottom of any Dataverse views sorted by `Due Date`, until the task is routed to a queue with a more defined SLA.
 
 #### Integrations
 - Power Automate handles routing, assignment, and notifications
 
 #### Design Decisions
-- Standard Task table used to align with activity model
-
----
+- The decision was taken to split the task creation and routing into 2 separate cloud flows per task source type, linked by the change in `Send To Queue` field. This allowed the task routing to be triggered from multiple places, including command buttons in the model-driven app.
 
 ### Task Event (new_taskevent)
 Audit log of key actions taken against a task.
