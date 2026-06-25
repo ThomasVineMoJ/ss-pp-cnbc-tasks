@@ -195,3 +195,12 @@ The following tests are recommended after migrating the solution to a new enviro
 - **Command Bars:** Validate key command bars, particularly the Task Home Grid, Task Form, and Queue Item Home Grid (when a record is selected).
 - **Email Ingestion:** With all flows enabled, send a test email to the shared mailbox. The email should be ingested as a task, assigned to a queue, and given a due date based on the queue’s SLA.
 - **Create New Email:** Confirm the presence of the + New Email option in the global application ribbon. This should open a new email form, with the `From` field defaulting to the configured outbound email environment variable.
+
+### Entra ID Groups
+Below is an example of how 4 Entra ID access groups should be created with the appropriate Dataverse roles assigned to them.
+| Team                | Role Rules Administrator | Role Auto Allocation Leader | Role Auto Allocation User | Role Service Leader | Role Standard User | Role Team Leader |
+|--------------------|--------------------------|------------------------------|----------------------------|---------------------|--------------------|------------------|
+| Rule Administrators| ✅                        |                              |                            |                     |                    |                  |
+| Service Leaders    |                          | ✅                            | ✅                          | ✅                   |                    |                  |
+| Standard Users     |                          |                              | ✅                          |                     | ✅                  |                  |
+| Team Leaders       |                          | ✅                            |                            |                     |                    | ✅                |

@@ -21,6 +21,12 @@ Many teams across HMCTS experience large numbers of emails into shared mailboxes
 | Power Platform development environment | Current environment for making changes | https://make.powerapps.com/environments/c48b3376-9d1b-efeb-9da6-42c9adad53a4      |
 
 
+### Stakeholders
+|Name|Area|Role|
+|-|-|-|
+|Tom Vine|Low Code Platform Team| Developer
+
+
 ## Business Architecture
 
 ### Business Process
@@ -191,6 +197,8 @@ flowchart TD
     C -->|Regular Email| D[<b>Flow:</b> Create Task From Incoming Email]
     C -->|MOJ Form| E[<b>Flow:</b> Create Task From Web Form Submission]
 
+    D <-->|Child flow to process HTML| L[<b>Flow:</b> Convert Email Body to Plain Text]
+
     D --> F[Create Task and set tsk_sendtoqueue as true]
     E --> F
 
@@ -309,12 +317,14 @@ Currently, there is 1 shared mailbox dedicated to the base solution, specificall
 Any projects forking from the base solution should have a separate Power Platform development environment and shared mailbox(s) created, these can be submitted using a standard SNOW request in ServiceNow.
 
 #### Dataverse Roles
-The solution includes 6 Dataverse roles, which are grouped into 4 teams (Rule Admins, Service Leaders, Standard Users and Team Leaders):
+The solution includes 6 Dataverse roles, which are grouped into 4 teams (Rule Admins, Service Leaders, Standard Users and Team Leaders).
 
+|Name|Purpose|
+|-|-|
+|Role Rules Administrator|This role is centred on the configuration of routing behaviour and provides full global control over Keywords, Routing Rules, Routing Logs, and Web Form Configurations, along with the ability to create and manage Queues required for routing. It does not provide meaningful access to Tasks, Emails, Attachments or Queue Items.|
+|Role Auto Allocation Leader|This role focuses on supporting auto-allocation through management of User Status, with the ability to create, read, and update it (globally readable). However, it has no access to Tasks, Emails, Queues, Queue Items, Routing Rules, Keywords, Routing Logs, or Task Events.|
+|Role Auto Allocation User|This role provides basic interaction with User Status, allowing users to create and update their own status and read it at a limited scope, supporting participation in auto-allocation. It has no access to Tasks, Emails, Queues, Queue Items, Routing Rules, Keywords, Routing Logs, or Task Events, meaning it cannot process work, and is intended only to support presence/status input within the allocation model.|
+|Role Service Leader|This role provides the broadest coverage, with full control of Tasks, Emails, Attachments, Queues, and Queue Items, and strong visibility into Routing Rules, Logs, Keywords, Task Events, Users, User Status', and Web Form Configurations. It enables oversight of work flow and system usage but does not directly control Routing Rules and Keywords, relying on Rules Administrator to define routing behaviour.|
+|Role Standard User|This role provides operational access to Tasks, Emails, Attachments, Queues, and Queue Items, enabling users to perform daily work. It includes visibility of Routing Rules, Logs, Keywords, Task Events, User Status', and Web Form Configurations, supporting awareness of routing and tracking. However, it cannot modify routing logic or Keywords, and has limited control over Queues.|
+|Role Team Leader|This role enhances operational control with the ability to assign and coordinate Tasks, Emails, Queues, and Queue Items across teams. It has full visibility of Routing Rules, Logs, Keywords, Task Events, and Web Form Configurations, supporting workload monitoring. It cannot modify Routing Rules or Keywords.|
 
-| Team                | Role Rules Administrator | Role Auto Allocation Leader | Role Auto Allocation User | Role Service Leader | Role Standard User | Role Team Leader |
-|--------------------|--------------------------|------------------------------|----------------------------|---------------------|--------------------|------------------|
-| Rule Administrators| ✅                        |                              |                            |                     |                    |                  |
-| Service Leaders    |                          | ✅                            | ✅                          | ✅                   |                    |                  |
-| Standard Users     |                          |                              | ✅                          |                     | ✅                  |                  |
-| Team Leaders       |                          | ✅                            |                            |                     |                    | ✅                |
