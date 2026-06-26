@@ -164,9 +164,7 @@ Below are the key Power Platform components, excluding those used in governance 
 - **Processes** - Supporting and managing data hygiene in real-time
 - **Dataverse Tables** - Store Email and Task data, routing rule metadata, task-queue assignments and user status data for auto-allocation
 
-
-
-### Processes
+### Concepts
 
 #### Email Ingestion
 A vital part of the solution is configuration of the email server profile to pick up emails that arrive into a shared mailbox being used by caseworkers and team members. This ingestion uses the [server-side synchronisation](https://learn.microsoft.com/en-us/power-platform/admin/server-side-synchronization) feature which processes received emails and creates them in the 'Email' Dataverse table.
@@ -181,9 +179,77 @@ Similarly, if a user sends an email from within the model-driven app, then a rec
 
 The classic workflow `Set Default Email Subject/Body` automatically sets the body or subject of an incoming email to "(None)" if either field is blank upon receipt. This ensures there is always a string for future automations to use and avoid user confusion.
 
+#### Queue Configuration
+Each implementation of the base solution will usually include multiple shared inboxes. As described in the previous section, every shared mailbox will have it's own dedicated queue which accepts the initial email coming in.
+
+From here, a newly created task can be routed to many other queues and types depending on the body, subject and sender of the email.
+
+Each parent queue will have a number of direct child queues which split out the tasks and work into dedicated groups, based on how the team operates. These child queue relationships are defined when the `Parent Queue` property of a queue is defined.
+
+For each parent queue, the application would expect a corresponding 'No Match' queue to be created. This queue still has the `Parent Queue` field defined as the parent queue, but the `No Match Queue` field on the parent queue must also be set. This is consumed in the routing logic below, where if no routing rules are matched, the automation will fallback and assign the task to the no match queue, which can be reviewed by admins to improve the routing logic and keywords. 
+
+```mermaid
+flowchart TD
+
+  %% Global Queues across the top
+  subgraph GQ["Global Queues (No Parent Queue Assigned)"]
+    direction LR
+    G1["Email Loop (Hide auto-replies etc)"]
+    G2["Accessibility (?)"]
+  end
+
+  %% Team A
+  subgraph TA["Team A"]
+    direction TB
+    A1["Shared Mailbox"]
+    A2["Parent Queue (Accepting Queue)"]
+    A3["No Match Queue"]
+    A4["Child Queue A"]
+    A5["Child Queue B"]
+    A6["Child Queue C"]
+
+    A1 --> A2
+    A2 --> A4
+    A2 --> A5
+    A2 --> A6
+    A2 -- Lookup on Parent Queue --> A3
+  end
+
+  %% Team B
+  subgraph TB["Team B"]
+    direction TB
+    B1["Shared Mailbox"]
+    B2["Parent Queue (Accepting Queue)"]
+    B3["No Match Queue"]
+    B4["Child Queue A"]
+    B5["Child Queue B"]
+    B6["Child Queue C"]
+
+    B1 --> B2
+    B2 --> B4
+    B2 --> B5
+    B2 --> B6
+    B2 -- Lookup on Parent Queue --> B3
+  end
+
+  %% Dotted non-directional relationships to Global Queues
+  A2 -.-> GQ 
+  B2 -.-> GQ
+
+  %% Correctly style ONLY the last two links
+  linkStyle 10,11 stroke-dasharray: 5 5, stroke:#999, stroke-opacity:0.6;
+
+  %% Styling for Shared Mailboxes
+  classDef mailbox fill:#eeeeee,stroke:#999999,color:#333,stroke-width:1px;50
+  class A1,B1 mailbox;
+  ```
+
+Outside of each team's subset of parent and child queues, there must be a globally accessible queue for email loops and accessibility. The global email loop queue is designed to collect all emails that are not relevant or needed for the users in the app. This may include spam and junk emails, but also auto-replies from external senders which do not need to be actioned. The queue id for this queue is then set against the environment variable `Email Loop Detection Destination Queue`, so any future emails which meet these criteria are automatically routed to this queue across the whole app.
+
+At the time of writing, there are no routing rules defined against the accessibility queue, and tasks requiring accessibility assistance are manually routed to this queue by a user.
+
 
 #### Task Creation
-
 All tasks in the task table are created by 3 Power Automate flows described below. Two are responsible for creating tasks for 'Email' and 'MoJ Form Submission' source types, whilst the third creates completed tasks off the back of newly sent emails by an application user.
 
 ```mermaid
@@ -247,7 +313,6 @@ Upon task creation, the flag 'tsk_sendtoqueue' is set to true, triggering downst
   I --> K
   J -- Update queue and due date against Task --> L
   K -- Update Task owner based on Queue Item 'Worked By' --> L
-
  ```
 
 The goal of the automated routing is to route incoming tasks to an initial queue and user, which can be picked up by a specific member of that queue, or routed to another queue if more appropriate.
@@ -317,7 +382,7 @@ Currently, there is 1 shared mailbox dedicated to the base solution, specificall
 Any projects forking from the base solution should have a separate Power Platform development environment and shared mailbox(s) created, these can be submitted using a standard SNOW request in ServiceNow.
 
 #### Dataverse Roles
-The solution includes 6 Dataverse roles, which are grouped into 4 teams (Rule Admins, Service Leaders, Standard Users and Team Leaders).
+The solution includes 6 Dataverse roles, which are grouped into 4 access teams (Rule Admins, Service Leaders, Standard Users and Team Leaders).
 
 |Name|Purpose|
 |-|-|

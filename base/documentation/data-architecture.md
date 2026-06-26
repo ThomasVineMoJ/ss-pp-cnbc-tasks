@@ -49,6 +49,8 @@ Task performed, or to be performed, by a user. An activity is any action for whi
 #### Design Decisions
 - Standard Activity table used in Ribbon Workbench to remove non-task activity command buttons when viewing tasks. e.g. +New Phone Call.
 
+---
+
 ### Attachment (activitymimeattachment)
 MIME attachment for an activity.
 
@@ -58,6 +60,8 @@ MIME attachment for an activity.
 
 #### Design Decisions
 - No customisations applied to default table, other than the disabling of table property 'Appear in search results', so that attachments do not display when searching in the model-driven app using Dataverse search.
+
+---
 
 ### Email (email)
 Activity that is delivered using email protocols.
@@ -81,6 +85,8 @@ Activity that is delivered using email protocols.
 - Standard Email table used to align with Microsoft ecosystem, due to OOTB integrations.
 - Includes many Ribbon Workbench customisations to hide most command bar buttons.
 
+---
+
 ### Keyword (tsk_keyword)
 Captures keywords to search against for each routing rule.
 
@@ -90,6 +96,8 @@ Captures keywords to search against for each routing rule.
 
 #### Integrations
 - Used by routing logic (`Route Task (Incoming Email) To Queue`) within Power Automate
+
+---
 
 ### Queue (queue)
 A list of records that require action.
@@ -105,6 +113,8 @@ A list of records that require action.
 - Parent queue is mandatory, if `Reply from No-Reply` equals 'No', set by `Parent Queue Requirement set by Reply From field` business rule.
 - Prevent user from setting a 'No Match Queue' for accepting queues, or those excluded from routing. Defined by `No Match Queue Required Base on Incoming Email`
 - Default `Type` to 'Private' when creating a new queue. Set via the business rule: `Set Type to Private for New Queues`.
+
+---
 
 ### Queue Item (queueitem)
 A specific item in a queue, such as a task or email.
@@ -132,11 +142,15 @@ A specific item in a queue, such as a task or email.
 - When an email arrives in a shared mailbox and is synchronised to Dataverse, a queue item is automatically created, linking the email to the accepting queue. The decision was taken to remove these email-based queue items to avoid confusion with task-based queue items. The email-based queue items are deleted as part of the 2 ingestion flows which trigger the child flow `Delete Email Queue Item Loop (Child)`. These are also cleaned up via a nightly batch job running as a cloud flow: `QueueItems - Nightly Email Cleanup`.
 - Previously the out-of-the-box command button 'Route' allowed users to remove queue items from queues. This button was hidden (via Ribbon Workbench) and replaced with a button that appears the same, but launches a custom pop-up, allowing users to re-assign the `Queue` & `Worked By`, without removing it from a queue entirely.
 
+---
+
 ### Role Marker - Standard User (tsk_rolemarkerstandarduser)
 Dummy table used in Ribbon Workbench to create display rules for showing/hiding the 'Release' button on Queue Items.
 
 #### Design Decisions
 - Unclear on use case of building empty/dummy table vs customising the JavaScript to check permissions before executing.
+
+---
 
 ### Routing Log (tsk_routinglog)
 Records all successful attempts at routing tasks to queues.
@@ -149,6 +163,8 @@ Records all successful attempts at routing tasks to queues.
 #### Integrations
 - Used for monitoring purposes, a record is created in the `Routing Log` table as the last action in both routing cloud flows `Route Task (Incoming Email) To Queue` and `Route Task (MoJ Form) To Queue`.
 
+---
+
 ### Routing Rules (tsk_routingrules)
 Criteria to evaluate tasks against before assigning to a queue.
 
@@ -156,10 +172,10 @@ Criteria to evaluate tasks against before assigning to a queue.
 - Attachment Queue (Lookup) - If the rule matches and the Task has an attachment it should be routed to this queue.
 - Destination Queue (Lookup) - If the rule matches, this is the queue the Task should be routed to.
 - Pattern Match (Single line of text) - RegEx pattern to check the email body, subject and attachment names against.
-- Rule Type (Choice) - Defines whether the routing rule is for `MoJ Form Routing`, `Email Routing` or `Global Email Routing`.
+- Rule Type (Choice) - Defines whether the routing rule is for `MoJ Form Routing`, `Email Routing` or `Global Email Routing`. `Global Email Routing` rules do not need a `source queue` defined as they apply to all queues.
 - Search Sequence (Whole number) - The order to prioritise routing rules, where the lowest number takes priority.
 - Source Queue (Lookup) - The queue the email was accepted against before being routed.
-- Web Form Conditions (Multiple lines of text) - JSON metadata containing conditions for tasks via MoJ Forms.
+- Web Form Conditions (Multiple lines of text) - JSON metadata containing conditions for routing tasks via MoJ Forms.
 
 #### Business Logic
 - Routing rules are evaluated where the lowest search sequence value is prioritised.
@@ -177,6 +193,8 @@ Criteria to evaluate tasks against before assigning to a queue.
 #### Design Decisions
 - Web Form conditions are stored as a JSON so they can have multiple nested groups and conditions, which are editable by the `JSON Query Builder` canvas app. This is built into the main form for routing rules.
 
+---
+
 ### Task (task)
 Generic activity representing an email (or multiple) to be actioned.
 
@@ -192,83 +210,70 @@ Generic activity representing an email (or multiple) to be actioned.
 #### Business Logic
 - When the `Status Reason` of a task is modified by a user, the timestamp of that change is captured into the field `Status Reason Modified On` by the classic workflow `Set Status Reason Modified On`.
 - Depending on the `Source Type` of the task, a different Dataverse form is displayed on the Task record to only show relevant data.
-- An alternate key is defined against `Web Form Submission` to ensure multiple emails from MoJ forms regarding the same submission, only successfully create 1 task.
+- An alternate key is defined against `Web Form Submission` to ensure multiple emails from MoJ forms, regarding the same submission, only successfully create 1 task.
 - The `Duration` and `Duration Assigned` fields are updated by the cloud flow `Calculate Task Completion Time`.
-- During initial task creation, the `Due Date` is set to 99 days from `UtcNow()`, this so that tasks display at the bottom of any Dataverse views sorted by `Due Date`, until the task is routed to a queue with a more defined SLA.
 
 #### Integrations
-- Power Automate handles routing, assignment, and notifications
+- Power Automate handles Task creation and automatic routing.
+- The system is setup for integration with MoJ Web Forms. This acheived by storing the JSON config file of the web form in dataverse. When a shared mailbox receives a submission from MoJ Forms, a separate Power Automate flow processes the provided CSV, converts to JSON and maps additional metadata provided by the web form config file.
 
 #### Design Decisions
 - The decision was taken to split the task creation and routing into 2 separate cloud flows per task source type, linked by the change in `Send To Queue` field. This allowed the task routing to be triggered from multiple places, including command buttons in the model-driven app.
+- During initial task creation, the `Due Date` is set to 99 days from `UtcNow()`, this is so that tasks display at the bottom of any Dataverse views sorted by `Due Date`, until the task is routed to a queue with a more defined SLA.
 
-### Task Event (new_taskevent)
+---
+
+### Task Event (tsk_taskevent)
 Audit log of key actions taken against a task.
 
 #### Core Fields
-- Task (Lookup) — Related task
-- Event Type (Choice) — Type of action
-- Timestamp (Datetime) — When event occurred
+- Task (Lookup) - Related Task that the action was performed against.
+- Performed By (Lookup) - User that performed the action.
+- Event (Choice [Global]) - Categorise key changes such as task routing, status change and user assignment.
 
 #### Business Logic
-- Events are recorded for key lifecycle actions
-
-#### Integrations
-- Used for reporting and traceability
+- Events are recorded for key lifecycle actions from existing classic workflows.
 
 #### Design Decisions
-- Custom audit table used to supplement standard auditing
+- Custom audit table used to supplement standard auditing to support aggregated data analysis of key events.
 
 ---
 
 ### User (systemuser)
-Default system user table.
-
-#### Core Fields
-- Full Name (Text) — User name
-- Business Unit (Lookup) — Organisation structure
-
-#### Business Logic
-- Users own records and actions within the system
-
-#### Integrations
-- Integrated with Azure AD / Entra ID
+Default system user table with no column, form or view changes.
 
 #### Design Decisions
-- Standard system user entity used
+- Table contains relationships with custom entities and lookups.
 
 ---
 
-### User Status (new_userstatus)
+### User Status (tsk_userstatus)
 Stores user online/offline status for auto-allocation.
 
 #### Core Fields
-- User (Lookup) — Related system user
-- Status (Choice) — Online / Offline
+- Is Online (Yes/no) - User's current status regarding auto-allocation.
+- Last Offline (DateTime) - The last time the user went offline.
+- Last Online (DateTime) - The last time the user went online.
+- Unallocate Completed (Yes/no) - Has the process of auto unallocating tasks been completed.
 
 #### Business Logic
-- Status determines whether a user can receive new tasks
-
-#### Integrations
-- Power Automate uses status for auto-assignment
-
-#### Design Decisions
-- Custom table created to support workload distribution logic
+- `Is Online` determines whether the user is automatically assigned a new task upon task completion or unassignment.
 
 ---
 
-### Web Form Configuration (new_webformconfiguration)
+### Web Form Configuration (tsk_webformconfiguration)
 JSON records containing question/answer configuration for MoJ Web Forms.
 
 #### Core Fields
-- Name (Text) — Configuration name
-- JSON Payload (Multiline Text) — Form definition
+- Metadata JSON (Multiple lines of text) - The JSON-based definition of the form's schema and questions.
+- Name (Single line of text) - Display name of the web form configuration.
 
 #### Business Logic
-- JSON defines dynamic form structure and behaviour
+- JSON defines the dynamic form structure and behaviour, provided by MoJ forms team. 
 
 #### Integrations
-- Consumed by external web form services
+- JSON is consumed by task creation flows and custom connectors to build out metadata for each task and route to the correct queue.
 
 #### Design Decisions
-- JSON-based approach used for flexibility and rapid changes without schema updates
+- The decision was taken to store the JSON in a plain text column in a standard Dataverse table, rather than an elastic table which has a specific JSON-column type. As such, the column does not validate the data, so users must be aware of the risks of creating new config records with invalid JSON. 
+- The JSON definition of the web form provided by MoJ forms team is actually of JSONC, which cannot be placed in the app due to compatability issues, as a result the JSONC must be converted to JSON using a conversion tool.
